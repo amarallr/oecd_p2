@@ -2,6 +2,10 @@
 
 OECD Minimum Tax Implementation (Pillar Two).
 
+Para conhecer o projeto de forma visual e didática, a apresentação interativa explica o Pilar 2, o objetivo da plataforma, sua arquitetura e as etapas de desenvolvimento. Ela inclui navegação por slides, um exemplo de cálculo e a opção de salvar em PDF.
+
+**[Abrir a apresentação do projeto →](https://amarallr.github.io/oecd_p2/apresentacao.html)**
+
 `oecd_p2` é uma infraestrutura aberta em desenvolvimento para modelar, calcular, explicar e revisar tributação mínima global. O corte normativo inicial é **23/10/2026**. O projeto RStudio e a página explicativa estão implementados; o motor e os pacotes nacionais ainda não foram implementados. Não há suporte a obrigações tributárias reais nem endosso institucional.
 
 ## O que é o Pilar 2 da OCDE?
