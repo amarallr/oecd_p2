@@ -1,0 +1,42 @@
+====================================================================
+P05 — ESPECIFICAÇÃO DO MOTOR E MEMÓRIA DE CÁLCULO
+====================================================================
+
+C — CONTEXTO
+Receba P02–P04. O motor será uma biblioteca independente, capaz de executar fluxos completos apenas dentro do perfil de suporte declarado.
+
+O — OBJETIVO
+Definir operações, estados, cálculos e evidências necessárias para um motor determinístico e revisável.
+
+S — ESTILO
+Especificação funcional com pseudocódigo legível, contratos e exemplo numérico integral.
+
+T — TOM
+Exato, sem esconder simplificações.
+
+A — AUDIÊNCIA
+Especialistas de domínio, implementadores e validadores independentes.
+
+R — RESPOSTA
+1. Especifique as etapas: validar contexto → selecionar regras → testar escopo → verificar eleições/safe harbours → preparar bases → calcular → coordenar mecanismos → explicar.
+2. Justifique a ordem de execução e os dados necessários; não presuma que todo safe harbour pode ser testado antes de qualquer preparação de dados.
+3. Declare entradas, saídas, pré-condições e erros de cada operação.
+4. Use aritmética decimal e políticas explícitas de arredondamento. Proíba float binário para valores fiscais materiais.
+5. Especifique ETR e imposto complementar para o caso ordinário, identificando os limites da fórmula e os tratamentos especiais que precisam de rotas próprias.
+6. Defina os casos de renda nula/negativa, tributos negativos, ajustes posteriores e agregações separadas, mediante fundamento.
+7. Modele cálculo por entidade, agregação apropriada e alocação subsequente. Demonstre prevenção de dupla contagem na coordenação dos mecanismos.
+8. Distinga: fora do escopo, imposto nulo calculado, safe harbour aplicado, resultado incompleto e caso não suportado.
+9. Especifique memória com entradas utilizadas, transformações, regras/fontes, valores intermediários, eleições, versões, avisos e conciliação final.
+10. Defina run_id, hash dos insumos canônicos, versões do código, pacote nacional e corpus, e identificação do perfil suportado.
+11. Preserve a execução original nas retificações; gere uma nova execução com comparação e motivo.
+12. Não consulte serviços externos mutáveis durante o cálculo canônico; receba snapshots de câmbio, status e parâmetros.
+
+Exemplo sintético obrigatório, não suficiente para comprovar conformidade:
+- Uma jurisdição no caso ordinário, renda GloBE 100, tributos abrangidos ajustados 10 e exclusão baseada em substância 20, em unidades monetárias.
+- Sem safe harbour, QDMTT, ajuste adicional ou outra exceção no exemplo.
+- A 15%, ETR = 10%; percentual complementar = 5%; lucro excedente = 80; imposto complementar jurisdicional antes de alocação = 4.
+- Compare com exclusão zero; explique por que o primeiro resultado é 4, e não 5.
+- Não atribua o valor a uma entidade ou a IIR/UTPR sem dados e regras adicionais.
+
+Entregáveis: contratos do motor, pseudocódigo, memória exemplificada e matriz de erros.
+Aceite: um revisor deve conseguir refazer o exemplo sem executar o futuro software.

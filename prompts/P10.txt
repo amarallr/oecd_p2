@@ -1,0 +1,53 @@
+====================================================================
+P10 — ROADMAP, MVP E PASSAGEM À IMPLEMENTAÇÃO
+====================================================================
+
+C — CONTEXTO
+Receba os artefatos P00–P09 e a especificação da página em P11. O projeto deve começar pequeno sem apresentar um demonstrador limitado como motor internacional completo.
+
+O — OBJETIVO
+Produzir plano executável por fases, com backlog e critérios de passagem à implementação.
+
+S — ESTILO
+Roadmap por resultados e backlog priorizado com dependências, esforço relativo e definição de pronto.
+
+T — TOM
+Realista, objetivo e orientado à entrega.
+
+A — AUDIÊNCIA
+Coordenação, mantenedores, especialistas e equipe de desenvolvimento.
+
+R — RESPOSTA
+1. Faça revisão de consistência entre domínio, dados, motor, pacotes, arquitetura, testes, governança e página explicativa.
+2. Liste decisões resolvidas, propostas e lacunas que impedem um resultado normativo.
+3. Proponha as fases:
+   F0 — concepção, corpus, arquitetura e escopo aprovados tecnicamente, mais preparação do projeto oecd_p2 no RStudio e do repositório canônico no GitHub;
+   F0-web — página explicativa interativa do P11, com conteúdo do escopo já definido, demonstração sintética identificada como didática e publicação verificada; pode anteceder a conclusão do motor;
+   F1 — biblioteca/CLI com dados sintéticos e caso ordinário, memória integral e bloqueios para casos excluídos;
+   F2 — coordenação multinacional no perfil definido, dois pacotes fictícios e testes de alocação;
+   F3 — primeiro pacote real após seleção e revisão normativa; expansão controlada dos casos;
+   F4 — relatórios, adaptadores GIR, API e interface conforme prioridades;
+   F5 — ampliação de jurisdições, cenários especiais, desempenho e manutenção.
+4. Para cada fase, defina entradas, entregáveis, critérios verificáveis, dependências, competências e riscos.
+5. Publique uma matriz “suportado / não suportado / experimental” desde F1.
+6. Defina backlog com ID, história, valor, fundamento, dependência, aceite e evidência esperada.
+7. Identifique caminho crítico, entregas independentes e custos de manutenção; não invente orçamento ou prazo sem premissas.
+8. Proponha estrutura inicial do repositório e nomes dos documentos a serem gerados na implementação.
+9. Escreva os próximos prompts de execução para o bootstrap técnico F0, a página F0-web e, depois, para F1. Preserve as decisões anteriores e o escopo restrito; o bootstrap e a página não autorizam antecipar o motor completo.
+10. Faça um resumo do que ainda impede uso em obrigações reais.
+11. Inclua no prompt de bootstrap a sequência operacional abaixo:
+   a) inspecionar o ambiente acessível e o diretório-base; verificar se já existem oecd_p2, oecd_p2.Rproj, alterações locais ou remotes;
+   b) verificar o repositório amarallr/oecd_p2 por ferramenta autenticada; se existente e acessível, reutilizá-lo; se comprovadamente inexistente, criá-lo como público, conforme o objetivo open source;
+   c) clonar o repositório na pasta oecd_p2 quando houver histórico remoto; para repositório novo e vazio, inicializar uma única cópia local com branch main, evitando commits iniciais independentes no servidor e na máquina;
+   d) criar ou ajustar oecd_p2.Rproj na raiz, .gitignore, README, exemplos de configuração sem segredos e as pastas mínimas; configurar renv para componentes R conforme P07;
+   e) salvar os prompts P00–P11 individualmente em prompts/, com instruções de ordem de execução e índice no README;
+   f) registrar versões e verificações do ambiente em docs/ambiente.md e decisões de arquitetura em docs/adr/; registrar licença conforme a decisão do P09, sem alegar revisão ainda não realizada;
+   g) validar a preparação e os exemplos disponíveis; não relatar testes do motor antes de implementá-lo;
+   h) revisar os arquivos a versionar, criar commits convencionais e fazer push para a branch apropriada do repositório confirmado, respeitando políticas e histórico existentes; abrir PR quando a branch padrão exigir revisão;
+   i) verificar sincronização local/remota e registrar URL, branch, hash do commit e pendências.
+12. Se não houver acesso à máquina do usuário, prepare os artefatos e um roteiro reproduzível para o RStudio local. Distinga claramente arquivo .Rproj preparado de projeto efetivamente aberto/validado no RStudio do usuário. Falhas de autenticação ou criação remota não impedem a preparação dos arquivos locais.
+13. Defina como aceite do bootstrap: projeto oecd_p2.Rproj preparado; guia de abertura e dependências; prompts organizados; .gitignore revisado; repositório remoto criado ou reutilizado quando acessível; commit e sincronização comprovados, ou bloqueio específico documentado.
+14. Inclua no prompt de execução F0-web: implementar site/index.html, CSS, JavaScript e dados sintéticos; revisar conteúdo e fontes; testar os comportamentos do P11 e a apresentação em celular/desktop; documentar a execução local; versionar e sincronizar; publicar pelo GitHub Pages quando houver acesso e capacidade, verificando deployment e URL real. Se houver bloqueio, entregar os arquivos completos e registrar o passo pendente.
+15. Mostre no README o link da página somente quando sua publicação estiver confirmada; enquanto isso, forneça instruções locais e identifique a publicação como pendente.
+
+Aceite: o primeiro incremento deve ser pequeno, reproduzível e auditável; a expansão deve ocorrer por suporte comprovado, não por alteração de rótulo.

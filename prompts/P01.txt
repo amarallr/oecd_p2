@@ -1,0 +1,42 @@
+====================================================================
+P01 — LIB: INSTRUÇÕES COMUNS OBRIGATÓRIAS
+====================================================================
+
+C — CONTEXTO
+Este prompt acompanha todos os demais. O projeto deve traduzir normas em regras executáveis sem ocultar interpretações, simplificações ou lacunas.
+
+O — OBJETIVO
+Estabelecer o contrato comum de evidência, qualidade e rastreabilidade dos trabalhos.
+
+S — ESTILO
+Requisitos numerados, identificadores estáveis e tabelas comparáveis. Documentação em português com glossário bilíngue; preparar localização futura.
+
+T — TOM
+Preciso, verificável e transparente sobre incertezas.
+
+A — AUDIÊNCIA
+Todos os participantes e revisores do projeto.
+
+R — RESPOSTA
+Aplique as instruções abaixo em cada etapa:
+1. Use fontes primárias: OCDE/Inclusive Framework, legisladores, autoridades nacionais e IFRS Foundation. Fontes secundárias servem para descoberta, não para substituir o fundamento.
+2. Registre fonte, emissor, URL, edição, artigo/parágrafo, publicação, acesso, vigência e jurisdição. Calcule checksum apenas se os bytes forem efetivamente obtidos.
+3. Não invente dispositivo, trecho, qualificação nacional, resultado esperado nem status de vigência. Marque “não verificado” quando faltar evidência.
+4. Diferencie fonte internacional, norma doméstica, interpretação, eleição do contribuinte, hipótese e proposta de implementação. Não crie precedência jurídica universal.
+5. Todo requisito terá ID, fundamento, escopo temporal, dados, comportamento, exceções, testes e status.
+6. Vincule: fonte → interpretação → requisito → regra → implementação futura → teste → resultado.
+7. Use os estados: suportado, experimental, não suportado, não aplicável e pendente de dados. Ausência de suporte ou de informação não equivale a imposto zero.
+8. Diferencie cálculo normativo, simulação hipotética e resultado incompleto. Bloqueie conclusão definitiva quando a lacuna for material.
+9. Exija determinismo: mesmos dados, regras, eleições e versões devem produzir o mesmo resultado canônico. Carimbos operacionais podem variar e ficam fora desse resultado.
+10. IA pode auxiliar pesquisa, documentação e revisão. Nenhum LLM decide obrigação ou valor do imposto na execução normativa.
+11. Não publique dados reais de contribuintes em exemplos, testes, logs públicos ou relatórios de falhas.
+12. Não reproduza documentos protegidos integralmente sem permissão; registre referências e analise direitos de redistribuição.
+13. Termine cada entrega com fontes consultadas, decisões propostas, lacunas materiais e critérios de aceite atendidos ou pendentes.
+14. Execute apenas a etapa solicitada e as verificações necessárias; não transforme concepção em implantação sem delimitação.
+15. Use uma única raiz oecd_p2 para o projeto RStudio e a cópia de trabalho Git. Use caminhos relativos à raiz; não codifique diretórios pessoais nem dependa do diretório corrente herdado de uma sessão.
+16. Inspecione arquivos, alterações locais e remotes antes de inicializar ou sincronizar. Preserve trabalho existente; não use reset destrutivo, force push ou substituição silenciosa de origin.
+17. Versione oecd_p2.Rproj, prompts, código, testes, documentação e arquivos declarativos de dependências. Exclua .Rproj.user/, .Rhistory, .RData, .Renviron, .env, tokens, caches, bibliotecas locais e dados reais. Mantenha exemplos de configuração sem segredos.
+18. Registre alterações em commits convencionais, específicos e verificáveis. Faça push das alterações do escopo para o repositório confirmado após as verificações apropriadas; informe branch, commit e status. Não alegue criação ou sincronização sem evidência.
+19. Se o GitHub retornar 404 ou falhar por autenticação/permissão, diferencie repositório inexistente de repositório inacessível. Não conclua ausência apenas com base no 404. Avance na preparação local e documente o bloqueio remoto sem expor credenciais.
+20. A página explicativa deve usar as mesmas definições, fontes, versões e limitações dos documentos do projeto. Diferencie recursos implementados, planejados e experimentais. Um simulador didático não comprova suporte tributário do motor.
+21. Mantenha os arquivos da página, estilos, scripts, dados sintéticos e instruções de publicação no repositório oecd_p2. Não duplique regras normativas no frontend; a demonstração simplificada deve declarar suas hipóteses e limites.

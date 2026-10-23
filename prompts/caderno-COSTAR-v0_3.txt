@@ -1,0 +1,627 @@
+OECD PILLAR TWO — FRAMEWORK ABERTO E MOTOR DE TRIBUTAÇÃO
+Caderno inicial de prompts CO-STAR | versão 0.3 | 23 de outubro de 2026
+Status: proposta de concepção; não constitui implementação nem certificação de conformidade.
+
+1. VISÃO PROPOSTA
+
+Construir uma infraestrutura pública de software para modelar, calcular, explicar e revisar a tributação mínima global. O framework deverá poder ser estudado, executado, adaptado e redistribuído por administrações tributárias, contribuintes, pesquisadores e desenvolvedores de qualquer país, sob licença aberta.
+
+O framework compreende o modelo de domínio, contratos de dados, catálogo de regras, motor determinístico, pacotes nacionais, interfaces, testes, documentação e governança. O motor é seu componente de cálculo. A interface é uma camada consumidora; a lógica tributária não deve depender dela.
+
+Proposta arquitetural: núcleo de referência GloBE + pacotes nacionais versionados + adaptadores contábeis e de dados + memória de cálculo verificável. Reutilização internacional não significa legislação uniforme nem suporte automático a todos os países.
+
+O Handbook indicado pelo proponente é de 2023. Ele apresenta o encadeamento de escopo, renda, tributos, alíquota efetiva, imposto complementar e mecanismos de cobrança. É referência introdutória, não especificação suficiente para um produto atual. As Model Rules, os comentários, as orientações posteriores e o direito interno aplicável precisam ser examinados por tema e período. [S1–S4]
+
+Atualização das referências: foram localizados o Consolidated Commentary de maio de 2026, o pacote Side-by-Side de janeiro de 2026, as orientações e a GIR de setembro de 2026 e o guia XML GIR de outubro de 2026. Publicação, vigência tributária, início do exercício e data de intercâmbio são dimensões diferentes. [S2–S6]
+
+No eixo contábil, as emendas à IAS 12 relativas ao Pillar Two introduziram uma exceção temporária para os tributos diferidos relacionados a esses impostos, acompanhada de requisitos de divulgação. Isso não deve ser interpretado pelo projeto como eliminação de todos os dados de tributos diferidos necessários aos ajustes GloBE. A distinção precisa ser validada normativamente no P04. [S7; requisito de projeto a validar]
+
+2. COMO UTILIZAR
+
+Estes são prompts para concepção e especificação, não uma ordem de implementação integral imediata.
+Carregue P01 como instrução comum. Execute P00 como coordenador e, depois, P02 a P09; use P11 para especificar a página explicativa e P10 para consolidar o roadmap e os prompts de implementação.
+Cada execução deve receber os resultados anteriores e o registro de decisões atualizado.
+Não reutilize apenas o histórico do chat: mantenha os artefatos versionados.
+O idioma inicial dos trabalhos é português, com identificadores técnicos e glossário em inglês.
+Se houver bloqueio em uma regra, avance nos temas independentes e identifique a limitação.
+A aprovação técnica referida aqui é uma revisão dos artefatos para liberação; não exige interromper toda atividade de concepção.
+
+Parâmetros iniciais:
+- Identificador técnico definido pelo proponente: oecd_p2.
+- Diretório de trabalho: <diretorio_base>/oecd_p2/; identificar o diretório-base no ambiente real, sem inventar caminho pessoal.
+- Projeto RStudio: oecd_p2.Rproj, na raiz do diretório oecd_p2.
+- Repositório GitHub de destino: amarallr/oecd_p2.
+- URL canônica: https://github.com/amarallr/oecd_p2
+- Visibilidade pretendida para um novo repositório: pública, coerente com o objetivo open source.
+- Ambiente principal de desenvolvimento: RStudio, com Git e terminal integrado.
+- Página explicativa interativa: site/index.html, site/assets/css/styles.css e site/assets/js/app.js, integrada ao mesmo repositório.
+- Tecnologias da página: HTML semântico, CSS e JavaScript; outras linguagens e ferramentas apenas quando justificadas.
+- Hospedagem pretendida da página: GitHub Pages do repositório amarallr/oecd_p2; verificar configuração e URL efetiva durante a implementação.
+- Nome descritivo provisório: Open Pillar Two Framework; o identificador técnico oecd_p2 permanece fixo.
+- Data de corte normativa inicial: 2026-10-23; atualizar explicitamente em futuras rodadas.
+- Exercícios-alvo: a definir; não presumir que a publicação mais recente rege todos os exercícios.
+- Jurisdições reais do piloto: a selecionar após levantamento normativo.
+- Primeiro demonstrador: jurisdições fictícias e dados integralmente sintéticos.
+- Stack: a decidir mediante ADR no P07.
+- Licença proposta para código: Apache-2.0, sujeita à análise do P09.
+- Status de cada decisão: proposta, validada, substituída ou bloqueada.
+
+3. SEQUÊNCIA E ENTREGÁVEIS
+
+P00 — Coordenação e carta do projeto: visão, escopo, dependências e decisões.
+P01 — Instruções comuns: evidência, rastreabilidade e formato de resposta.
+P02 — Corpus normativo: fontes, vigências, conflitos e cobertura.
+P03 — Domínio tributário: requisitos, conceitos e catálogo de regras.
+P04 — Dados e IFRS: modelo canônico, conciliações e qualidade.
+P05 — Motor: especificação funcional e memória de cálculo.
+P06 — Pacotes nacionais: extensão jurídica e suporte por jurisdição.
+P07 — Arquitetura e ambiente: componentes, projeto oecd_p2 no RStudio, GitHub, segurança e operação.
+P08 — Validação: cenários, resultados esperados e critérios de liberação.
+P09 — Governança aberta: licenciamento, contribuições e revisão.
+P10 — Roadmap: bootstrap do projeto/repositório, página explicativa, entregas graduais, backlog e passagem à implementação.
+P11 — Página interativa: apresentação pública, arquitetura, fluxo tributário, demonstração sintética e participação no projeto.
+
+====================================================================
+P00 — MAIN: CONCEPÇÃO E COORDENAÇÃO
+====================================================================
+
+C — CONTEXTO
+Você reúne competências de tributação internacional, regras GloBE, IFRS, engenharia de software e governança open source. Conceba um framework de tributação mínima global utilizável internacionalmente. Use P01 em todas as etapas. Considere S1 como introdução e estabeleça o corpus aplicável mediante P02. Nenhuma vinculação institucional ou aprovação da OCDE deve ser presumida.
+
+O — OBJETIVO
+Produzir a carta do projeto e coordenar P02–P11, mantendo consistência entre requisitos jurídicos, contábeis, funcionais e técnicos.
+
+S — ESTILO
+Documento de concepção estruturado, com tabelas de decisões e dependências. Use critérios verificáveis. Distinga requisito, proposta técnica e questão ainda aberta.
+
+T — TOM
+Técnico, claro, neutro, colaborativo e adequado à cooperação internacional.
+
+A — AUDIÊNCIA
+Administrações tributárias, equipes de compliance, auditores, especialistas contábeis, pesquisadores, mantenedores e desenvolvedores.
+
+R — RESPOSTA
+Entregue:
+1. Problema, propósito público, benefícios e indicadores de sucesso.
+2. Personas e jornadas: preparar dados, simular, calcular, revisar, explicar e exportar.
+3. Limites entre framework, motor, conectores, aplicação e obrigações declarativas.
+4. Princípios: acesso aberto, neutralidade, implantação soberana, cálculo reproduzível e proteção dos dados.
+5. Escopo inicial, exclusões expressas e evolução; separar GloBE e eventual módulo futuro STTR.
+6. Mapa dos prompts e artefatos, com dependências, responsáveis por competência e critérios de conclusão.
+7. Registro de decisões, pressupostos, riscos e perguntas prioritárias.
+8. Recomendações iniciais fundamentadas, evitando perguntar por decisões rotineiras reversíveis.
+9. Resumo executivo e plano imediato para executar P02.
+10. Inclua uma página web interativa para explicar o propósito, os conceitos, a arquitetura, a auditabilidade, o escopo e as formas de participação. Encaminhe os requisitos da página ao P11 e sua execução ao P10.
+11. Adote o identificador oecd_p2, o projeto oecd_p2.Rproj no RStudio e o repositório https://github.com/amarallr/oecd_p2 como destinos técnicos do projeto. Encaminhe ao P07 a especificação do ambiente e ao P10 o bootstrap verificável, sem criar repositórios duplicados.
+
+Não gere o sistema de produção nesta etapa. Considere concluído quando cada objetivo tiver entregável, critério de aceite e dependência identificados.
+
+====================================================================
+P01 — LIB: INSTRUÇÕES COMUNS OBRIGATÓRIAS
+====================================================================
+
+C — CONTEXTO
+Este prompt acompanha todos os demais. O projeto deve traduzir normas em regras executáveis sem ocultar interpretações, simplificações ou lacunas.
+
+O — OBJETIVO
+Estabelecer o contrato comum de evidência, qualidade e rastreabilidade dos trabalhos.
+
+S — ESTILO
+Requisitos numerados, identificadores estáveis e tabelas comparáveis. Documentação em português com glossário bilíngue; preparar localização futura.
+
+T — TOM
+Preciso, verificável e transparente sobre incertezas.
+
+A — AUDIÊNCIA
+Todos os participantes e revisores do projeto.
+
+R — RESPOSTA
+Aplique as instruções abaixo em cada etapa:
+1. Use fontes primárias: OCDE/Inclusive Framework, legisladores, autoridades nacionais e IFRS Foundation. Fontes secundárias servem para descoberta, não para substituir o fundamento.
+2. Registre fonte, emissor, URL, edição, artigo/parágrafo, publicação, acesso, vigência e jurisdição. Calcule checksum apenas se os bytes forem efetivamente obtidos.
+3. Não invente dispositivo, trecho, qualificação nacional, resultado esperado nem status de vigência. Marque “não verificado” quando faltar evidência.
+4. Diferencie fonte internacional, norma doméstica, interpretação, eleição do contribuinte, hipótese e proposta de implementação. Não crie precedência jurídica universal.
+5. Todo requisito terá ID, fundamento, escopo temporal, dados, comportamento, exceções, testes e status.
+6. Vincule: fonte → interpretação → requisito → regra → implementação futura → teste → resultado.
+7. Use os estados: suportado, experimental, não suportado, não aplicável e pendente de dados. Ausência de suporte ou de informação não equivale a imposto zero.
+8. Diferencie cálculo normativo, simulação hipotética e resultado incompleto. Bloqueie conclusão definitiva quando a lacuna for material.
+9. Exija determinismo: mesmos dados, regras, eleições e versões devem produzir o mesmo resultado canônico. Carimbos operacionais podem variar e ficam fora desse resultado.
+10. IA pode auxiliar pesquisa, documentação e revisão. Nenhum LLM decide obrigação ou valor do imposto na execução normativa.
+11. Não publique dados reais de contribuintes em exemplos, testes, logs públicos ou relatórios de falhas.
+12. Não reproduza documentos protegidos integralmente sem permissão; registre referências e analise direitos de redistribuição.
+13. Termine cada entrega com fontes consultadas, decisões propostas, lacunas materiais e critérios de aceite atendidos ou pendentes.
+14. Execute apenas a etapa solicitada e as verificações necessárias; não transforme concepção em implantação sem delimitação.
+15. Use uma única raiz oecd_p2 para o projeto RStudio e a cópia de trabalho Git. Use caminhos relativos à raiz; não codifique diretórios pessoais nem dependa do diretório corrente herdado de uma sessão.
+16. Inspecione arquivos, alterações locais e remotes antes de inicializar ou sincronizar. Preserve trabalho existente; não use reset destrutivo, force push ou substituição silenciosa de origin.
+17. Versione oecd_p2.Rproj, prompts, código, testes, documentação e arquivos declarativos de dependências. Exclua .Rproj.user/, .Rhistory, .RData, .Renviron, .env, tokens, caches, bibliotecas locais e dados reais. Mantenha exemplos de configuração sem segredos.
+18. Registre alterações em commits convencionais, específicos e verificáveis. Faça push das alterações do escopo para o repositório confirmado após as verificações apropriadas; informe branch, commit e status. Não alegue criação ou sincronização sem evidência.
+19. Se o GitHub retornar 404 ou falhar por autenticação/permissão, diferencie repositório inexistente de repositório inacessível. Não conclua ausência apenas com base no 404. Avance na preparação local e documente o bloqueio remoto sem expor credenciais.
+20. A página explicativa deve usar as mesmas definições, fontes, versões e limitações dos documentos do projeto. Diferencie recursos implementados, planejados e experimentais. Um simulador didático não comprova suporte tributário do motor.
+21. Mantenha os arquivos da página, estilos, scripts, dados sintéticos e instruções de publicação no repositório oecd_p2. Não duplique regras normativas no frontend; a demonstração simplificada deve declarar suas hipóteses e limites.
+
+====================================================================
+P02 — FONTES E VERSIONAMENTO NORMATIVO
+====================================================================
+
+C — CONTEXTO
+Uma base de fontes desatualizada ou sem vigências produz cálculos incorretos, mesmo que a implementação matemática seja consistente. Receba P00 e P01.
+
+O — OBJETIVO
+Definir um corpus verificável por tema, período e jurisdição, com política de atualização e resolução de divergências.
+
+S — ESTILO
+Inventário de fontes, matriz temporal e relatório de lacunas, com referências localizáveis.
+
+T — TOM
+Analítico e juridicamente cauteloso, sem apresentar propostas como direito vigente.
+
+A — AUDIÊNCIA
+Curadores normativos, juristas, especialistas tributários e responsáveis pelas regras.
+
+R — RESPOSTA
+1. Catalogue Handbook, Model Rules, Commentary, exemplos oficiais, Administrative Guidance, safe harbours, GIR, esquemas e legislação doméstica relevante.
+2. Examine S2–S6 e busque publicações adicionais até a data de corte; registre o alcance da pesquisa e o que não foi acessado.
+3. Para cada fonte, registre ID, título, natureza, edição, publicação, vigência conhecida, temas, dispositivos e relação com versões anteriores.
+4. Separe data da publicação, período alcançado, eventual aplicação retrospectiva, status de adoção doméstica e data de conhecimento no projeto.
+5. Modele duas dimensões temporais: aplicabilidade jurídica e registro/conhecimento da regra. Preserve a reprodução de apurações anteriores.
+6. Identifique conflitos entre fontes ou entre orientações e legislação interna; apresente opções de tratamento que exigem revisão jurídica.
+7. Modele o status qualificado de IIR, UTPR, QDMTT e safe harbours com evidência oficial, alcance, condições e data de consulta; não infira qualificação apenas do texto doméstico.
+8. Defina processo de atualização: identificar mudança, avaliar impacto, revisar, testar, publicar versão e preservar a anterior.
+9. Distinga atualização de segurança de atualização normativa; não atualize silenciosamente regras usadas em cálculos encerrados.
+
+Entregáveis: catálogo de fontes, matriz fonte/tema/período, política de versionamento e backlog de lacunas.
+Aceite: nenhuma regra candidata a suporte normativo pode depender de fonte não identificada ou vigência presumida.
+
+====================================================================
+P03 — DOMÍNIO E REQUISITOS TRIBUTÁRIOS
+====================================================================
+
+C — CONTEXTO
+Receba o corpus P02. O objetivo é decompor o domínio em requisitos implementáveis sem reduzir o Pillar Two a uma diferença de alíquotas.
+
+O — OBJETIVO
+Criar o modelo conceitual e o catálogo de regras do núcleo GloBE e de suas interações.
+
+S — ESTILO
+Glossário, mapa de conceitos e fichas de regra com pré-condições, decisões e exemplos.
+
+T — TOM
+Didático para engenheiros e preciso para especialistas.
+
+A — AUDIÊNCIA
+Analistas de domínio, especialistas tributários e arquitetos.
+
+R — RESPOSTA
+1. Defina grupo, UPE, entidade constituinte, estabelecimento permanente, jurisdição, entidade excluída, propriedade e período fiscal.
+2. Especifique o teste de escopo, incluindo histórico de receitas, exercícios especiais, exclusões e reorganizações, a partir das fontes vigentes. Diferencie limiar de escopo e de minimis.
+3. Mapeie renda/perda GloBE, tributos abrangidos ajustados, ETR, exclusão baseada em substância e imposto complementar.
+4. Modele a coordenação QDMTT/IIR/UTPR e suas condições; não trate o encadeamento como simples subtração automática.
+5. Catalogue eleições, safe harbours, regras transitórias, cálculos adicionais e revisões de exercícios anteriores.
+6. Inclua no mapa de cobertura: créditos fiscais, CFC, tributos diferidos, recapture, perdas, entidades transparentes, joint ventures, entidades de investimento e estruturas de propriedade parcial.
+7. Diferencie agregação jurisdicional ordinária, categorias com apuração separada e situações especiais. Proíba compensação global indiscriminada entre países.
+8. Para cada tema, classifique suporte inicial, fase futura, não aplicável ou bloqueado. Um tema excluído do MVP continua identificado no modelo.
+9. Defina grafo de dependências e pontos de revisão de interpretação.
+10. Separe o módulo STTR, se contemplado futuramente, do motor GloBE; descreva apenas sua fronteira nesta fase.
+
+Ficha mínima: rule_id, nome, fonte/dispositivo, hipótese, período, entradas, saída, fórmula/decisão, eleição, exceções, dependências, erros, testes e status.
+Aceite: cada resultado pretendido deve apontar para regras identificáveis; casos especiais não podem desaparecer em um fluxo genérico.
+
+====================================================================
+P04 — DADOS, IFRS E CONCILIAÇÕES
+====================================================================
+
+C — CONTEXTO
+Receba P02 e P03. Dados financeiros são insumos do cálculo e precisam de proveniência e conciliação. Não presuma que todas as jurisdições exigem a mesma base contábil.
+
+O — OBJETIVO
+Especificar um modelo canônico de dados independente de ERP e de fornecedor, com controles de qualidade e adaptação a diferentes padrões contábeis.
+
+S — ESTILO
+Dicionário de dados, relacionamentos, exemplos sintéticos e tabelas de conciliação.
+
+T — TOM
+Prático, rigoroso e orientado à auditoria.
+
+A — AUDIÊNCIA
+Contadores, engenheiros de dados, responsáveis por ERP e revisores fiscais.
+
+R — RESPOSTA
+1. Modele grupo, estrutura societária temporal, entidades, estabelecimentos permanentes, períodos, moedas, demonstrações, ajustes, tributos, ativos, folha, eleições e evidências.
+2. Defina granularidade, chaves, cardinalidade, unidade monetária, convenção de sinais, precisão, obrigatoriedade e domínio de cada campo.
+3. Diferencie zero, ausente, não aplicável e desconhecido. Defina erros bloqueantes e alertas.
+4. Desenhe adaptadores IFRS e outros padrões permitidos, com mapa explícito para dados GloBE e para QDMTT quando houver diferenças.
+5. Especifique pontes: resultado contábil → ajustes → renda GloBE; despesa tributária → ajustes/alocações → tributos abrangidos ajustados.
+6. Separe tributo corrente, diferido, pago e a pagar; não permita substituição automática de um conceito pelo outro.
+7. Investigue a IAS 12 vigente: diferencie a contabilização dos próprios impostos Pillar Two do uso de dados de tributos diferidos de outras origens na apuração GloBE.
+8. Defina trilha para saldos históricos, recapture, reversões, perdas, retificações e diferenças entre exercícios da UPE e locais.
+9. Especifique moeda funcional, moeda de apresentação, conversão, origem das taxas e arredondamento por finalidade.
+10. Defina contratos CSV/JSON, validações estruturais e semânticas e regras de evolução dos esquemas.
+11. Exija origem por campo relevante: documento, conta, linha, transformação, responsável e versão.
+12. Use apenas dados sintéticos nesta concepção.
+
+Entregáveis: modelo conceitual/lógico, dicionário, contratos exemplificativos e matriz de qualidade.
+Aceite: deve ser possível explicar a composição de cada agregado e localizar divergências sem consultar código de interface.
+
+====================================================================
+P05 — ESPECIFICAÇÃO DO MOTOR E MEMÓRIA DE CÁLCULO
+====================================================================
+
+C — CONTEXTO
+Receba P02–P04. O motor será uma biblioteca independente, capaz de executar fluxos completos apenas dentro do perfil de suporte declarado.
+
+O — OBJETIVO
+Definir operações, estados, cálculos e evidências necessárias para um motor determinístico e revisável.
+
+S — ESTILO
+Especificação funcional com pseudocódigo legível, contratos e exemplo numérico integral.
+
+T — TOM
+Exato, sem esconder simplificações.
+
+A — AUDIÊNCIA
+Especialistas de domínio, implementadores e validadores independentes.
+
+R — RESPOSTA
+1. Especifique as etapas: validar contexto → selecionar regras → testar escopo → verificar eleições/safe harbours → preparar bases → calcular → coordenar mecanismos → explicar.
+2. Justifique a ordem de execução e os dados necessários; não presuma que todo safe harbour pode ser testado antes de qualquer preparação de dados.
+3. Declare entradas, saídas, pré-condições e erros de cada operação.
+4. Use aritmética decimal e políticas explícitas de arredondamento. Proíba float binário para valores fiscais materiais.
+5. Especifique ETR e imposto complementar para o caso ordinário, identificando os limites da fórmula e os tratamentos especiais que precisam de rotas próprias.
+6. Defina os casos de renda nula/negativa, tributos negativos, ajustes posteriores e agregações separadas, mediante fundamento.
+7. Modele cálculo por entidade, agregação apropriada e alocação subsequente. Demonstre prevenção de dupla contagem na coordenação dos mecanismos.
+8. Distinga: fora do escopo, imposto nulo calculado, safe harbour aplicado, resultado incompleto e caso não suportado.
+9. Especifique memória com entradas utilizadas, transformações, regras/fontes, valores intermediários, eleições, versões, avisos e conciliação final.
+10. Defina run_id, hash dos insumos canônicos, versões do código, pacote nacional e corpus, e identificação do perfil suportado.
+11. Preserve a execução original nas retificações; gere uma nova execução com comparação e motivo.
+12. Não consulte serviços externos mutáveis durante o cálculo canônico; receba snapshots de câmbio, status e parâmetros.
+
+Exemplo sintético obrigatório, não suficiente para comprovar conformidade:
+- Uma jurisdição no caso ordinário, renda GloBE 100, tributos abrangidos ajustados 10 e exclusão baseada em substância 20, em unidades monetárias.
+- Sem safe harbour, QDMTT, ajuste adicional ou outra exceção no exemplo.
+- A 15%, ETR = 10%; percentual complementar = 5%; lucro excedente = 80; imposto complementar jurisdicional antes de alocação = 4.
+- Compare com exclusão zero; explique por que o primeiro resultado é 4, e não 5.
+- Não atribua o valor a uma entidade ou a IIR/UTPR sem dados e regras adicionais.
+
+Entregáveis: contratos do motor, pseudocódigo, memória exemplificada e matriz de erros.
+Aceite: um revisor deve conseguir refazer o exemplo sem executar o futuro software.
+
+====================================================================
+P06 — PACOTES NACIONAIS E SOBERANIA
+====================================================================
+
+C — CONTEXTO
+Receba P02–P05. Um país deve adaptar o framework sem copiar todo o motor. Ao mesmo tempo, diferenças normativas não podem ser mascaradas como simples parâmetros.
+
+O — OBJETIVO
+Definir um contrato de extensão por jurisdição, com suporte explicitamente limitado e versões reprodutíveis.
+
+S — ESTILO
+Especificação de manifesto, tabela de capacidades e roteiro de integração.
+
+T — TOM
+Neutro entre jurisdições e transparente sobre divergências.
+
+A — AUDIÊNCIA
+Administrações tributárias, mantenedores de pacotes nacionais e revisores jurídicos.
+
+R — RESPOSTA
+1. Defina country pack com identificador, jurisdição, versão, fontes domésticas, vigências, períodos, responsáveis, eleições e testes.
+2. Separe parâmetro, substituição de regra, extensão, apresentação e obrigação declarativa. Limites de extensão devem preservar rastreabilidade.
+3. Modele DMTT sem presumir qualificação; use QDMTT apenas quando o status aplicável estiver evidenciado.
+4. Defina seleção e coordenação de pacotes em grupos com várias jurisdições, incluindo regras de países cobradores e de localização das entidades.
+5. Proíba herança silenciosa de parâmetros de país fictício ou pacote genérico em apuração nacional.
+6. Exija revisão das diferenças para o núcleo de referência e testes contra dupla incidência e lacunas.
+7. Permita extensões declarativas e, quando necessárias, extensões de código sob contrato revisado; não execute código arbitrário de pacotes não confiáveis.
+8. Separe versão jurídica, versão do software, tradução e status externo de qualificação.
+9. Defina instalação local e offline, controle nacional dos dados e ausência de serviço central obrigatório.
+10. Prepare dois pacotes fictícios para validar o contrato; não atribua a eles status oficial nem legislação real.
+
+Entregáveis: manifesto exemplificativo, política de compatibilidade, matriz país/período/capacidade e checklist de adoção.
+Aceite: trocar o pacote deve produzir diferenças explicáveis, sem modificar silenciosamente cálculos históricos.
+
+====================================================================
+P07 — ARQUITETURA, RSTUDIO, GITHUB E OPERAÇÃO
+====================================================================
+
+C — CONTEXTO
+Receba os requisitos anteriores. O público inclui equipes com recursos técnicos e financeiros limitados; a implantação inicial não deve exigir infraestrutura distribuída.
+
+O — OBJETIVO
+Propor arquitetura simples, extensível, segura e independente de fornecedor, com ambiente de desenvolvimento oecd_p2 no RStudio e integração ao GitHub.
+
+S — ESTILO
+Visões C4 de contexto e contêineres, contratos de interfaces e ADRs curtos.
+
+T — TOM
+Pragmático, com tradeoffs explícitos.
+
+A — AUDIÊNCIA
+Arquitetos, desenvolvedores, operadores e responsáveis pela segurança.
+
+R — RESPOSTA
+1. Separe domínio/motor, regras, pacotes nacionais, ingestão, persistência, auditoria, relatórios, CLI, API e interface visual.
+2. Compare monólito modular e serviços, recomendando a solução inicial com menor complexidade compatível com os requisitos.
+3. Adote o RStudio como ambiente de desenvolvimento solicitado pelo proponente. Compare opções de linguagem para o núcleo quanto a decimal, tipagem, testes, portabilidade e manutenção. O arquivo .Rproj organiza o workspace e não obriga todos os componentes a serem escritos em R. Se recomendar outra linguagem para o motor, documente como desenvolver, executar e testar a integração a partir do projeto RStudio. Preserve a precisão decimal exigida no P05.
+4. Preveja uso como biblioteca e CLI no primeiro demonstrador; justifique fases de API e aplicação web.
+5. Defina importação e exportação por formatos abertos, com contratos estáveis e erros compreensíveis.
+6. Trate GIR como adaptador versionado, distinguindo conteúdo declarativo, esquema técnico, intercâmbio e recepção doméstica. Não prometa aceitação pelo fisco apenas porque o XML valida.
+7. Considere as versões oficiais e calendários aplicáveis; não selecione o XML somente pelo exercício fiscal.
+8. Defina execução local/offline e contêiner opcional, sem cloud ou licença comercial obrigatória.
+9. Especifique controle de acesso, segregação de funções, criptografia, retenção, logs sem dados sensíveis e isolamento de organizações.
+10. Defina ameaças relevantes: dados adulterados, mudança não autorizada de regras, vazamento, dependências comprometidas e XML malicioso.
+11. Planeje dependências fixadas, SBOM, builds reproduzíveis quando viáveis e cadeia de publicação verificável.
+12. Proponha metas mensuráveis de desempenho com volume de referência e protocolo de medição; não invente resultados.
+13. Inclua interface acessível, navegação por teclado, localização e explicação dos cálculos, sem fazer a auditabilidade depender da tela.
+
+14. Especifique a criação ou reutilização da pasta oecd_p2 e do arquivo oecd_p2.Rproj na raiz. Configure sessão limpa, sem restauração automática de workspace nem salvamento automático de .RData, e arquivos de texto UTF-8.
+15. Defina roteiro de preparação verificando R, RStudio, Git e, se necessário para a integração remota, GitHub CLI ou conector equivalente. Registre versões e dependências ausentes; não presuma instalações nem acesso à máquina local do usuário.
+16. Para componentes em R, planeje ambiente isolado com renv e renv.lock versionado, biblioteca local ignorada e procedimento de restauração. Se outra linguagem for adotada, acrescente seu gerenciamento de dependências ao mesmo ADR.
+17. Defina estrutura mínima com prompts/, docs/, scripts/, tests/, examples/ e os módulos de domínio já propostos. Acrescente R/ para funções em R; avalie estrutura de pacote R se ela for útil, sem impô-la apenas por usar RStudio.
+18. Especifique bootstrap idempotente: detectar o projeto existente, preservar seu conteúdo e criar apenas o que faltar. Se o repositório remoto já contiver arquivos, prefira clonar ou reutilizar a cópia existente antes de inicializar outro histórico local.
+19. Defina integração com https://github.com/amarallr/oecd_p2: verificar proprietário, existência, acesso, branch padrão, remotes e histórico. Se a ausência estiver confirmada e houver capacidade autenticada, criar o repositório público amarallr/oecd_p2. Não interpretar erro de acesso como autorização para substituir ou duplicar um repositório.
+20. Planeje origin apontando ao repositório informado, autenticação segura via gerenciador de credenciais, SSH ou mecanismo oficial, e sincronização sem tokens em arquivos, URLs ou logs.
+21. Documente a abertura de oecd_p2.Rproj no RStudio, restauração do ambiente, execução dos exemplos sintéticos, testes e operações Git básicas. Inclua alternativa via terminal para usuários sem RStudio.
+
+22. Integre à arquitetura a página explicativa do P11, em site/, separada da futura interface operacional do motor. Priorize HTML, CSS e JavaScript sem backend para facilitar implantação estática e manutenção. TypeScript, bibliotecas, geradores estáticos ou outras linguagens exigem justificativa técnica, instruções de build e dependências fixadas; não acrescente complexidade sem necessidade.
+23. Especifique visualização local a partir do projeto RStudio por servidor estático, documentação do comando escolhido e publicação pelo GitHub Pages a partir de site/. Não dependa de abrir index.html por file:// se houver módulos ou carregamento de dados.
+24. Planeje caminhos relativos compatíveis com hospedagem em subdiretório, recursos locais e integração de publicação ao processo Git existente. Verifique configurações antes de habilitar Pages; não prometa URL publicada sem verificar o deployment.
+
+Entregáveis: arquitetura, ADRs, contratos preliminares, modelo de ameaças, especificação de oecd_p2.Rproj, arquitetura da página explicativa e plano de preparação RStudio/GitHub.
+Aceite: o núcleo deve funcionar sem interface, conexão externa ou infraestrutura proprietária; o projeto deve poder ser aberto no RStudio e preparado a partir de um clone limpo seguindo o guia.
+
+====================================================================
+P08 — TESTES E VALIDAÇÃO INDEPENDENTE
+====================================================================
+
+C — CONTEXTO
+Receba catálogo de regras, contratos e arquitetura. Aprovar testes não substitui revisão tributária, mas deve produzir evidência verificável da cobertura.
+
+O — OBJETIVO
+Definir uma estratégia de validação por regra, cenário, período e jurisdição.
+
+S — ESTILO
+Matriz de cenários com dados, cálculo esperado independente, fontes e critérios de bloqueio.
+
+T — TOM
+Crítico e orientado a evidências.
+
+A — AUDIÊNCIA
+Especialistas tributários, auditores e equipes de qualidade.
+
+R — RESPOSTA
+1. Defina testes de regra, integração, fluxo completo, regressão normativa e contratos.
+2. Use exemplos oficiais quando acessíveis e juridicamente reutilizáveis; crie casos sintéticos complementares.
+3. Para cada cenário, apresente premissas, entradas, cálculo manual ou referência independente, resultado e fonte. Não gere o esperado chamando a própria função testada.
+4. Inclua fronteiras do teste de receitas; escopo; exclusões; de minimis; safe harbours; períodos; moedas; eleições; créditos; diferidos/recapture; perdas; agregações especiais; propriedade; QDMTT/IIR/UTPR.
+5. Casos fora do suporte inicial devem testar bloqueio explícito e ausência de resultado definitivo.
+6. Inclua propriedades condicionais: invariância à ordem de entrada, reconciliação de somas e alocações, prevenção de duplicidade e repetibilidade.
+7. Não imponha monotonicidade global ou propriedades econômicas sem provar suas condições.
+8. Preveja comparação entre versões com explicação de cada diferença e cenários históricos congelados.
+9. Exija revisão tributária e revisão técnica por competências distintas antes de declarar suporte normativo.
+10. Defina validações de esquema GIR separadas da validação semântica e da aceitação doméstica.
+11. Defina critérios de liberação: regras críticas cobertas, diferenças explicadas, limitações publicadas e artefatos reproduzíveis.
+12. Proíba divulgação de “100% conforme à OCDE” com base apenas em cobertura de linhas de código ou testes internos.
+
+13. Planeje verificação do bootstrap a partir de um clone limpo: abrir oecd_p2.Rproj, restaurar dependências, executar um exemplo sintético e os testes sem depender de .RData, caminhos pessoais ou segredos. Quando houver componentes em R, inclua execução não interativa por Rscript.
+14. Proponha CI no GitHub Actions para o escopo implementado, com versões declaradas e verificações relevantes. Diferencie workflow criado, execução disparada e execução aprovada; reporte evidências reais.
+
+15. Inclua validação da página: navegação, expansão das explicações, controles do simulador, rejeição de entradas inválidas, restauração do exemplo, links, teclado, foco, contraste, responsividade e ausência de erros de console. Confira a renderização em celular e desktop e após publicação em subdiretório.
+16. Compare os valores exibidos no simulador com cálculos independentes do caso didático do P05; confira que as limitações, fontes, data de corte e status do projeto permaneçam visíveis. Não confunda esse teste com validação normativa do motor.
+
+Entregáveis: matriz de testes, catálogo de referência, procedimento de revisão e checklist de liberação.
+Aceite: todo recurso declarado suportado possui evidência; toda limitação material permanece visível.
+
+====================================================================
+P09 — GOVERNANÇA, LICENCIAMENTO E COMUNIDADE
+====================================================================
+
+C — CONTEXTO
+O objetivo é um projeto aberto para qualquer país, sem dependência de fornecedor, patrocínio exclusivo ou acesso a dados privados.
+
+O — OBJETIVO
+Definir regras de manutenção e contribuição que sustentem transparência, acesso e qualidade.
+
+S — ESTILO
+Propostas de documentos de repositório, fluxos de revisão e quadro de responsabilidades.
+
+T — TOM
+Inclusivo, institucionalmente neutro e transparente.
+
+A — AUDIÊNCIA
+Mantenedores, administrações públicas, contribuidores e usuários.
+
+R — RESPOSTA
+1. Analise Apache-2.0 como proposta inicial e compare MIT e licenças copyleft à luz dos objetivos, dependências e compatibilidade. Registre recomendação sem alegar aprovação jurídica inexistente.
+2. Não restrinja licença por país, atividade ou posicionamento político. Diferencie acesso gratuito ao código de custos de implantação e manutenção.
+3. Separe licenças de código, documentação, dados de teste e materiais de terceiros; avalie direitos da OCDE e IFRS antes de redistribuir.
+4. Defina papéis: mantenedor, curador normativo, revisor tributário, revisor técnico e responsável por pacote nacional.
+5. Especifique RFCs, ADRs, revisão de mudanças, resolução de divergências, conflitos de interesse e processo público de decisão.
+6. Permita contribuição sem obrigatoriedade de ceder dados reais ou contratar serviços.
+7. Defina revisão adicional para mudanças que alterem imposto, vigência, classificação ou mecanismo de cobrança.
+8. Proponha README, CONTRIBUTING, GOVERNANCE, CODE_OF_CONDUCT, SECURITY, CHANGELOG e matriz pública de suporte.
+9. Defina reporte reservado de vulnerabilidades e correções públicas sem exposição de contribuintes.
+10. Separe marca do projeto de licença do código; não alegue vínculo, certificação ou endosso da OCDE, IFRS ou governo.
+11. Defina sustentabilidade e acesso igualitário às decisões, evitando dependência de um único mantenedor.
+12. Proponha documentação e exemplos em inglês e português, com estrutura para novas traduções.
+
+13. Adote amarallr/oecd_p2 como repositório canônico inicial. Documente nele instalação no RStudio, contribuição, licença e suporte; não inclua o arquivo .Rproj como dependência obrigatória para uso do motor por terceiros.
+
+Entregáveis: modelo de governança, recomendação de licenças e fluxo de contribuição.
+Aceite: terceiros devem poder executar, revisar, adaptar e distribuir o projeto nos termos da licença escolhida, sem autorização individual do mantenedor.
+
+====================================================================
+P10 — ROADMAP, MVP E PASSAGEM À IMPLEMENTAÇÃO
+====================================================================
+
+C — CONTEXTO
+Receba os artefatos P00–P09 e a especificação da página em P11. O projeto deve começar pequeno sem apresentar um demonstrador limitado como motor internacional completo.
+
+O — OBJETIVO
+Produzir plano executável por fases, com backlog e critérios de passagem à implementação.
+
+S — ESTILO
+Roadmap por resultados e backlog priorizado com dependências, esforço relativo e definição de pronto.
+
+T — TOM
+Realista, objetivo e orientado à entrega.
+
+A — AUDIÊNCIA
+Coordenação, mantenedores, especialistas e equipe de desenvolvimento.
+
+R — RESPOSTA
+1. Faça revisão de consistência entre domínio, dados, motor, pacotes, arquitetura, testes, governança e página explicativa.
+2. Liste decisões resolvidas, propostas e lacunas que impedem um resultado normativo.
+3. Proponha as fases:
+   F0 — concepção, corpus, arquitetura e escopo aprovados tecnicamente, mais preparação do projeto oecd_p2 no RStudio e do repositório canônico no GitHub;
+   F0-web — página explicativa interativa do P11, com conteúdo do escopo já definido, demonstração sintética identificada como didática e publicação verificada; pode anteceder a conclusão do motor;
+   F1 — biblioteca/CLI com dados sintéticos e caso ordinário, memória integral e bloqueios para casos excluídos;
+   F2 — coordenação multinacional no perfil definido, dois pacotes fictícios e testes de alocação;
+   F3 — primeiro pacote real após seleção e revisão normativa; expansão controlada dos casos;
+   F4 — relatórios, adaptadores GIR, API e interface conforme prioridades;
+   F5 — ampliação de jurisdições, cenários especiais, desempenho e manutenção.
+4. Para cada fase, defina entradas, entregáveis, critérios verificáveis, dependências, competências e riscos.
+5. Publique uma matriz “suportado / não suportado / experimental” desde F1.
+6. Defina backlog com ID, história, valor, fundamento, dependência, aceite e evidência esperada.
+7. Identifique caminho crítico, entregas independentes e custos de manutenção; não invente orçamento ou prazo sem premissas.
+8. Proponha estrutura inicial do repositório e nomes dos documentos a serem gerados na implementação.
+9. Escreva os próximos prompts de execução para o bootstrap técnico F0, a página F0-web e, depois, para F1. Preserve as decisões anteriores e o escopo restrito; o bootstrap e a página não autorizam antecipar o motor completo.
+10. Faça um resumo do que ainda impede uso em obrigações reais.
+11. Inclua no prompt de bootstrap a sequência operacional abaixo:
+   a) inspecionar o ambiente acessível e o diretório-base; verificar se já existem oecd_p2, oecd_p2.Rproj, alterações locais ou remotes;
+   b) verificar o repositório amarallr/oecd_p2 por ferramenta autenticada; se existente e acessível, reutilizá-lo; se comprovadamente inexistente, criá-lo como público, conforme o objetivo open source;
+   c) clonar o repositório na pasta oecd_p2 quando houver histórico remoto; para repositório novo e vazio, inicializar uma única cópia local com branch main, evitando commits iniciais independentes no servidor e na máquina;
+   d) criar ou ajustar oecd_p2.Rproj na raiz, .gitignore, README, exemplos de configuração sem segredos e as pastas mínimas; configurar renv para componentes R conforme P07;
+   e) salvar os prompts P00–P11 individualmente em prompts/, com instruções de ordem de execução e índice no README;
+   f) registrar versões e verificações do ambiente em docs/ambiente.md e decisões de arquitetura em docs/adr/; registrar licença conforme a decisão do P09, sem alegar revisão ainda não realizada;
+   g) validar a preparação e os exemplos disponíveis; não relatar testes do motor antes de implementá-lo;
+   h) revisar os arquivos a versionar, criar commits convencionais e fazer push para a branch apropriada do repositório confirmado, respeitando políticas e histórico existentes; abrir PR quando a branch padrão exigir revisão;
+   i) verificar sincronização local/remota e registrar URL, branch, hash do commit e pendências.
+12. Se não houver acesso à máquina do usuário, prepare os artefatos e um roteiro reproduzível para o RStudio local. Distinga claramente arquivo .Rproj preparado de projeto efetivamente aberto/validado no RStudio do usuário. Falhas de autenticação ou criação remota não impedem a preparação dos arquivos locais.
+13. Defina como aceite do bootstrap: projeto oecd_p2.Rproj preparado; guia de abertura e dependências; prompts organizados; .gitignore revisado; repositório remoto criado ou reutilizado quando acessível; commit e sincronização comprovados, ou bloqueio específico documentado.
+14. Inclua no prompt de execução F0-web: implementar site/index.html, CSS, JavaScript e dados sintéticos; revisar conteúdo e fontes; testar os comportamentos do P11 e a apresentação em celular/desktop; documentar a execução local; versionar e sincronizar; publicar pelo GitHub Pages quando houver acesso e capacidade, verificando deployment e URL real. Se houver bloqueio, entregar os arquivos completos e registrar o passo pendente.
+15. Mostre no README o link da página somente quando sua publicação estiver confirmada; enquanto isso, forneça instruções locais e identifique a publicação como pendente.
+
+Aceite: o primeiro incremento deve ser pequeno, reproduzível e auditável; a expansão deve ocorrer por suporte comprovado, não por alteração de rótulo.
+
+====================================================================
+P11 — PÁGINA WEB INTERATIVA PARA EXPLICAÇÃO DO PROJETO
+====================================================================
+
+C — CONTEXTO
+Receba P00–P09 e os artefatos disponíveis de concepção. O projeto oecd_p2 será desenvolvido no RStudio e mantido em https://github.com/amarallr/oecd_p2. É necessária uma página pública, interativa e acessível para apresentar o framework, seus fundamentos e seu funcionamento a leitores com diferentes níveis de conhecimento. A página é um entregável inicial que pode evoluir com o projeto.
+
+O — OBJETIVO
+Especificar uma página explicativa navegável e didática, com HTML, CSS, JavaScript e outras tecnologias apenas quando necessárias. Ela deve permitir compreender o projeto, explorar sua arquitetura, acompanhar um exemplo de cálculo e conhecer seu estágio real de desenvolvimento.
+
+S — ESTILO
+Comunicação visual profissional, limpa e consistente. Use blocos curtos, diagramas legíveis, tabelas comparativas e detalhamento progressivo. Priorize compreensão e navegação; evite transformar toda a documentação técnica em uma única tela densa.
+
+T — TOM
+Didático, preciso e institucionalmente neutro. Explique termos antes de usá-los e destaque hipóteses das demonstrações.
+
+A — AUDIÊNCIA
+Administrações tributárias, especialistas em tributação e contabilidade, desenvolvedores, pesquisadores e pessoas interessadas em entender o projeto sem conhecimento prévio de GloBE.
+
+R — RESPOSTA
+Especifique os seguintes conteúdos e comportamentos, com critérios verificáveis:
+1. Apresentação: nome oecd_p2, propósito público, problema abordado, benefícios esperados e acesso ao repositório. Identifique o estágio atual e a data de atualização do conteúdo.
+2. Visão introdutória: explique a diferença entre framework, motor de cálculo, pacote nacional, adaptador de dados e página explicativa. Disponibilize glossário com termos técnicos e siglas.
+3. Visão do Pillar Two: apresente conceitos essenciais com referências oficiais, destacando que a explicação resumida depende do escopo, período e legislação aplicáveis. Não transforme o limiar de receitas ou a alíquota mínima em explicação suficiente de todo o regime.
+4. Arquitetura interativa: mostre núcleo GloBE, dados/IFRS, regras, pacotes nacionais, memória de cálculo, testes e interfaces. Ao selecionar um módulo, exiba sua finalidade, entradas, saídas, dependências e status de suporte, por botão acessível a mouse e teclado.
+5. Fluxo guiado: permita avançar, voltar e selecionar etapas da preparação dos dados até a memória de cálculo. Cada etapa deve explicar o que recebe, o que faz e qual evidência produz. Inclua indicador de progresso e rótulos compreensíveis.
+6. Demonstração didática: utilize o caso ordinário sintético do P05. Disponibilize campos ou controles para renda positiva, tributos abrangidos ajustados não negativos e exclusão baseada em substância não negativa. Mantenha a alíquota mínima de 15% no exemplo e declare que o grupo está hipoteticamente no escopo.
+7. Recalcule a demonstração ao alterar entradas válidas e mostre fórmulas, valores intermediários e resultado: ETR, percentual complementar não negativo, lucro excedente não negativo e imposto complementar jurisdicional antes de alocação. No padrão 100/10/20, o resultado deve ser 4. Não atribua automaticamente o imposto a IIR, UTPR ou entidade específica.
+8. Restrinja explicitamente o simulador ao caso ordinário ilustrado. Rejeite entradas inválidas; para renda nula/negativa, tributos negativos ou casos especiais, explique que o cenário não é coberto pelo demonstrador. Mostre as exclusões do exemplo, incluindo QDMTT, safe harbours, ajustes adicionais e regras especiais.
+9. Ofereça ação “Restaurar exemplo”, valores formatados em português e leitura das mudanças por tecnologias assistivas. Caso use aritmética JavaScript para visualização, declare seu caráter didático; não apresente esse código como motor fiscal apto à produção. Para integração futura ao motor, utilize o contrato definido em P05/P07.
+10. Auditabilidade: inclua uma memória sintética navegável que ligue entradas, ajustes, regra demonstrada e saída. Diferencie referências efetivamente verificadas de metadados meramente ilustrativos; não invente artigos ou parágrafos.
+11. Comparação de camadas: apresente o que pertence ao núcleo comum e o que exige validação nacional. Use somente jurisdições fictícias na demonstração inicial, com rótulos explícitos; não alegue suporte real a países ainda não implementados.
+12. Roadmap: mostre fases, entregáveis e status reais com base no P10. Diferencie planejado, em desenvolvimento, experimental e implementado; não marque uma funcionalidade como entregue apenas por estar descrita no site.
+13. Participação: explique como estudar, testar, relatar problemas e contribuir; use links do repositório confirmado e documentos de governança existentes. Não crie formulários que finjam enviar dados nem exija cadastro para ler o conteúdo.
+14. Fontes e transparência: ofereça bibliografia com links oficiais, data de corte normativa, versão da página e limitações do demonstrador. Não use símbolos, selos ou afirmações que sugiram endosso oficial inexistente.
+15. Navegação: inclua menu claro, âncoras e links compartilháveis para seções. Accordion, abas e tooltips devem funcionar por teclado e não depender apenas de hover ou de cor. O conteúdo essencial deve continuar acessível se o JavaScript falhar.
+16. Responsividade: adapte a leitura a celular, tablet e desktop, sem rolagem horizontal na página. Para diagramas complexos, forneça alternativa textual; ajuste tabelas e rótulos para telas estreitas. Não imponha que todo o projeto caiba em uma única tela.
+17. Acessibilidade: use HTML semântico, hierarquia de títulos, labels, foco visível, contraste adequado, preferência de movimento reduzido e mensagens de erro associadas aos campos. Evite animações desnecessárias e autoavanço das etapas.
+18. Tecnologias: priorize HTML5, CSS e JavaScript modular, com arquivos separados e recursos locais. Justifique TypeScript, geradores estáticos ou bibliotecas antes de adotá-los. Evite backend para a primeira página e não coloque segredos ou dependências de autenticação no navegador.
+19. Organização: defina site/index.html, site/assets/css/styles.css, site/assets/js/app.js e site/assets/data/ para conteúdo e exemplos sintéticos quando necessário. Compartilhe conteúdo estruturado com a documentação sempre que isso reduzir divergências, sem acoplar o motor à interface.
+20. Execução e publicação: documente pré-visualização por servidor estático iniciado no terminal do projeto RStudio e implantação no GitHub Pages. Use caminhos compatíveis com subdiretório do repositório; verifique configurações, workflow e URL após a publicação. A URL esperada é apenas uma previsão até confirmação pelo GitHub.
+21. Privacidade e desempenho: dispense dados reais, cookies não essenciais, analytics e serviços externos obrigatórios nesta fase. Otimize fontes, imagens e scripts para conexão limitada.
+22. Validação: prepare roteiro de teste funcional do menu, módulos, etapas e simulador; revisão visual em celular e desktop; checagem de links, teclado e console; conferência independente do exemplo numérico e das fontes. Integre verificações úteis ao CI conforme a stack escolhida.
+
+Entregáveis de concepção: mapa de conteúdo, wireframe descritivo, lista de componentes e interações, contratos do demonstrador, estrutura de arquivos, plano de testes e roteiro de publicação.
+Entregáveis na execução F0-web: HTML, CSS, JavaScript e demais arquivos necessários completos e versionados; guia local; evidências de validação; commit; e URL de publicação verificada, quando acessível.
+Aceite: um leitor iniciante deve conseguir entender o propósito e as camadas do projeto, navegar pelas etapas, reproduzir o resultado didático 4, identificar limitações e localizar fontes e repositório. A página deve funcionar em celular e desktop e distinguir o demonstrador do motor normativo.
+
+4. ESTRUTURA INICIAL SUGERIDA — A VALIDAR NO P07
+
+Raiz local: <diretorio_base>/oecd_p2/
+Remoto canônico: https://github.com/amarallr/oecd_p2
+
+oecd_p2.Rproj   projeto RStudio na raiz
+.gitignore      exclusões de sessão, credenciais, bibliotecas e dados privados
+README.md       visão, abertura no RStudio, preparação, execução e contribuição
+renv.lock       dependências R fixadas, quando o ambiente R for inicializado
+renv/           arquivos de ativação necessários; biblioteca e caches ignorados
+.Rprofile       apenas ativação revisada do ambiente, sem segredos
+R/              funções R, conforme a arquitetura selecionada
+scripts/        bootstrap, verificações e execução dos exemplos
+.github/        workflows de CI e modelos de contribuição
+prompts/        P00–P11 e instruções de execução
+docs/           visão, domínio, decisões, suporte e guias
+sources/        catálogo e referências; documentos apenas se redistribuição permitida
+schemas/        contratos e versões de dados
+core/           domínio e motor independente de interface
+rules/          regras de referência e metadados
+jurisdictions/  pacotes nacionais e fictícios
+adapters/       entrada, contabilidade e saídas declarativas
+examples/       dados e cálculos sintéticos
+tests/          referências, integração e regressões
+governance/     processos de revisão e manutenção
+site/           página explicativa interativa
+site/index.html conteúdo e estrutura semântica
+site/assets/css/styles.css estilos e responsividade
+site/assets/js/app.js interações, navegação e exemplo didático
+site/assets/data/ conteúdo estruturado e exemplos sintéticos, se necessário
+
+A estrutura é conceitual: linguagem, ferramenta de build, persistência e empacotamento permanecem sujeitos aos ADRs.
+
+Histórico desta revisão:
+- v0.3: acrescentado P11 para página explicativa interativa em HTML/CSS/JavaScript; integrados seus requisitos a P00, P01, P07, P08 e P10, à estrutura de arquivos e à publicação pelo GitHub Pages.
+- v0.2: incorporados projeto oecd_p2 no RStudio, oecd_p2.Rproj e repositório amarallr/oecd_p2 aos prompts P00, P01, P07, P08, P09 e P10.
+- Esta revisão acrescenta instruções aos prompts; não declara execução do bootstrap, criação do repositório, instalação na máquina do usuário ou publicação da página.
+
+5. FONTES OFICIAIS CONSULTADAS E PONTOS DE VERIFICAÇÃO
+
+[S1] OECD — Minimum Tax Implementation Handbook (Pillar Two), 2023.
+https://www.oecd.org/content/dam/oecd/en/topics/policy-sub-issues/global-minimum-tax/minimum-tax-implementation-handbook-pillar-two.pdf
+Ponto de partida fornecido pelo proponente. Não substitui o corpus detalhado.
+
+[S2] OECD — Global Anti-Base Erosion Model Rules (Pillar Two), página oficial de referências.
+https://www.oecd.org/en/topics/sub-issues/global-minimum-tax/global-anti-base-erosion-model-rules-pillar-two.html
+Usar para localizar Model Rules, orientações e instrumentos; congelar as versões efetivamente usadas.
+
+[S3] OECD — Consolidated Commentary to the Global Anti-Base Erosion Model Rules (2026), 28/05/2026.
+https://www.oecd.org/en/publications/tax-challenges-arising-from-the-digitalisation-of-the-economy-consolidated-commentary-to-the-global-anti-base-erosion-model-rules-2026_4377e89f-en.html
+DOI: https://doi.org/10.1787/4377e89f-en
+O resumo da publicação informa incorporação de orientações até janeiro de 2026. Não presumir que inclui publicações posteriores.
+
+[S4] OECD — Global Anti-Base Erosion Model Rules (Pillar Two), Side-by-Side Package, janeiro de 2026.
+https://www.oecd.org/content/dam/oecd/en/topics/policy-sub-issues/global-minimum-tax/side-by-side-package.pdf
+Confirmar condições, eleições, períodos e efeitos em cada fluxo durante P02/P03.
+
+[S5] OECD — anúncio oficial do pacote de setembro de 2026: revisão legislativa, GIR e Administrative Guidance.
+https://www.oecd.org/en/about/news/announcements/2026/09/global-minimum-tax-inclusive-framework-releases-a-package-to-strengthen-consistency-and-certainty-for-mnes-and-jurisdictions.html
+Verificar os instrumentos completos antes de transformar seu conteúdo em regras.
+
+[S6] OECD — GloBE Information Return (Pillar Two) XML Schema, October 2026, 20/10/2026.
+https://www.oecd.org/en/publications/globe-information-return-pillar-two-xml-schema-october-2026_1552c9aa-en.html
+DOI: https://doi.org/10.1787/1552c9aa-en
+A página distingue os calendários das versões 1.0 e 2.0 para intercâmbio. O adaptador deverá modelar esse calendário separadamente do exercício fiscal e das regras de entrega doméstica.
+
+[S7] IFRS Foundation — IASB amends tax accounting requirements to help companies respond to Pillar Two tax reform, maio de 2023.
+https://www.ifrs.org/news-and-events/news/2023/05/iasb-amends-tax-accounting-requirements/
+Projeto oficial:
+https://www.ifrs.org/projects/completed-projects/2023/international-tax-reform-pillar-two-model-rules/
+
+Limite desta entrega:
+Este caderno define os prompts da concepção inicial. Não houve verificação artigo por artigo do conjunto completo das Model Rules, orientações, IAS 12 ou leis nacionais; essa investigação e sua documentação são entregáveis expressos dos prompts P02–P06. As escolhas de arquitetura, processo e governança acima são propostas de projeto, não prescrições da OCDE.
+

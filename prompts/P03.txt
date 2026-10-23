@@ -1,0 +1,33 @@
+====================================================================
+P03 — DOMÍNIO E REQUISITOS TRIBUTÁRIOS
+====================================================================
+
+C — CONTEXTO
+Receba o corpus P02. O objetivo é decompor o domínio em requisitos implementáveis sem reduzir o Pillar Two a uma diferença de alíquotas.
+
+O — OBJETIVO
+Criar o modelo conceitual e o catálogo de regras do núcleo GloBE e de suas interações.
+
+S — ESTILO
+Glossário, mapa de conceitos e fichas de regra com pré-condições, decisões e exemplos.
+
+T — TOM
+Didático para engenheiros e preciso para especialistas.
+
+A — AUDIÊNCIA
+Analistas de domínio, especialistas tributários e arquitetos.
+
+R — RESPOSTA
+1. Defina grupo, UPE, entidade constituinte, estabelecimento permanente, jurisdição, entidade excluída, propriedade e período fiscal.
+2. Especifique o teste de escopo, incluindo histórico de receitas, exercícios especiais, exclusões e reorganizações, a partir das fontes vigentes. Diferencie limiar de escopo e de minimis.
+3. Mapeie renda/perda GloBE, tributos abrangidos ajustados, ETR, exclusão baseada em substância e imposto complementar.
+4. Modele a coordenação QDMTT/IIR/UTPR e suas condições; não trate o encadeamento como simples subtração automática.
+5. Catalogue eleições, safe harbours, regras transitórias, cálculos adicionais e revisões de exercícios anteriores.
+6. Inclua no mapa de cobertura: créditos fiscais, CFC, tributos diferidos, recapture, perdas, entidades transparentes, joint ventures, entidades de investimento e estruturas de propriedade parcial.
+7. Diferencie agregação jurisdicional ordinária, categorias com apuração separada e situações especiais. Proíba compensação global indiscriminada entre países.
+8. Para cada tema, classifique suporte inicial, fase futura, não aplicável ou bloqueado. Um tema excluído do MVP continua identificado no modelo.
+9. Defina grafo de dependências e pontos de revisão de interpretação.
+10. Separe o módulo STTR, se contemplado futuramente, do motor GloBE; descreva apenas sua fronteira nesta fase.
+
+Ficha mínima: rule_id, nome, fonte/dispositivo, hipótese, período, entradas, saída, fórmula/decisão, eleição, exceções, dependências, erros, testes e status.
+Aceite: cada resultado pretendido deve apontar para regras identificáveis; casos especiais não podem desaparecer em um fluxo genérico.

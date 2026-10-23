@@ -1,0 +1,47 @@
+====================================================================
+P11 — PÁGINA WEB INTERATIVA PARA EXPLICAÇÃO DO PROJETO
+====================================================================
+
+C — CONTEXTO
+Receba P00–P09 e os artefatos disponíveis de concepção. O projeto oecd_p2 será desenvolvido no RStudio e mantido em https://github.com/amarallr/oecd_p2. É necessária uma página pública, interativa e acessível para apresentar o framework, seus fundamentos e seu funcionamento a leitores com diferentes níveis de conhecimento. A página é um entregável inicial que pode evoluir com o projeto.
+
+O — OBJETIVO
+Especificar uma página explicativa navegável e didática, com HTML, CSS, JavaScript e outras tecnologias apenas quando necessárias. Ela deve permitir compreender o projeto, explorar sua arquitetura, acompanhar um exemplo de cálculo e conhecer seu estágio real de desenvolvimento.
+
+S — ESTILO
+Comunicação visual profissional, limpa e consistente. Use blocos curtos, diagramas legíveis, tabelas comparativas e detalhamento progressivo. Priorize compreensão e navegação; evite transformar toda a documentação técnica em uma única tela densa.
+
+T — TOM
+Didático, preciso e institucionalmente neutro. Explique termos antes de usá-los e destaque hipóteses das demonstrações.
+
+A — AUDIÊNCIA
+Administrações tributárias, especialistas em tributação e contabilidade, desenvolvedores, pesquisadores e pessoas interessadas em entender o projeto sem conhecimento prévio de GloBE.
+
+R — RESPOSTA
+Especifique os seguintes conteúdos e comportamentos, com critérios verificáveis:
+1. Apresentação: nome oecd_p2, propósito público, problema abordado, benefícios esperados e acesso ao repositório. Identifique o estágio atual e a data de atualização do conteúdo.
+2. Visão introdutória: explique a diferença entre framework, motor de cálculo, pacote nacional, adaptador de dados e página explicativa. Disponibilize glossário com termos técnicos e siglas.
+3. Visão do Pillar Two: apresente conceitos essenciais com referências oficiais, destacando que a explicação resumida depende do escopo, período e legislação aplicáveis. Não transforme o limiar de receitas ou a alíquota mínima em explicação suficiente de todo o regime.
+4. Arquitetura interativa: mostre núcleo GloBE, dados/IFRS, regras, pacotes nacionais, memória de cálculo, testes e interfaces. Ao selecionar um módulo, exiba sua finalidade, entradas, saídas, dependências e status de suporte, por botão acessível a mouse e teclado.
+5. Fluxo guiado: permita avançar, voltar e selecionar etapas da preparação dos dados até a memória de cálculo. Cada etapa deve explicar o que recebe, o que faz e qual evidência produz. Inclua indicador de progresso e rótulos compreensíveis.
+6. Demonstração didática: utilize o caso ordinário sintético do P05. Disponibilize campos ou controles para renda positiva, tributos abrangidos ajustados não negativos e exclusão baseada em substância não negativa. Mantenha a alíquota mínima de 15% no exemplo e declare que o grupo está hipoteticamente no escopo.
+7. Recalcule a demonstração ao alterar entradas válidas e mostre fórmulas, valores intermediários e resultado: ETR, percentual complementar não negativo, lucro excedente não negativo e imposto complementar jurisdicional antes de alocação. No padrão 100/10/20, o resultado deve ser 4. Não atribua automaticamente o imposto a IIR, UTPR ou entidade específica.
+8. Restrinja explicitamente o simulador ao caso ordinário ilustrado. Rejeite entradas inválidas; para renda nula/negativa, tributos negativos ou casos especiais, explique que o cenário não é coberto pelo demonstrador. Mostre as exclusões do exemplo, incluindo QDMTT, safe harbours, ajustes adicionais e regras especiais.
+9. Ofereça ação “Restaurar exemplo”, valores formatados em português e leitura das mudanças por tecnologias assistivas. Caso use aritmética JavaScript para visualização, declare seu caráter didático; não apresente esse código como motor fiscal apto à produção. Para integração futura ao motor, utilize o contrato definido em P05/P07.
+10. Auditabilidade: inclua uma memória sintética navegável que ligue entradas, ajustes, regra demonstrada e saída. Diferencie referências efetivamente verificadas de metadados meramente ilustrativos; não invente artigos ou parágrafos.
+11. Comparação de camadas: apresente o que pertence ao núcleo comum e o que exige validação nacional. Use somente jurisdições fictícias na demonstração inicial, com rótulos explícitos; não alegue suporte real a países ainda não implementados.
+12. Roadmap: mostre fases, entregáveis e status reais com base no P10. Diferencie planejado, em desenvolvimento, experimental e implementado; não marque uma funcionalidade como entregue apenas por estar descrita no site.
+13. Participação: explique como estudar, testar, relatar problemas e contribuir; use links do repositório confirmado e documentos de governança existentes. Não crie formulários que finjam enviar dados nem exija cadastro para ler o conteúdo.
+14. Fontes e transparência: ofereça bibliografia com links oficiais, data de corte normativa, versão da página e limitações do demonstrador. Não use símbolos, selos ou afirmações que sugiram endosso oficial inexistente.
+15. Navegação: inclua menu claro, âncoras e links compartilháveis para seções. Accordion, abas e tooltips devem funcionar por teclado e não depender apenas de hover ou de cor. O conteúdo essencial deve continuar acessível se o JavaScript falhar.
+16. Responsividade: adapte a leitura a celular, tablet e desktop, sem rolagem horizontal na página. Para diagramas complexos, forneça alternativa textual; ajuste tabelas e rótulos para telas estreitas. Não imponha que todo o projeto caiba em uma única tela.
+17. Acessibilidade: use HTML semântico, hierarquia de títulos, labels, foco visível, contraste adequado, preferência de movimento reduzido e mensagens de erro associadas aos campos. Evite animações desnecessárias e autoavanço das etapas.
+18. Tecnologias: priorize HTML5, CSS e JavaScript modular, com arquivos separados e recursos locais. Justifique TypeScript, geradores estáticos ou bibliotecas antes de adotá-los. Evite backend para a primeira página e não coloque segredos ou dependências de autenticação no navegador.
+19. Organização: defina site/index.html, site/assets/css/styles.css, site/assets/js/app.js e site/assets/data/ para conteúdo e exemplos sintéticos quando necessário. Compartilhe conteúdo estruturado com a documentação sempre que isso reduzir divergências, sem acoplar o motor à interface.
+20. Execução e publicação: documente pré-visualização por servidor estático iniciado no terminal do projeto RStudio e implantação no GitHub Pages. Use caminhos compatíveis com subdiretório do repositório; verifique configurações, workflow e URL após a publicação. A URL esperada é apenas uma previsão até confirmação pelo GitHub.
+21. Privacidade e desempenho: dispense dados reais, cookies não essenciais, analytics e serviços externos obrigatórios nesta fase. Otimize fontes, imagens e scripts para conexão limitada.
+22. Validação: prepare roteiro de teste funcional do menu, módulos, etapas e simulador; revisão visual em celular e desktop; checagem de links, teclado e console; conferência independente do exemplo numérico e das fontes. Integre verificações úteis ao CI conforme a stack escolhida.
+
+Entregáveis de concepção: mapa de conteúdo, wireframe descritivo, lista de componentes e interações, contratos do demonstrador, estrutura de arquivos, plano de testes e roteiro de publicação.
+Entregáveis na execução F0-web: HTML, CSS, JavaScript e demais arquivos necessários completos e versionados; guia local; evidências de validação; commit; e URL de publicação verificada, quando acessível.
+Aceite: um leitor iniciante deve conseguir entender o propósito e as camadas do projeto, navegar pelas etapas, reproduzir o resultado didático 4, identificar limitações e localizar fontes e repositório. A página deve funcionar em celular e desktop e distinguir o demonstrador do motor normativo.

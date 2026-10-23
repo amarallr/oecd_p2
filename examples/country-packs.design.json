@@ -1,0 +1,45 @@
+{
+  "artifact_status": "illustrative_manifests_not_executable",
+  "packs": [
+    {
+      "pack_id": "fict_a",
+      "jurisdiction_id": "FICT-A",
+      "fictional": true,
+      "software_version": "0.1.0-design",
+      "legal_version": null,
+      "translation_version": "pt-0.1",
+      "compatible_core": ">=0.1.0 <0.2.0",
+      "period_profile": "SYNTHETIC-PERIOD-01",
+      "legal_valid_from": null,
+      "legal_valid_to": null,
+      "domestic_sources": [],
+      "maintainer_role": "fictional-pack-maintainer",
+      "elections": [],
+      "presentation_decimal_places": 2,
+      "capabilities": {"ordinary_demo": "planned", "dmtt": "unsupported", "iir": "unsupported", "utpr": "unsupported"},
+      "qualification": {"status": "not_applicable", "official_evidence": null},
+      "test_ids": ["T20", "T23"],
+      "review_status": "proposed"
+    },
+    {
+      "pack_id": "fict_b",
+      "jurisdiction_id": "FICT-B",
+      "fictional": true,
+      "software_version": "0.1.0-design",
+      "legal_version": null,
+      "translation_version": "pt-0.1",
+      "compatible_core": ">=0.1.0 <0.2.0",
+      "period_profile": "SYNTHETIC-PERIOD-01",
+      "legal_valid_from": null,
+      "legal_valid_to": null,
+      "domestic_sources": [],
+      "maintainer_role": "fictional-pack-maintainer",
+      "elections": [],
+      "presentation_decimal_places": 0,
+      "capabilities": {"ordinary_demo": "planned", "dmtt": "unsupported", "iir": "unsupported", "utpr": "unsupported"},
+      "qualification": {"status": "not_applicable", "official_evidence": null},
+      "test_ids": ["T20", "T23"],
+      "review_status": "proposed"
+    }
+  ]
+}

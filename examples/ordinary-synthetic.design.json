@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1.0-design",
+  "profile": "ordinary_synthetic_v1",
+  "artifact_status": "contract_example_not_executable",
+  "mode": "hypothetical",
+  "jurisdiction": "FICT-A",
+  "period_id": "SYNTHETIC-PERIOD-01",
+  "currency": "XUM",
+  "assumed_in_scope": true,
+  "income": "100",
+  "adjusted_covered_taxes": "10",
+  "substance_exclusion": "20",
+  "special_cases": [],
+  "assumptions": {
+    "qdmt_treatment": "excluded",
+    "safe_harbours": "excluded",
+    "additional_adjustments": "excluded"
+  },
+  "manual_expected": {
+    "etr": "0.10",
+    "top_up_rate": "0.05",
+    "excess_profit": "80",
+    "jurisdictional_top_up_before_allocation": "4",
+    "allocation": null
+  }
+}

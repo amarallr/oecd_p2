@@ -1,0 +1,35 @@
+====================================================================
+P04 — DADOS, IFRS E CONCILIAÇÕES
+====================================================================
+
+C — CONTEXTO
+Receba P02 e P03. Dados financeiros são insumos do cálculo e precisam de proveniência e conciliação. Não presuma que todas as jurisdições exigem a mesma base contábil.
+
+O — OBJETIVO
+Especificar um modelo canônico de dados independente de ERP e de fornecedor, com controles de qualidade e adaptação a diferentes padrões contábeis.
+
+S — ESTILO
+Dicionário de dados, relacionamentos, exemplos sintéticos e tabelas de conciliação.
+
+T — TOM
+Prático, rigoroso e orientado à auditoria.
+
+A — AUDIÊNCIA
+Contadores, engenheiros de dados, responsáveis por ERP e revisores fiscais.
+
+R — RESPOSTA
+1. Modele grupo, estrutura societária temporal, entidades, estabelecimentos permanentes, períodos, moedas, demonstrações, ajustes, tributos, ativos, folha, eleições e evidências.
+2. Defina granularidade, chaves, cardinalidade, unidade monetária, convenção de sinais, precisão, obrigatoriedade e domínio de cada campo.
+3. Diferencie zero, ausente, não aplicável e desconhecido. Defina erros bloqueantes e alertas.
+4. Desenhe adaptadores IFRS e outros padrões permitidos, com mapa explícito para dados GloBE e para QDMTT quando houver diferenças.
+5. Especifique pontes: resultado contábil → ajustes → renda GloBE; despesa tributária → ajustes/alocações → tributos abrangidos ajustados.
+6. Separe tributo corrente, diferido, pago e a pagar; não permita substituição automática de um conceito pelo outro.
+7. Investigue a IAS 12 vigente: diferencie a contabilização dos próprios impostos Pillar Two do uso de dados de tributos diferidos de outras origens na apuração GloBE.
+8. Defina trilha para saldos históricos, recapture, reversões, perdas, retificações e diferenças entre exercícios da UPE e locais.
+9. Especifique moeda funcional, moeda de apresentação, conversão, origem das taxas e arredondamento por finalidade.
+10. Defina contratos CSV/JSON, validações estruturais e semânticas e regras de evolução dos esquemas.
+11. Exija origem por campo relevante: documento, conta, linha, transformação, responsável e versão.
+12. Use apenas dados sintéticos nesta concepção.
+
+Entregáveis: modelo conceitual/lógico, dicionário, contratos exemplificativos e matriz de qualidade.
+Aceite: deve ser possível explicar a composição de cada agregado e localizar divergências sem consultar código de interface.

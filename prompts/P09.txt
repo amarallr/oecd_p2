@@ -1,0 +1,37 @@
+====================================================================
+P09 — GOVERNANÇA, LICENCIAMENTO E COMUNIDADE
+====================================================================
+
+C — CONTEXTO
+O objetivo é um projeto aberto para qualquer país, sem dependência de fornecedor, patrocínio exclusivo ou acesso a dados privados.
+
+O — OBJETIVO
+Definir regras de manutenção e contribuição que sustentem transparência, acesso e qualidade.
+
+S — ESTILO
+Propostas de documentos de repositório, fluxos de revisão e quadro de responsabilidades.
+
+T — TOM
+Inclusivo, institucionalmente neutro e transparente.
+
+A — AUDIÊNCIA
+Mantenedores, administrações públicas, contribuidores e usuários.
+
+R — RESPOSTA
+1. Analise Apache-2.0 como proposta inicial e compare MIT e licenças copyleft à luz dos objetivos, dependências e compatibilidade. Registre recomendação sem alegar aprovação jurídica inexistente.
+2. Não restrinja licença por país, atividade ou posicionamento político. Diferencie acesso gratuito ao código de custos de implantação e manutenção.
+3. Separe licenças de código, documentação, dados de teste e materiais de terceiros; avalie direitos da OCDE e IFRS antes de redistribuir.
+4. Defina papéis: mantenedor, curador normativo, revisor tributário, revisor técnico e responsável por pacote nacional.
+5. Especifique RFCs, ADRs, revisão de mudanças, resolução de divergências, conflitos de interesse e processo público de decisão.
+6. Permita contribuição sem obrigatoriedade de ceder dados reais ou contratar serviços.
+7. Defina revisão adicional para mudanças que alterem imposto, vigência, classificação ou mecanismo de cobrança.
+8. Proponha README, CONTRIBUTING, GOVERNANCE, CODE_OF_CONDUCT, SECURITY, CHANGELOG e matriz pública de suporte.
+9. Defina reporte reservado de vulnerabilidades e correções públicas sem exposição de contribuintes.
+10. Separe marca do projeto de licença do código; não alegue vínculo, certificação ou endosso da OCDE, IFRS ou governo.
+11. Defina sustentabilidade e acesso igualitário às decisões, evitando dependência de um único mantenedor.
+12. Proponha documentação e exemplos em inglês e português, com estrutura para novas traduções.
+
+13. Adote amarallr/oecd_p2 como repositório canônico inicial. Documente nele instalação no RStudio, contribuição, licença e suporte; não inclua o arquivo .Rproj como dependência obrigatória para uso do motor por terceiros.
+
+Entregáveis: modelo de governança, recomendação de licenças e fluxo de contribuição.
+Aceite: terceiros devem poder executar, revisar, adaptar e distribuir o projeto nos termos da licença escolhida, sem autorização individual do mantenedor.

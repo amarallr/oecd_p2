@@ -1,0 +1,41 @@
+====================================================================
+P08 — TESTES E VALIDAÇÃO INDEPENDENTE
+====================================================================
+
+C — CONTEXTO
+Receba catálogo de regras, contratos e arquitetura. Aprovar testes não substitui revisão tributária, mas deve produzir evidência verificável da cobertura.
+
+O — OBJETIVO
+Definir uma estratégia de validação por regra, cenário, período e jurisdição.
+
+S — ESTILO
+Matriz de cenários com dados, cálculo esperado independente, fontes e critérios de bloqueio.
+
+T — TOM
+Crítico e orientado a evidências.
+
+A — AUDIÊNCIA
+Especialistas tributários, auditores e equipes de qualidade.
+
+R — RESPOSTA
+1. Defina testes de regra, integração, fluxo completo, regressão normativa e contratos.
+2. Use exemplos oficiais quando acessíveis e juridicamente reutilizáveis; crie casos sintéticos complementares.
+3. Para cada cenário, apresente premissas, entradas, cálculo manual ou referência independente, resultado e fonte. Não gere o esperado chamando a própria função testada.
+4. Inclua fronteiras do teste de receitas; escopo; exclusões; de minimis; safe harbours; períodos; moedas; eleições; créditos; diferidos/recapture; perdas; agregações especiais; propriedade; QDMTT/IIR/UTPR.
+5. Casos fora do suporte inicial devem testar bloqueio explícito e ausência de resultado definitivo.
+6. Inclua propriedades condicionais: invariância à ordem de entrada, reconciliação de somas e alocações, prevenção de duplicidade e repetibilidade.
+7. Não imponha monotonicidade global ou propriedades econômicas sem provar suas condições.
+8. Preveja comparação entre versões com explicação de cada diferença e cenários históricos congelados.
+9. Exija revisão tributária e revisão técnica por competências distintas antes de declarar suporte normativo.
+10. Defina validações de esquema GIR separadas da validação semântica e da aceitação doméstica.
+11. Defina critérios de liberação: regras críticas cobertas, diferenças explicadas, limitações publicadas e artefatos reproduzíveis.
+12. Proíba divulgação de “100% conforme à OCDE” com base apenas em cobertura de linhas de código ou testes internos.
+
+13. Planeje verificação do bootstrap a partir de um clone limpo: abrir oecd_p2.Rproj, restaurar dependências, executar um exemplo sintético e os testes sem depender de .RData, caminhos pessoais ou segredos. Quando houver componentes em R, inclua execução não interativa por Rscript.
+14. Proponha CI no GitHub Actions para o escopo implementado, com versões declaradas e verificações relevantes. Diferencie workflow criado, execução disparada e execução aprovada; reporte evidências reais.
+
+15. Inclua validação da página: navegação, expansão das explicações, controles do simulador, rejeição de entradas inválidas, restauração do exemplo, links, teclado, foco, contraste, responsividade e ausência de erros de console. Confira a renderização em celular e desktop e após publicação em subdiretório.
+16. Compare os valores exibidos no simulador com cálculos independentes do caso didático do P05; confira que as limitações, fontes, data de corte e status do projeto permaneçam visíveis. Não confunda esse teste com validação normativa do motor.
+
+Entregáveis: matriz de testes, catálogo de referência, procedimento de revisão e checklist de liberação.
+Aceite: todo recurso declarado suportado possui evidência; toda limitação material permanece visível.

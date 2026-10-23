@@ -1,0 +1,17 @@
+{
+  "version": "0.1.0",
+  "normative_cutoff": "2026-10-23",
+  "scope": "artifact_integrity_only",
+  "source_copy_identical": true,
+  "prompts": 12,
+  "delivery_documents": 12,
+  "local_links_checked": 63,
+  "json_files_parsed": 4,
+  "json_code_blocks_parsed": 2,
+  "errors": [],
+  "engine_tests_executed": false,
+  "browser_tests_executed": false,
+  "git_commit": null,
+  "git_push_verified": false,
+  "publication_verified": false
+}

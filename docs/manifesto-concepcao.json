@@ -1,0 +1,174 @@
+{
+  "version": "0.1.0",
+  "input_sha256": "5c04d2ec12738753ef086ebf766028c6ddc23a5f624b33c23702b5db41d79a8b",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "1e3587216dbc533e35b5c52456eeea2b5d9cece8b175118b6a13afee849816ec"
+    },
+    {
+      "path": "docs/adr/README.md",
+      "sha256": "86e12b32aafac5357eeeba57b2c6fc7c47a982c3319b3587d06e993ce9e3b055"
+    },
+    {
+      "path": "docs/ambiente.md",
+      "sha256": "68ab47fe5c1cf1351c79217aba9d8d1f2c0b54e99ca48e83eb119939a96387ff"
+    },
+    {
+      "path": "docs/decisoes.md",
+      "sha256": "a721511f797df60e031cb6dc41bcae633ef3716527ac3945f1909aab5d4b443e"
+    },
+    {
+      "path": "docs/entrega-concepcao.md",
+      "sha256": "2fcf626eb7529ff3e42cdb4df68844430def65550bbe3cc30365d99ca7154e30"
+    },
+    {
+      "path": "docs/github.md",
+      "sha256": "2997654a8e9cdd64fe1abd1fd1f16b9463f9deabcad8ee5477e773e85666fc8f"
+    },
+    {
+      "path": "docs/P00-carta.md",
+      "sha256": "417b71c38849407d71143865b25a041a0581431423e78c9799c7a21201ee5889"
+    },
+    {
+      "path": "docs/P01-contrato.md",
+      "sha256": "cbbe520a7ab758bc6cc29c581e1d230fea06e9b2980c58952c225d129147ae24"
+    },
+    {
+      "path": "docs/P02-corpus.md",
+      "sha256": "83c56d225fddfe4ef207c1f4a2e45911968a20f3203f6dec79ab3112ea7075af"
+    },
+    {
+      "path": "docs/P03-dominio.md",
+      "sha256": "a2ee15200997e0e04470378abc24ae9e858958815689de26b984c94a28ced650"
+    },
+    {
+      "path": "docs/P04-dados.md",
+      "sha256": "ffdd1bdb796b877d2fc00f7b8b8635906e6c8448a4162eadb061ec19b66150cc"
+    },
+    {
+      "path": "docs/P05-motor.md",
+      "sha256": "0be7382b1f7a4b85d68da20d0aa6ee243bdb53194ba9083ced2a642227ba9d8c"
+    },
+    {
+      "path": "docs/P06-pacotes.md",
+      "sha256": "6aa4c293e3b2e274d4fe91d87a04fc3b11984cb31f411f0ec8e9e97f9ab646e7"
+    },
+    {
+      "path": "docs/P07-arquitetura.md",
+      "sha256": "47a0709414d6a3130dbf3605943c88007628a99f096434c622312bb82faeceb5"
+    },
+    {
+      "path": "docs/P08-validacao.md",
+      "sha256": "2fb049508540f018ddad67abf32f2f7a2bfd46de4b6d1166c672dc8a6f148e05"
+    },
+    {
+      "path": "docs/P09-governanca.md",
+      "sha256": "5ddd1d3200fe2c742d39e2f1edc73c073995c9ca2649ad3dec1be694bfa6b493"
+    },
+    {
+      "path": "docs/P10-roadmap.md",
+      "sha256": "62c4f9b6cd202c9b6b21449626c3f135857f59e27121f54cac81c3a21103c215"
+    },
+    {
+      "path": "docs/P11-pagina.md",
+      "sha256": "f932f24a90c9916ec3b17b367cf443cbd71cac60f75e17c03954c8cd931ed636"
+    },
+    {
+      "path": "docs/suporte.md",
+      "sha256": "1ca34bbbb6f5585db0059eb935ae667ca4070a2b7c9529c79127d5164b3cb720"
+    },
+    {
+      "path": "examples/country-packs.design.json",
+      "sha256": "728a5ffd9b5ca1a563470d168da35f00f780d1be88985de4d3403e18e7711a66"
+    },
+    {
+      "path": "examples/ordinary-synthetic.design.json",
+      "sha256": "e04e0517ebc8ca3956348cba1acc3bd975e693bfdbf44d78eb98eb9a89686550"
+    },
+    {
+      "path": "prompts/caderno-COSTAR-v0_3.txt",
+      "sha256": "5c04d2ec12738753ef086ebf766028c6ddc23a5f624b33c23702b5db41d79a8b"
+    },
+    {
+      "path": "prompts/execucao-F0-web.md",
+      "sha256": "f670b61bdbfb25390930590fd76ea715c16ca182d229c7484234c6b48bbbeb6e"
+    },
+    {
+      "path": "prompts/execucao-F0.md",
+      "sha256": "5571b936b3e92ad404609424eebc554a79bac78d853ecc14265f44d0c9099d28"
+    },
+    {
+      "path": "prompts/execucao-F1.md",
+      "sha256": "63b0772618bfbbe9c747c09566d57df20f5a0266c055fdf564f99afcec313087"
+    },
+    {
+      "path": "prompts/P00.txt",
+      "sha256": "7091fecc15fbfd96c4e019ce0711fd69cedc0901845bc7371c4f898d92d8dc9c"
+    },
+    {
+      "path": "prompts/P01.txt",
+      "sha256": "c9b5000e19b44c206f2730b5f6346d0b70442186a9825d70f536828f33e10441"
+    },
+    {
+      "path": "prompts/P02.txt",
+      "sha256": "04728846249f1b7892acc27b3ed9755ecbb05c28df2eb88dd4ad832b67a3b456"
+    },
+    {
+      "path": "prompts/P03.txt",
+      "sha256": "08c180f6dfbc7f03f417cc9869240f48ab3ae57c5dbd2f41a5a8bf196a58b644"
+    },
+    {
+      "path": "prompts/P04.txt",
+      "sha256": "176aa2a57cd3b4433da3709e4cc6d1531aa8d35cf8c032f07e82a9326c538bf9"
+    },
+    {
+      "path": "prompts/P05.txt",
+      "sha256": "fc8568a3a2aadfd1b3e166c32022f9da8bd717d4e406481415cdb30a3b00dbad"
+    },
+    {
+      "path": "prompts/P06.txt",
+      "sha256": "89aeff401439c771a4e7af0605b523929586adea75565ab0c113ecc29680a70a"
+    },
+    {
+      "path": "prompts/P07.txt",
+      "sha256": "e4af30ffd4b89b5ac5996ccc3bf8d22962b8d2527a3f1c2ec5f4675859580d11"
+    },
+    {
+      "path": "prompts/P08.txt",
+      "sha256": "ee0df9b099c254a7efcf054de4a54ff97a8ce730556f2e34835945e265137788"
+    },
+    {
+      "path": "prompts/P09.txt",
+      "sha256": "85df3966e919929d3f6f942bdbee95457e6e8923b0b55e83b0d51ea21b44bfaa"
+    },
+    {
+      "path": "prompts/P10.txt",
+      "sha256": "f08f69b15df74d8c9e045d8107b1e65cab51e3ecae47c3fb3d40a8c387e041e6"
+    },
+    {
+      "path": "prompts/P11.txt",
+      "sha256": "55384f4156bccc2ef21e95435dbe4a04c8695b50c6fe6d1da976ccd3452b5157"
+    },
+    {
+      "path": "prompts/README.md",
+      "sha256": "5f875c2f1f2eefc2addf8634b34396f443ce5e7b2a05f8e66c4d27ef409c4488"
+    },
+    {
+      "path": "README.md",
+      "sha256": "59dfcd837571b501077dad6f29b13f1c4213a49f3808fcb23c16c9ce431c776f"
+    },
+    {
+      "path": "scripts/organizar-prompts.cjs",
+      "sha256": "b8b53b4641f44ebd6502aad00f9fe2bd8de95abaee2c16f5e7fcead5383a739a"
+    },
+    {
+      "path": "scripts/verificar-concepcao.cjs",
+      "sha256": "d6ba0967c4508a73dafc3b8f34ecdde881d57a37ee7a34dd91f097d7d1cfedee"
+    },
+    {
+      "path": "sources/catalogo.md",
+      "sha256": "11fb7e557a833f823c11ce2571ada13b7809c3251bf0c402ccc422146cef3d96"
+    }
+  ]
+}

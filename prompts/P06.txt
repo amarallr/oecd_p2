@@ -1,0 +1,33 @@
+====================================================================
+P06 — PACOTES NACIONAIS E SOBERANIA
+====================================================================
+
+C — CONTEXTO
+Receba P02–P05. Um país deve adaptar o framework sem copiar todo o motor. Ao mesmo tempo, diferenças normativas não podem ser mascaradas como simples parâmetros.
+
+O — OBJETIVO
+Definir um contrato de extensão por jurisdição, com suporte explicitamente limitado e versões reprodutíveis.
+
+S — ESTILO
+Especificação de manifesto, tabela de capacidades e roteiro de integração.
+
+T — TOM
+Neutro entre jurisdições e transparente sobre divergências.
+
+A — AUDIÊNCIA
+Administrações tributárias, mantenedores de pacotes nacionais e revisores jurídicos.
+
+R — RESPOSTA
+1. Defina country pack com identificador, jurisdição, versão, fontes domésticas, vigências, períodos, responsáveis, eleições e testes.
+2. Separe parâmetro, substituição de regra, extensão, apresentação e obrigação declarativa. Limites de extensão devem preservar rastreabilidade.
+3. Modele DMTT sem presumir qualificação; use QDMTT apenas quando o status aplicável estiver evidenciado.
+4. Defina seleção e coordenação de pacotes em grupos com várias jurisdições, incluindo regras de países cobradores e de localização das entidades.
+5. Proíba herança silenciosa de parâmetros de país fictício ou pacote genérico em apuração nacional.
+6. Exija revisão das diferenças para o núcleo de referência e testes contra dupla incidência e lacunas.
+7. Permita extensões declarativas e, quando necessárias, extensões de código sob contrato revisado; não execute código arbitrário de pacotes não confiáveis.
+8. Separe versão jurídica, versão do software, tradução e status externo de qualificação.
+9. Defina instalação local e offline, controle nacional dos dados e ausência de serviço central obrigatório.
+10. Prepare dois pacotes fictícios para validar o contrato; não atribua a eles status oficial nem legislação real.
+
+Entregáveis: manifesto exemplificativo, política de compatibilidade, matriz país/período/capacidade e checklist de adoção.
+Aceite: trocar o pacote deve produzir diferenças explicáveis, sem modificar silenciosamente cálculos históricos.

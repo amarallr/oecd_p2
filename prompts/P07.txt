@@ -1,0 +1,49 @@
+====================================================================
+P07 — ARQUITETURA, RSTUDIO, GITHUB E OPERAÇÃO
+====================================================================
+
+C — CONTEXTO
+Receba os requisitos anteriores. O público inclui equipes com recursos técnicos e financeiros limitados; a implantação inicial não deve exigir infraestrutura distribuída.
+
+O — OBJETIVO
+Propor arquitetura simples, extensível, segura e independente de fornecedor, com ambiente de desenvolvimento oecd_p2 no RStudio e integração ao GitHub.
+
+S — ESTILO
+Visões C4 de contexto e contêineres, contratos de interfaces e ADRs curtos.
+
+T — TOM
+Pragmático, com tradeoffs explícitos.
+
+A — AUDIÊNCIA
+Arquitetos, desenvolvedores, operadores e responsáveis pela segurança.
+
+R — RESPOSTA
+1. Separe domínio/motor, regras, pacotes nacionais, ingestão, persistência, auditoria, relatórios, CLI, API e interface visual.
+2. Compare monólito modular e serviços, recomendando a solução inicial com menor complexidade compatível com os requisitos.
+3. Adote o RStudio como ambiente de desenvolvimento solicitado pelo proponente. Compare opções de linguagem para o núcleo quanto a decimal, tipagem, testes, portabilidade e manutenção. O arquivo .Rproj organiza o workspace e não obriga todos os componentes a serem escritos em R. Se recomendar outra linguagem para o motor, documente como desenvolver, executar e testar a integração a partir do projeto RStudio. Preserve a precisão decimal exigida no P05.
+4. Preveja uso como biblioteca e CLI no primeiro demonstrador; justifique fases de API e aplicação web.
+5. Defina importação e exportação por formatos abertos, com contratos estáveis e erros compreensíveis.
+6. Trate GIR como adaptador versionado, distinguindo conteúdo declarativo, esquema técnico, intercâmbio e recepção doméstica. Não prometa aceitação pelo fisco apenas porque o XML valida.
+7. Considere as versões oficiais e calendários aplicáveis; não selecione o XML somente pelo exercício fiscal.
+8. Defina execução local/offline e contêiner opcional, sem cloud ou licença comercial obrigatória.
+9. Especifique controle de acesso, segregação de funções, criptografia, retenção, logs sem dados sensíveis e isolamento de organizações.
+10. Defina ameaças relevantes: dados adulterados, mudança não autorizada de regras, vazamento, dependências comprometidas e XML malicioso.
+11. Planeje dependências fixadas, SBOM, builds reproduzíveis quando viáveis e cadeia de publicação verificável.
+12. Proponha metas mensuráveis de desempenho com volume de referência e protocolo de medição; não invente resultados.
+13. Inclua interface acessível, navegação por teclado, localização e explicação dos cálculos, sem fazer a auditabilidade depender da tela.
+
+14. Especifique a criação ou reutilização da pasta oecd_p2 e do arquivo oecd_p2.Rproj na raiz. Configure sessão limpa, sem restauração automática de workspace nem salvamento automático de .RData, e arquivos de texto UTF-8.
+15. Defina roteiro de preparação verificando R, RStudio, Git e, se necessário para a integração remota, GitHub CLI ou conector equivalente. Registre versões e dependências ausentes; não presuma instalações nem acesso à máquina local do usuário.
+16. Para componentes em R, planeje ambiente isolado com renv e renv.lock versionado, biblioteca local ignorada e procedimento de restauração. Se outra linguagem for adotada, acrescente seu gerenciamento de dependências ao mesmo ADR.
+17. Defina estrutura mínima com prompts/, docs/, scripts/, tests/, examples/ e os módulos de domínio já propostos. Acrescente R/ para funções em R; avalie estrutura de pacote R se ela for útil, sem impô-la apenas por usar RStudio.
+18. Especifique bootstrap idempotente: detectar o projeto existente, preservar seu conteúdo e criar apenas o que faltar. Se o repositório remoto já contiver arquivos, prefira clonar ou reutilizar a cópia existente antes de inicializar outro histórico local.
+19. Defina integração com https://github.com/amarallr/oecd_p2: verificar proprietário, existência, acesso, branch padrão, remotes e histórico. Se a ausência estiver confirmada e houver capacidade autenticada, criar o repositório público amarallr/oecd_p2. Não interpretar erro de acesso como autorização para substituir ou duplicar um repositório.
+20. Planeje origin apontando ao repositório informado, autenticação segura via gerenciador de credenciais, SSH ou mecanismo oficial, e sincronização sem tokens em arquivos, URLs ou logs.
+21. Documente a abertura de oecd_p2.Rproj no RStudio, restauração do ambiente, execução dos exemplos sintéticos, testes e operações Git básicas. Inclua alternativa via terminal para usuários sem RStudio.
+
+22. Integre à arquitetura a página explicativa do P11, em site/, separada da futura interface operacional do motor. Priorize HTML, CSS e JavaScript sem backend para facilitar implantação estática e manutenção. TypeScript, bibliotecas, geradores estáticos ou outras linguagens exigem justificativa técnica, instruções de build e dependências fixadas; não acrescente complexidade sem necessidade.
+23. Especifique visualização local a partir do projeto RStudio por servidor estático, documentação do comando escolhido e publicação pelo GitHub Pages a partir de site/. Não dependa de abrir index.html por file:// se houver módulos ou carregamento de dados.
+24. Planeje caminhos relativos compatíveis com hospedagem em subdiretório, recursos locais e integração de publicação ao processo Git existente. Verifique configurações antes de habilitar Pages; não prometa URL publicada sem verificar o deployment.
+
+Entregáveis: arquitetura, ADRs, contratos preliminares, modelo de ameaças, especificação de oecd_p2.Rproj, arquitetura da página explicativa e plano de preparação RStudio/GitHub.
+Aceite: o núcleo deve funcionar sem interface, conexão externa ou infraestrutura proprietária; o projeto deve poder ser aberto no RStudio e preparado a partir de um clone limpo seguindo o guia.

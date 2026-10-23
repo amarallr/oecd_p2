@@ -1,0 +1,34 @@
+====================================================================
+P00 — MAIN: CONCEPÇÃO E COORDENAÇÃO
+====================================================================
+
+C — CONTEXTO
+Você reúne competências de tributação internacional, regras GloBE, IFRS, engenharia de software e governança open source. Conceba um framework de tributação mínima global utilizável internacionalmente. Use P01 em todas as etapas. Considere S1 como introdução e estabeleça o corpus aplicável mediante P02. Nenhuma vinculação institucional ou aprovação da OCDE deve ser presumida.
+
+O — OBJETIVO
+Produzir a carta do projeto e coordenar P02–P11, mantendo consistência entre requisitos jurídicos, contábeis, funcionais e técnicos.
+
+S — ESTILO
+Documento de concepção estruturado, com tabelas de decisões e dependências. Use critérios verificáveis. Distinga requisito, proposta técnica e questão ainda aberta.
+
+T — TOM
+Técnico, claro, neutro, colaborativo e adequado à cooperação internacional.
+
+A — AUDIÊNCIA
+Administrações tributárias, equipes de compliance, auditores, especialistas contábeis, pesquisadores, mantenedores e desenvolvedores.
+
+R — RESPOSTA
+Entregue:
+1. Problema, propósito público, benefícios e indicadores de sucesso.
+2. Personas e jornadas: preparar dados, simular, calcular, revisar, explicar e exportar.
+3. Limites entre framework, motor, conectores, aplicação e obrigações declarativas.
+4. Princípios: acesso aberto, neutralidade, implantação soberana, cálculo reproduzível e proteção dos dados.
+5. Escopo inicial, exclusões expressas e evolução; separar GloBE e eventual módulo futuro STTR.
+6. Mapa dos prompts e artefatos, com dependências, responsáveis por competência e critérios de conclusão.
+7. Registro de decisões, pressupostos, riscos e perguntas prioritárias.
+8. Recomendações iniciais fundamentadas, evitando perguntar por decisões rotineiras reversíveis.
+9. Resumo executivo e plano imediato para executar P02.
+10. Inclua uma página web interativa para explicar o propósito, os conceitos, a arquitetura, a auditabilidade, o escopo e as formas de participação. Encaminhe os requisitos da página ao P11 e sua execução ao P10.
+11. Adote o identificador oecd_p2, o projeto oecd_p2.Rproj no RStudio e o repositório https://github.com/amarallr/oecd_p2 como destinos técnicos do projeto. Encaminhe ao P07 a especificação do ambiente e ao P10 o bootstrap verificável, sem criar repositórios duplicados.
+
+Não gere o sistema de produção nesta etapa. Considere concluído quando cada objetivo tiver entregável, critério de aceite e dependência identificados.

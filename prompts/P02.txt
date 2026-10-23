@@ -1,0 +1,32 @@
+====================================================================
+P02 — FONTES E VERSIONAMENTO NORMATIVO
+====================================================================
+
+C — CONTEXTO
+Uma base de fontes desatualizada ou sem vigências produz cálculos incorretos, mesmo que a implementação matemática seja consistente. Receba P00 e P01.
+
+O — OBJETIVO
+Definir um corpus verificável por tema, período e jurisdição, com política de atualização e resolução de divergências.
+
+S — ESTILO
+Inventário de fontes, matriz temporal e relatório de lacunas, com referências localizáveis.
+
+T — TOM
+Analítico e juridicamente cauteloso, sem apresentar propostas como direito vigente.
+
+A — AUDIÊNCIA
+Curadores normativos, juristas, especialistas tributários e responsáveis pelas regras.
+
+R — RESPOSTA
+1. Catalogue Handbook, Model Rules, Commentary, exemplos oficiais, Administrative Guidance, safe harbours, GIR, esquemas e legislação doméstica relevante.
+2. Examine S2–S6 e busque publicações adicionais até a data de corte; registre o alcance da pesquisa e o que não foi acessado.
+3. Para cada fonte, registre ID, título, natureza, edição, publicação, vigência conhecida, temas, dispositivos e relação com versões anteriores.
+4. Separe data da publicação, período alcançado, eventual aplicação retrospectiva, status de adoção doméstica e data de conhecimento no projeto.
+5. Modele duas dimensões temporais: aplicabilidade jurídica e registro/conhecimento da regra. Preserve a reprodução de apurações anteriores.
+6. Identifique conflitos entre fontes ou entre orientações e legislação interna; apresente opções de tratamento que exigem revisão jurídica.
+7. Modele o status qualificado de IIR, UTPR, QDMTT e safe harbours com evidência oficial, alcance, condições e data de consulta; não infira qualificação apenas do texto doméstico.
+8. Defina processo de atualização: identificar mudança, avaliar impacto, revisar, testar, publicar versão e preservar a anterior.
+9. Distinga atualização de segurança de atualização normativa; não atualize silenciosamente regras usadas em cálculos encerrados.
+
+Entregáveis: catálogo de fontes, matriz fonte/tema/período, política de versionamento e backlog de lacunas.
+Aceite: nenhuma regra candidata a suporte normativo pode depender de fonte não identificada ou vigência presumida.
