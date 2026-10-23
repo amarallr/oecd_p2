@@ -29,12 +29,14 @@ class Connection {
       if(opcode!==1&&opcode!==0)continue;
       this.fragments.push(message);
       if(!(buffer[0]&128))continue;
-      const data=JSON.parse(Buffer.concat(this.fragments).toString('utf8'));this.fragments=[];
-      if(data.id){const request=this.pending.get(data.id);if(request){clearTimeout(request.timer);this.pending.delete(data.id);data.error?request.reject(Error(JSON.stringify(data.error))):request.resolve(data.result);}}
-      else if(data.method==='Runtime.exceptionThrown')this.errors.push(data.params.exceptionDetails.text);
-      else if(data.method==='Network.responseReceived'&&data.params.response.status>=400)this.badResponses.push({url:data.params.response.url,status:data.params.response.status});
-      else if(data.method==='Runtime.consoleAPICalled'&&data.params.type==='error')this.errors.push(data.params.args.map(a=>a.value||a.description).join(' '));
+      const data=JSON.parse(Buffer.concat(this.fragments).toString('utf8'));this.fragments=[];this.dispatch(data);
     }
+  }
+  dispatch(data) {
+    if(data.id){const request=this.pending.get(data.id);if(request){clearTimeout(request.timer);this.pending.delete(data.id);data.error?request.reject(Error(JSON.stringify(data.error))):request.resolve(data.result);}}
+    else if(data.method==='Runtime.exceptionThrown')this.errors.push(data.params.exceptionDetails.text);
+    else if(data.method==='Network.responseReceived'&&data.params.response.status>=400)this.badResponses.push({url:data.params.response.url,status:data.params.response.status});
+    else if(data.method==='Runtime.consoleAPICalled'&&data.params.type==='error')this.errors.push(data.params.args.map(a=>a.value||a.description).join(' '));
   }
   frame(message, opcode=1) {
     const body=Buffer.from(message),mask=crypto.randomBytes(4);let header;
@@ -47,13 +49,25 @@ class Connection {
     return new Promise((resolve,reject)=>{const id=++this.sequence;const timer=setTimeout(()=>{this.pending.delete(id);reject(Error(`CDP timeout ${method}`));},15000);this.pending.set(id,{resolve,reject,timer});this.frame(JSON.stringify({id,method,params}));});
   }
   static open(url) {
+    // Node 22 (CI) oferece WebSocket nativo; o transporte legado atende Node 18 local.
+    if (typeof WebSocket === 'function') return new Promise((resolve,reject)=>{
+      const ws=new WebSocket(url);
+      ws.addEventListener('error',reject,{once:true});
+      ws.addEventListener('open',()=>{
+        const connection=new Connection({on(){},destroy(){ws.close();}});
+        connection.frame=message=>ws.send(message);
+        ws.addEventListener('message',event=>connection.dispatch(JSON.parse(event.data)));
+        ws.addEventListener('close',()=>{for(const request of connection.pending.values()){clearTimeout(request.timer);request.reject(Error('Conexão CDP encerrada'));}connection.pending.clear();});
+        resolve(connection);
+      },{once:true});
+    });
     return new Promise((resolve,reject)=>{const req=http.request(url.replace(/^ws:/,'http:'),{headers:{Connection:'Upgrade',Upgrade:'websocket','Sec-WebSocket-Version':'13','Sec-WebSocket-Key':crypto.randomBytes(16).toString('base64')}});req.once('upgrade',(_,socket,head)=>{const c=new Connection(socket);if(head.length)c.receive(head);resolve(c);});req.once('error',reject);req.end();});
   }
 }
 let cdp;
 const checks=[];
 const check=(name,details={})=>checks.push({name,status:'passed',...details});
-async function evaluate(expression){const response=await cdp.call('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(response.exceptionDetails)throw Error(response.exceptionDetails.exception?.description||response.exceptionDetails.text);return response.result.value;}
+async function evaluate(expression){let response;try{response=await cdp.call('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});}catch(error){throw Error(`${error.message}: ${expression}`);}if(response.exceptionDetails)throw Error(response.exceptionDetails.exception?.description||response.exceptionDetails.text);return response.result.value;}
 async function until(expression){for(let i=0;i<60;i++){if(await evaluate(expression))return;await pause(100);}throw Error('Condição não satisfeita: '+expression);}
 async function click(selector){await evaluate(`document.querySelector(${JSON.stringify(selector)}).click()`);}
 async function viewport(width,height){await cdp.call('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:false});await pause(80);}
