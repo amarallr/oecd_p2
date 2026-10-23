@@ -127,7 +127,7 @@ Abra `oecd_p2.Rproj` no RStudio ou use o terminal na raiz. Leia o [guia de prepa
 
 ### Apresentação do projeto
 
-A [apresentação publicada](https://amarallr.github.io/oecd_p2/apresentacao.html), com [fonte em HTML](site/apresentacao.html), reúne dez temas, com modo de slides, navegação por teclado, arquitetura selecionável e o exemplo interativo 100/10/20 → 4. Após iniciar o servidor abaixo, abra `http://127.0.0.1:8000/oecd_p2/apresentacao.html`. Use **Apresentar** para alternar o modo; setas, Home/End e Esc controlam os slides. **PDF** abre a impressão de todos os temas, inclusive quando apenas um slide está visível. A apresentação adapta-se ao celular e não exige bibliotecas externas.
+A [apresentação publicada](https://amarallr.github.io/oecd_p2/apresentacao.html), com [fonte em HTML](site/apresentacao.html), reúne onze temas, com modo de slides, navegação por teclado, arquitetura selecionável e o exemplo interativo 100/10/20 → 4. Após iniciar o servidor abaixo, abra `http://127.0.0.1:8000/oecd_p2/apresentacao.html`. Use **Apresentar** para alternar o modo; setas, Home/End e Esc controlam os slides. **PDF** abre a impressão de todos os temas, inclusive quando apenas um slide está visível. A apresentação adapta-se ao celular e não exige bibliotecas externas.
 
 ### Execução da página
 

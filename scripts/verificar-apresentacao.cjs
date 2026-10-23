@@ -22,26 +22,31 @@ module.exports = async function verify(cdp, target) {
   await cdp.call('Page.navigate', {url:target});
   for(let i=0;i<60;i++){if(await evaluate(`document.body?.dataset.ready === 'true'`))break;await pause(100);}
   assert.equal(await evaluate(`document.body.dataset.ready`),'true');
-  assert.equal(await evaluate(`document.querySelectorAll('.slide').length`),10);
+  const slideCount = 11;
+  assert.equal(await evaluate(`document.querySelectorAll('.slide').length`),slideCount);
+  assert.equal(await evaluate(`document.querySelectorAll('.slide')[1].id`),'mapa-projeto');
   assert.equal(await evaluate(`document.querySelector('#calc-result').textContent`),'4,00');
   assert.deepEqual(await evaluate(`[...document.querySelectorAll('a[href^="#"]')].filter(a=>!document.getElementById(a.hash.slice(1))).map(a=>a.hash)`),[]);
-  await screenshot('capa-desktop.png');checks.push('Dez temas, exemplo inicial, recursos e âncoras');
+  await screenshot('capa-desktop.png');checks.push('Onze temas, mapa na segunda posição, exemplo inicial, recursos e âncoras');
   await click('#present');
   assert.equal(await evaluate(`document.querySelectorAll('.slide:not([hidden])').length`),1);
   assert.equal(await evaluate(`document.querySelector('#prev').disabled`),true);
+  await key('ArrowRight');assert.equal(await evaluate(`location.hash`),'#mapa-projeto');
+  assert.equal(await evaluate(`document.querySelector('#position').textContent`),'02 / 11');
+  await screenshot('mapa-projeto-desktop.png');
   await key('ArrowRight');assert.equal(await evaluate(`location.hash`),'#desafio');
   await key('End');assert.equal(await evaluate(`location.hash`),'#referencias');assert.equal(await evaluate(`document.querySelector('#next').disabled`),true);
   await key('Home');assert.equal(await evaluate(`location.hash`),'#visao');
-  await click('a[href="#desafio"]');assert.equal(await evaluate(`location.hash`),'#desafio');
+  await click('a[href="#mapa-projeto"]');assert.equal(await evaluate(`location.hash`),'#mapa-projeto');
   checks.push('Modo slides, setas, Home/End, links internos e limites');
-  await evaluate(`document.querySelector('#chapter').value='4';document.querySelector('#chapter').dispatchEvent(new Event('change'))`);
+  await evaluate(`document.querySelector('#chapter').value=String([...document.querySelectorAll('.slide')].findIndex(s=>s.id==='arquitetura'));document.querySelector('#chapter').dispatchEvent(new Event('change'))`);
   for(const layer of ['motor','regras','gir','risco','paineis','dados']){
     await click(`[data-layer="${layer}"]`);
     assert.equal(await evaluate(`document.querySelectorAll('[data-layer][aria-pressed="true"]').length`),1);
     assert.ok(await evaluate(`document.querySelector('#layer-copy').textContent.length > 80`));
   }
   await screenshot('arquitetura-desktop.png');checks.push('Seleção dos seis módulos');
-  await evaluate(`document.querySelector('#chapter').value='5';document.querySelector('#chapter').dispatchEvent(new Event('change'))`);
+  await evaluate(`document.querySelector('#chapter').value=String([...document.querySelectorAll('.slide')].findIndex(s=>s.id==='calculo'));document.querySelector('#chapter').dispatchEvent(new Event('change'))`);
   for(const [income,taxes,exclusion,result] of [['100','10','0','5,00'],['100','15','20','0,00'],['100','10','120','0,00'],['1,25','0,10','0,25','0,07'],['0','10','20','—'],['100','-1','20','—'],['','10','20','—']]){
     await evaluate(`(()=>{for(const [key,value] of Object.entries(${JSON.stringify({income,taxes,exclusion})}))document.querySelector('#calc-form').elements[key].value=value;document.querySelector('#calc-form').dispatchEvent(new Event('input'));})()`);
     assert.equal(await evaluate(`document.querySelector('#calc-result').textContent`),result);
@@ -53,26 +58,28 @@ module.exports = async function verify(cdp, target) {
   await screenshot('calculo-desktop.png');
   for(const [width,height] of [[360,800],[768,1024],[1440,900]]) {
     await viewport(width,height);
-    for(let i=0;i<10;i++){
+    for(let i=0;i<slideCount;i++){
       await evaluate(`document.querySelector('#chapter').value='${i}';document.querySelector('#chapter').dispatchEvent(new Event('change'))`);
       assert.ok(await evaluate(`document.documentElement.scrollWidth<=document.documentElement.clientWidth+1`),`Overflow no tema ${i+1}, largura ${width}`);
     }
-    if(width===360){await evaluate(`document.querySelector('#chapter').value='0';document.querySelector('#chapter').dispatchEvent(new Event('change'))`);await screenshot('capa-mobile.png');}
+    if(width===360){await evaluate(`document.querySelector('#chapter').value='1';document.querySelector('#chapter').dispatchEvent(new Event('change'))`);await screenshot('mapa-projeto-mobile.png');await evaluate(`document.querySelector('#chapter').value='0';document.querySelector('#chapter').dispatchEvent(new Event('change'))`);await screenshot('capa-mobile.png');}
   }
-  checks.push('Dez temas sem overflow horizontal em 360, 768 e 1440 px');
-  await key('Escape');assert.equal(await evaluate(`document.querySelectorAll('.slide:not([hidden])').length`),10);
+  checks.push('Onze temas sem overflow horizontal em 360, 768 e 1440 px');
+  await key('Escape');assert.equal(await evaluate(`document.querySelectorAll('.slide:not([hidden])').length`),slideCount);
   await viewport(1440,1000);
   await cdp.call('Emulation.setEmulatedMedia', {features:[{name:'prefers-reduced-motion',value:'reduce'}]});
   assert.equal(await evaluate(`getComputedStyle(document.documentElement).scrollBehavior`),'auto');
   await click('#present');await cdp.call('Emulation.setEmulatedMedia', {media:'print'});
-  assert.equal(await evaluate(`[...document.querySelectorAll('.slide')].filter(s=>getComputedStyle(s).display!=='none').length`),10);
+  assert.equal(await evaluate(`[...document.querySelectorAll('.slide')].filter(s=>getComputedStyle(s).display!=='none').length`),slideCount);
   const pdf=await cdp.call('Page.printToPDF',{printBackground:true,landscape:true,preferCSSPageSize:true});
-  fs.writeFileSync(path.join(output,'apresentacao.pdf'),Buffer.from(pdf.data,'base64'));
+  const pdfBytes=Buffer.from(pdf.data,'base64');
+  fs.writeFileSync(path.join(output,'apresentacao.pdf'),pdfBytes);
+  assert.equal((pdfBytes.toString('latin1').match(/\/Type\s*\/Page\b/g)||[]).length,slideCount,'PDF deve conter uma página por slide');
   await cdp.call('Emulation.setEmulatedMedia', {media:'screen'});
   checks.push('Escape, movimento reduzido e impressão de todos os temas em PDF');
   await cdp.call('Emulation.setScriptExecutionDisabled', {value:true});
   await cdp.call('Page.navigate', {url:target});await pause(400);
-  assert.equal(await evaluate(`[...document.querySelectorAll('.slide')].filter(s=>s.getBoundingClientRect().width>0).length`),10);
+  assert.equal(await evaluate(`[...document.querySelectorAll('.slide')].filter(s=>s.getBoundingClientRect().width>0).length`),slideCount);
   assert.equal(await evaluate(`document.querySelector('#calc-fields').disabled`),true);
   assert.equal(await evaluate(`document.querySelector('#calc-result').textContent`),'4,00');
   await cdp.call('Emulation.setScriptExecutionDisabled', {value:false});
