@@ -2,7 +2,7 @@ name: Publicar página explicativa
 on:
   push:
     branches: [main]
-    paths: ['site/**', '.github/workflows/pages.yml', 'scripts/verificar-projeto.cjs', 'tests/site.test.cjs', '.node-version']
+    paths: ['site/**', '.github/workflows/pages.yml', 'scripts/verificar-projeto.cjs', 'scripts/testar-navegador.cjs', 'scripts/verificar-apresentacao.cjs', 'tests/site.test.cjs', '.node-version']
   workflow_dispatch:
 permissions:
   contents: read

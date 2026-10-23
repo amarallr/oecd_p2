@@ -6,6 +6,6 @@ O roteiro `scripts/testar-navegador.cjs`, com `P2_TEST_URL` apontando para a apr
 
 O contrato didático manteve os 22 testes aprovados. A página explicativa principal passou nos 17 checks do roteiro de navegador, além da verificação de estrutura e recursos locais.
 
-O roteiro anterior recebeu correções necessárias para sua execução: Enter passou a incluir o texto do evento de teclado; uma expressão que chamava indevidamente um booleano foi corrigida; o teste de reflow usa viewport CSS equivalente a 200% em vez de `style.zoom`, que não reproduz a alteração de media queries do zoom do navegador.
+O roteiro anterior recebeu correções necessárias para sua execução: Enter passou a incluir o texto do evento de teclado; uma expressão que chamava indevidamente um booleano foi corrigida; o teste de reflow usa viewport CSS equivalente a 200% em vez de `style.zoom`, que não reproduz a alteração de media queries do zoom do navegador. O CI usa o WebSocket nativo do Node 22 para comunicação CDP; Node 18 local mantém o transporte compatível anterior. Alterações nos roteiros de navegador também acionam a publicação para validar o código atualizado.
 
 Os arquivos de QA da apresentação ficam em `tmp/apresentacao-qa/` e não são publicados no site. O CI também preserva esses arquivos como artefatos. Não houve revisão humana com leitor de tela ou validação normativa; testes didáticos não comprovam conformidade tributária. O botão de tela cheia depende das permissões e do suporte do navegador.
