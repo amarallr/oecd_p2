@@ -31,12 +31,18 @@ jobs:
           exit 1
       - name: Validar navegação e responsividade em navegador real
         run: node scripts/testar-navegador.cjs
+      - name: Validar apresentação antes da publicação
+        env:
+          P2_TEST_URL: http://127.0.0.1:8000/oecd_p2/apresentacao.html
+        run: node scripts/testar-navegador.cjs
       - name: Preservar evidências de navegador
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: evidencias-f0-web
-          path: docs/evidencias/
+          path: |
+            docs/evidencias/
+            tmp/apresentacao-qa/
           retention-days: 30
       - name: Preparar GitHub Pages
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5

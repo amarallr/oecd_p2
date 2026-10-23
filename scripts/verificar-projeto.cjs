@@ -15,17 +15,21 @@ const config = JSON.parse(fs.readFileSync(path.join(root, 'config.example.json')
 if (config.preview.host !== '127.0.0.1' || config.real_taxpayer_data_allowed !== false) errors.push('Configuração de exemplo incompatível');
 for (let i = 0; i < 12; i++) if (!fs.existsSync(path.join(root, 'prompts', `P${String(i).padStart(2, '0')}.txt`))) errors.push(`Prompt P${i} ausente`);
 if (process.argv.includes('--web')) {
-  for (const file of ['site/index.html', 'site/assets/css/styles.css', 'site/assets/js/app.js', 'site/assets/js/demo.js', 'site/assets/data/project.json']) {
+  for (const file of ['site/index.html', 'site/apresentacao.html', 'site/assets/css/styles.css', 'site/assets/css/apresentacao.css', 'site/assets/js/app.js', 'site/assets/js/demo.js', 'site/assets/js/apresentacao.js', 'site/assets/data/project.json']) {
     if (!fs.existsSync(path.join(root, file))) errors.push(`Arquivo web ausente: ${file}`);
   }
-  const html = fs.readFileSync(path.join(root, 'site/index.html'), 'utf8');
-  for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
-    const target = match[1];
-    if (/^(https?:|mailto:)/.test(target)) continue;
-    if (target.startsWith('#')) { if (!html.includes(`id="${target.slice(1)}"`)) errors.push(`Âncora ausente: ${target}`); continue; }
-    if (!fs.existsSync(path.resolve(root, 'site', target))) errors.push(`Recurso local ausente: ${target}`);
+  for (const page of ['index.html', 'apresentacao.html']) {
+    const html = fs.readFileSync(path.join(root, 'site', page), 'utf8');
+    for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
+      const target = match[1];
+      if (/^(https?:|mailto:)/.test(target)) continue;
+      if (target.startsWith('#')) { if (!html.includes(`id="${target.slice(1)}"`)) errors.push(`Âncora ausente em ${page}: ${target}`); continue; }
+      if (!fs.existsSync(path.resolve(root, 'site', target))) errors.push(`Recurso local ausente em ${page}: ${target}`);
+    }
   }
-  if (/https?:\/\//.test(fs.readFileSync(path.join(root, 'site/assets/css/styles.css'), 'utf8'))) errors.push('CSS com dependência externa');
+  for (const css of ['styles.css', 'apresentacao.css']) {
+    if (/https?:\/\//.test(fs.readFileSync(path.join(root, 'site/assets/css', css), 'utf8'))) errors.push(`CSS com dependência externa: ${css}`);
+  }
 }
 const report = { phase: process.argv.includes('--web') ? 'F0-web' : 'F0', node: process.versions.node, errors, engine_implemented: false, dependencies: [] };
 console.log(JSON.stringify(report, null, 2));

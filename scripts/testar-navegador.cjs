@@ -58,13 +58,19 @@ async function until(expression){for(let i=0;i<60;i++){if(await evaluate(express
 async function click(selector){await evaluate(`document.querySelector(${JSON.stringify(selector)}).click()`);}
 async function viewport(width,height){await cdp.call('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:false});await pause(80);}
 async function screenshot(file){const shot=await cdp.call('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});fs.writeFileSync(path.join(output,file),Buffer.from(shot.data,'base64'));}
-async function key(key,code=key){await cdp.call('Input.dispatchKeyEvent',{type:'keyDown',key,code});await cdp.call('Input.dispatchKeyEvent',{type:'keyUp',key,code});}
+async function key(key,code=key){const windowsVirtualKeyCode={Enter:13,Tab:9,Escape:27,ArrowLeft:37,ArrowRight:39}[key]||0;await cdp.call('Input.dispatchKeyEvent',{type:'keyDown',key,code,windowsVirtualKeyCode,...(key==='Enter'?{text:'\r'}:{})});await cdp.call('Input.dispatchKeyEvent',{type:'keyUp',key,code,windowsVirtualKeyCode});}
 async function load(){await cdp.call('Page.navigate',{url:target});await until(`document.body?.dataset.ready === 'true'`);await pause(100);}
 (async()=>{
  try {
   const tabs=await(await fetch(`http://127.0.0.1:${port}/json`)).json();const tab=tabs.find(t=>t.type==='page');assert.ok(tab,'Chrome de QA indisponível');
   cdp=await Connection.open(tab.webSocketDebuggerUrl);
   await cdp.call('Page.enable');await cdp.call('Runtime.enable');await cdp.call('Network.enable');await cdp.call('Network.setCacheDisabled',{cacheDisabled:true});
+  await cdp.call('Emulation.setFocusEmulationEnabled',{enabled:true});
+  if (new URL(target).pathname.endsWith('/apresentacao.html')) {
+   const report = await require('./verificar-apresentacao.cjs')(cdp, target);
+   console.log(JSON.stringify(report, null, 2));
+   return;
+  }
   await viewport(1440,1000);await load();
   assert.equal(await evaluate(`document.querySelector('#tax-result').textContent`),'4,00');
   assert.equal(await evaluate(`document.querySelector('#etr-result').textContent`),'10,00%');check('W04 resultado 4 e intermediários');
@@ -77,7 +83,7 @@ async function load(){await cdp.call('Page.navigate',{url:target});await until(`
   const scenarios=[['100','10','0','5,00'],['100','15','20','0,00'],['100','20','20','0,00'],['100','10','120','0,00'],['100','0','20','12,00'],['1,25','0,10','0,25','0,07'],['0','10','20','—'],['-1','10','20','—'],['100','-1','20','—'],['100','10','-1','—'],['','10','20','—'],['100','texto','20','—'],['Infinity','10','20','—'],['100','10','1.000,00','—']];
   for(const [income,taxes,exclusion,expected]of scenarios){await evaluate(`(()=>{const values=${JSON.stringify({income,taxes,exclusion})};for(const [key,value]of Object.entries(values))document.getElementById(key).value=value;document.getElementById('income').dispatchEvent(new Event('input',{bubbles:true}));})()`);assert.equal(await evaluate(`document.querySelector('#tax-result').textContent`),expected);if(expected==='—'){assert.ok(await evaluate(`document.querySelectorAll('input[aria-invalid="true"]').length>0`));assert.equal(await evaluate(`document.querySelector('#comparison').hidden`),true);}}
   await click('#reset-example');await pause(300);assert.equal(await evaluate(`document.querySelector('#tax-result').textContent`),'4,00');assert.equal(await evaluate(`document.querySelectorAll('input[aria-invalid="true"]').length`),0);assert.ok(await evaluate(`document.querySelector('#demo-announcement').textContent.includes('restaurado')`));check('W04/W05 entradas válidas, inválidas, reset, erro associado e anúncio');
-  assert.ok(await evaluate(`['income','taxes','exclusion'].every(id=>{const input=document.getElementById(id);return document.querySelector('label[for="'+id+'"]')&&input.getAttribute('aria-describedby').includes(id+'-error');})()`));
+  assert.ok(await evaluate(`['income','taxes','exclusion'].every(id=>{const input=document.getElementById(id);return document.querySelector('label[for="'+id+'"]')&&input.getAttribute('aria-describedby').includes(id+'-error');})`));
   for(const [width,height]of [[360,800],[768,1024],[1440,1000]]){
    await viewport(width,height);await pause(100);
    const overflow=await evaluate(`document.documentElement.scrollWidth-document.documentElement.clientWidth`);assert.ok(overflow<=1,`Overflow ${width}: ${overflow}`);
@@ -87,7 +93,8 @@ async function load(){await cdp.call('Page.navigate',{url:target});await until(`
   }
   await viewport(1440,1000);await evaluate(`document.getElementById('exemplo').scrollIntoView()`);await pause(100);await screenshot('demonstracao.png');
   await cdp.call('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});assert.equal(await evaluate(`getComputedStyle(document.documentElement).scrollBehavior`),'auto');check('W12 movimento reduzido');
-  await evaluate(`document.documentElement.style.zoom='2'`);await viewport(768,1024);assert.ok(await evaluate(`document.documentElement.scrollWidth<=document.documentElement.clientWidth+1`));check('W06 zoom 200% sem overflow');await evaluate(`document.documentElement.style.zoom=''`);await viewport(1440,1000);
+  // Zoom de navegador reduz o viewport CSS; style.zoom não atualiza media queries.
+  await viewport(384,512);assert.ok(await evaluate(`document.documentElement.scrollWidth<=document.documentElement.clientWidth+1`));check('W06 viewport CSS equivalente a 200% em 768 px, sem overflow');await viewport(1440,1000);
   await evaluate('scrollTo(0,0);document.activeElement.blur()');await key('Tab');assert.ok(await evaluate(`document.activeElement.matches('a,button,input,summary')`));assert.ok(await evaluate(`parseFloat(getComputedStyle(document.activeElement).outlineWidth)>=3`));
   for(let i=0;i<16;i++){await key('Tab');assert.ok(await evaluate(`document.activeElement.getBoundingClientRect().width>0`));}check('W07 Tab real, foco visível e elementos acessíveis');
   const contrast=await evaluate(`(()=>{const rgb=s=>(s.match(/[\\d.]+/g)||[]).slice(0,3).map(Number);const lum=c=>c.map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4}).reduce((s,v,i)=>s+v*[.2126,.7152,.0722][i],0);const failures=[];for(const e of document.querySelectorAll('p,a,button,label,dt,dd,summary,span,output,h1,h2,h3,li,input,small,strong')){if(!e.getBoundingClientRect().width||!e.textContent.trim()||e.closest('[hidden]')||e.matches(':disabled'))continue;const style=getComputedStyle(e);let b=e,bg;while(b){bg=getComputedStyle(b).backgroundColor;if(bg!=='rgba(0, 0, 0, 0)'&&bg!=='transparent')break;b=b.parentElement;}const l1=lum(rgb(style.color)),l2=lum(rgb(bg||'rgb(250,249,244)'));const ratio=(Math.max(l1,l2)+.05)/(Math.min(l1,l2)+.05);const large=parseFloat(style.fontSize)>=24||(parseFloat(style.fontSize)>=18.66&&Number(style.fontWeight)>=700);if(ratio<(large?3:4.5)-.05)failures.push({text:e.textContent.trim().slice(0,45),ratio,color:style.color,bg});}return failures;})()`);

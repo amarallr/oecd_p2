@@ -4,6 +4,10 @@ No terminal da raiz do projeto RStudio, execute `node scripts/servir-site.cjs`. 
 
 ## GitHub Pages
 
+A apresentação está em `site/apresentacao.html` e utiliza CSS e JavaScript próprios, reutilizando o contrato didático de `demo.js`. No servidor local, acesse `http://127.0.0.1:8000/oecd_p2/apresentacao.html`; pelo link **Apresentação do projeto** na página inicial também é possível chegar a ela. **Apresentar** alterna leitura contínua e slides; setas, PageUp/PageDown, Home/End e Esc controlam a apresentação. O seletor permite saltar diretamente para um tema. **PDF** abre a impressão em A4 paisagem; selecione salvar em PDF no navegador. **Tela cheia** depende do suporte e da autorização do navegador. Sem JavaScript, todos os temas e o exemplo manual permanecem legíveis.
+
+O QA da apresentação reutiliza o roteiro de navegador: configure `P2_TEST_URL=http://127.0.0.1:8000/oecd_p2/apresentacao.html` e `P2_CDP_PORT` para a porta de depuração do perfil de QA e execute `node scripts/testar-navegador.cjs`. O relatório, capturas e PDF de verificação são gravados em `tmp/apresentacao-qa/`, fora do versionamento. O CI executa esse roteiro além dos testes da página principal.
+
 O workflow `.github/workflows/pages.yml` valida o projeto e o demonstrador, empacota somente site e usa GitHub Pages. Actions estão fixadas pelos commits consultados na preparação, com permissões de escrita apenas no job de deployment. O workflow de verificações é separado do deployment.
 
 Se Pages ainda não estiver habilitado, o proprietário deve abrir Settings → Pages no repositório e selecionar GitHub Actions como fonte. O conector disponível nesta sessão não oferece administração de Pages, e `configure-pages` não habilita automaticamente o serviço usando apenas GITHUB_TOKEN. Nenhum token pessoal deve ser inserido em arquivo, workflow ou log. [Referência oficial do configure-pages](https://github.com/actions/configure-pages/blob/main/action.yml).

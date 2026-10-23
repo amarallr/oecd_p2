@@ -22,6 +22,7 @@ jobs:
         run: |
           node --check site/assets/js/app.js
           node --check site/assets/js/demo.js
+          node --check site/assets/js/apresentacao.js
   browser:
     runs-on: ubuntu-latest
     timeout-minutes: 8
@@ -42,10 +43,16 @@ jobs:
           exit 1
       - name: Navegação, teclado, responsividade e ausência de JavaScript
         run: node scripts/testar-navegador.cjs
+      - name: Apresentação, slides, arquitetura, cálculo e impressão
+        env:
+          P2_TEST_URL: http://127.0.0.1:8000/oecd_p2/apresentacao.html
+        run: node scripts/testar-navegador.cjs
       - name: Preservar capturas e relatório
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: evidencias-f0-web
-          path: docs/evidencias/
+          path: |
+            docs/evidencias/
+            tmp/apresentacao-qa/
           retention-days: 30
