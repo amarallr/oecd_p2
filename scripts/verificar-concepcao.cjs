@@ -4,7 +4,7 @@ const path = require('path');
 const crypto = require('crypto');
 const root = path.resolve(__dirname, '..');
 function walk(dir) {
-  return fs.readdirSync(dir, {withFileTypes: true}).flatMap(e => {
+  return fs.readdirSync(dir, {withFileTypes: true}).filter(e => !['.git', '.Rproj.user', '.venv', 'node_modules', '__pycache__'].includes(e.name)).flatMap(e => {
     const p = path.join(dir, e.name);
     return e.isDirectory() ? walk(p) : [p];
   });
