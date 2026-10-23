@@ -115,7 +115,7 @@ Consulte também [decisões e lacunas](docs/decisoes.md), [fontes verificadas](s
 
 A pasta contém especificações e exemplos de contrato, sem biblioteca de cálculo executável. O arquivo `oecd_p2.Rproj` está na raiz Git, com sessão limpa e UTF-8. Seu conteúdo anterior foi preservado em backup fora do repositório. O histórico remoto inicial foi preservado.
 
-Repositório confirmado: [amarallr/oecd_p2](https://github.com/amarallr/oecd_p2), público, branch `main`. O acesso foi confirmado após a criação pelo proponente; o bloqueio inicial de consulta está resolvido. A [atualização do repositório](docs/github.md) registra a continuidade do histórico. A publicação da página permanece pendente; nenhum endereço de site é anunciado como ativo.
+Repositório confirmado: [amarallr/oecd_p2](https://github.com/amarallr/oecd_p2), público, branch `main`. O acesso foi confirmado após a criação pelo proponente; o bloqueio inicial de consulta está resolvido. A [atualização do repositório](docs/github.md) registra a continuidade do histórico. A [página explicativa](https://amarallr.github.io/oecd_p2/) e a [apresentação do projeto](https://amarallr.github.io/oecd_p2/apresentacao.html) estão publicadas no GitHub Pages, com deployment e recursos verificados em 23/10/2026.
 
 Abra `oecd_p2.Rproj` no RStudio ou use o terminal na raiz. Leia o [guia de preparação F0](docs/ambiente-F0.md). Node 18.19.1 ou superior executa as ferramentas atuais, sem instalar bibliotecas; a versão de referência fica em `.node-version`. O núcleo Python/Decimal permanece decisão de F1. Não há pacotes R dependentes de renv nesta fase.
 
@@ -123,11 +123,11 @@ Abra `oecd_p2.Rproj` no RStudio ou use o terminal na raiz. Leia o [guia de prepa
 
 ### Apresentação do projeto
 
-A [apresentação em HTML](site/apresentacao.html) reúne dez temas, com modo de slides, navegação por teclado, arquitetura selecionável e o exemplo interativo 100/10/20 → 4. Após iniciar o servidor abaixo, abra `http://127.0.0.1:8000/oecd_p2/apresentacao.html`. Use **Apresentar** para alternar o modo; setas, Home/End e Esc controlam os slides. **PDF** abre a impressão de todos os temas, inclusive quando apenas um slide está visível. A apresentação adapta-se ao celular e não exige bibliotecas externas.
+A [apresentação publicada](https://amarallr.github.io/oecd_p2/apresentacao.html), com [fonte em HTML](site/apresentacao.html), reúne dez temas, com modo de slides, navegação por teclado, arquitetura selecionável e o exemplo interativo 100/10/20 → 4. Após iniciar o servidor abaixo, abra `http://127.0.0.1:8000/oecd_p2/apresentacao.html`. Use **Apresentar** para alternar o modo; setas, Home/End e Esc controlam os slides. **PDF** abre a impressão de todos os temas, inclusive quando apenas um slide está visível. A apresentação adapta-se ao celular e não exige bibliotecas externas.
 
 ### Execução da página
 
-Execute `node scripts/servir-site.cjs` e abra `http://127.0.0.1:8000/oecd_p2/`. No Windows sem Node no PATH, use `powershell -File scripts/servir-site.ps1`. A página reúne conceitos, arquitetura, fluxo guiado, demonstrador 100/10/20 → 4, memória, roadmap e fontes. Veja [execução e publicação](docs/publicacao.md) e [evidências de validação](docs/validacao-web.md). A publicação no Pages permanece pendente até deployment e URL verificados.
+Execute `node scripts/servir-site.cjs` e abra `http://127.0.0.1:8000/oecd_p2/`. No Windows sem Node no PATH, use `powershell -File scripts/servir-site.ps1`. A página reúne conceitos, arquitetura, fluxo guiado, demonstrador 100/10/20 → 4, memória, roadmap e fontes. Veja [execução e publicação](docs/publicacao.md), [evidências de validação da página](docs/validacao-web.md) e [validação da apresentação](docs/validacao-apresentacao.md).
 
 Verificações: `node scripts/verificar-projeto.cjs --web` e `node tests/site.test.cjs`. As actions de CI verificam os contratos e executam Chromium com capturas; seus resultados precisam ser consultados em cada run. Esses testes não validam obrigações tributárias reais.
 

@@ -4,6 +4,8 @@ No terminal da raiz do projeto RStudio, execute `node scripts/servir-site.cjs`. 
 
 ## GitHub Pages
 
+Publicação confirmada em 23/10/2026: [página explicativa](https://amarallr.github.io/oecd_p2/) e [apresentação](https://amarallr.github.io/oecd_p2/apresentacao.html). O [registro da apresentação](validacao-apresentacao.md) contém commit, workflows e verificação HTTP dos recursos. O roteiro abaixo descreve também como preparar ou repetir a implantação.
+
 A apresentação está em `site/apresentacao.html` e utiliza CSS e JavaScript próprios, reutilizando o contrato didático de `demo.js`. No servidor local, acesse `http://127.0.0.1:8000/oecd_p2/apresentacao.html`; pelo link **Apresentação do projeto** na página inicial também é possível chegar a ela. **Apresentar** alterna leitura contínua e slides; setas, PageUp/PageDown, Home/End e Esc controlam a apresentação. O seletor permite saltar diretamente para um tema. **PDF** abre a impressão em A4 paisagem; selecione salvar em PDF no navegador. **Tela cheia** depende do suporte e da autorização do navegador. Sem JavaScript, todos os temas e o exemplo manual permanecem legíveis.
 
 O QA da apresentação reutiliza o roteiro de navegador: configure `P2_TEST_URL=http://127.0.0.1:8000/oecd_p2/apresentacao.html` e `P2_CDP_PORT` para a porta de depuração do perfil de QA e execute `node scripts/testar-navegador.cjs`. O relatório, capturas e PDF de verificação são gravados em `tmp/apresentacao-qa/`, fora do versionamento. O CI executa esse roteiro além dos testes da página principal.
