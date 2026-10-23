@@ -1,5 +1,6 @@
 name: Verificações do projeto e da página
 on:
+  workflow_dispatch:
   push:
     branches: [main]
   pull_request:
