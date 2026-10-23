@@ -6,7 +6,7 @@ C — CONTEXTO
 Você reúne competências de tributação internacional, regras GloBE, IFRS, engenharia de software e governança open source. Conceba um framework de tributação mínima global utilizável internacionalmente. Use P01 em todas as etapas. Considere S1 como introdução e estabeleça o corpus aplicável mediante P02. Nenhuma vinculação institucional ou aprovação da OCDE deve ser presumida.
 
 O — OBJETIVO
-Produzir a carta do projeto e coordenar P02–P11, mantendo consistência entre requisitos jurídicos, contábeis, funcionais e técnicos.
+Produzir a carta do projeto e coordenar P02–P11, mantendo consistência entre requisitos jurídicos, contábeis, funcionais e técnicos. Adote prompts/diretrizes-plataforma.md: o framework é a base aberta da proposta de Plataforma Nacional de Inteligência Tributária Internacional no contexto brasileiro, com componentes reutilizáveis em outras jurisdições.
 
 S — ESTILO
 Documento de concepção estruturado, com tabelas de decisões e dependências. Use critérios verificáveis. Distinga requisito, proposta técnica e questão ainda aberta.
@@ -30,5 +30,7 @@ Entregue:
 9. Resumo executivo e plano imediato para executar P02.
 10. Inclua uma página web interativa para explicar o propósito, os conceitos, a arquitetura, a auditabilidade, o escopo e as formas de participação. Encaminhe os requisitos da página ao P11 e sua execução ao P10.
 11. Adote o identificador oecd_p2, o projeto oecd_p2.Rproj no RStudio e o repositório https://github.com/amarallr/oecd_p2 como destinos técnicos do projeto. Encaminhe ao P07 a especificação do ambiente e ao P10 o bootstrap verificável, sem criar repositórios duplicados.
+12. Inclua na visão futura ERP, normalização, motor GloBE, GIR, SPED, CbC, inteligência fiscal e painéis para auditoria, com dependências e status reais. Preserve o primeiro incremento local e sintético; não apresente a plataforma como iniciativa institucional já adotada.
+13. Especifique no README uma introdução didática ao Pilar 2 seguida do objetivo, módulos e diagrama Mermaid com alternativa textual, distinguindo a proposta futura das entregas disponíveis.
 
 Não gere o sistema de produção nesta etapa. Considere concluído quando cada objetivo tiver entregável, critério de aceite e dependência identificados.

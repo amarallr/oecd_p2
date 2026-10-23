@@ -1,5 +1,7 @@
 # Execução do primeiro perfil de biblioteca e CLI
 
+Leia também [diretrizes atualizadas da plataforma](diretrizes-plataforma.md) e AGENTS.md. Ao receber `doit`, releia `tmp/doit.txt` em UTF-8 e execute seu conteúdo atual; não versione automaticamente esse arquivo. A visão futura inclui ERP, SPED, CbC, GIR, inteligência e painéis, mas este incremento continua restrito ao perfil sintético. Preserve no README objetivo, explicação didática, diagrama e status reais; não antecipe conectores ou IA no motor.
+
 Receba P01 e todos os resultados de concepção, decisões atualizadas e evidências de F0. Implemente somente `ordinary_synthetic_v1` como hipótese experimental com dados sintéticos e bases prontas. Não implemente pacote real ou declare suporte normativo. Inspecione primeiro AGENTS.md, arquivos, diff, branches e remotes; preserve o trabalho existente.
 
 1. Confirme o ADR da linguagem e o contrato decimal antes de codificar. Crie biblioteca independente da interface e CLI local, com dependências e runtimes fixados. Em Python, use Decimal direto de strings com precisão e arredondamento P05; jamais passe valores fiscais por float. RStudio deve permitir executar e testar pelo terminal; código R eventual usa renv revisado.

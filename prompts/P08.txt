@@ -36,6 +36,8 @@ R — RESPOSTA
 
 15. Inclua validação da página: navegação, expansão das explicações, controles do simulador, rejeição de entradas inválidas, restauração do exemplo, links, teclado, foco, contraste, responsividade e ausência de erros de console. Confira a renderização em celular e desktop e após publicação em subdiretório.
 16. Compare os valores exibidos no simulador com cálculos independentes do caso didático do P05; confira que as limitações, fontes, data de corte e status do projeto permaneçam visíveis. Não confunda esse teste com validação normativa do motor.
+17. Aplique prompts/diretrizes-plataforma.md à revisão do README e do diagrama: confira coerência dos fluxos, alternativa textual, fontes e distinção entre implementado e futuro. Para módulos ainda ausentes, registre critérios de validação futura sem alegar testes executados.
+18. Planeje verificações de mapeamento ERP, reconciliação SPED/CbC/GIR, proveniência e segregação de dados quando as integrações forem implementadas. Para inteligência fiscal, avalie indicadores com revisão humana e evidências independentes; mantenha IA fora da apuração normativa.
 
 Entregáveis: matriz de testes, catálogo de referência, procedimento de revisão e checklist de liberação.
 Aceite: todo recurso declarado suportado possui evidência; toda limitação material permanece visível.

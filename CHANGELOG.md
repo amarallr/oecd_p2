@@ -1,5 +1,9 @@
 # Histórico de alterações
 
+## Não lançado
+
+README ampliado com explicação didática do Pilar 2, objetivo de longo prazo da Plataforma Nacional de Inteligência Tributária Internacional, módulos previstos e diagrama Mermaid com alternativa textual. Prompts de trabalho e execução atualizados com essa visão e com a convenção `doit`, registrada também em AGENTS.md. Caderno CO-STAR original preservado; esta atualização documental não implementa motor ou integrações.
+
 ## 0.2.0 — 2026-10-23
 
 Preparação F0: projeto RStudio na raiz Git, sessão limpa, configuração de exemplo, licença para material original, governança e guias de ambiente. Implementação F0-web: página estática acessível, arquitetura e fluxo interativos, demonstração sintética e memória de cálculo, verificações e workflow de publicação. A situação de validação e deployment é registrada nas evidências da fase; esta lista descreve arquivos, sem presumir publicação aprovada.

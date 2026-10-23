@@ -1,5 +1,7 @@
 # Execução da página explicativa F0 web
 
+Leia também [diretrizes atualizadas da plataforma](diretrizes-plataforma.md) e AGENTS.md. Ao receber `doit`, releia `tmp/doit.txt` em UTF-8 e execute seu conteúdo atual; não versione automaticamente esse arquivo. Alinhe a explicação do objetivo, módulos e fluxos à visão e ao diagrama do README, distinguindo entregas atuais e futuras. Preserve o demonstrador restrito e mantenha IA fora da apuração normativa.
+
 Receba P01, P00–P10, especialmente P05/P07/P08, a especificação P11 e o registro de decisões. Implemente a página completa definida em P11; não antecipe o motor tributário ou uma aplicação operacional. Preserve alterações locais e o fluxo Git do repositório confirmado.
 
 1. Verifique raiz, histórico, remote, conteúdo disponível e estado real do projeto. Se F0 tiver bloqueio remoto, implemente os arquivos localmente e registre a publicação pendente. Não trate a existência do destino informado como confirmação de acesso.

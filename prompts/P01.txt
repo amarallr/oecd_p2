@@ -6,7 +6,7 @@ C — CONTEXTO
 Este prompt acompanha todos os demais. O projeto deve traduzir normas em regras executáveis sem ocultar interpretações, simplificações ou lacunas.
 
 O — OBJETIVO
-Estabelecer o contrato comum de evidência, qualidade e rastreabilidade dos trabalhos.
+Estabelecer o contrato comum de evidência, qualidade e rastreabilidade dos trabalhos. Leia também prompts/diretrizes-plataforma.md, com a visão atualizada, os módulos futuros e as convenções de execução.
 
 S — ESTILO
 Requisitos numerados, identificadores estáveis e tabelas comparáveis. Documentação em português com glossário bilíngue; preparar localização futura.
@@ -40,3 +40,7 @@ Aplique as instruções abaixo em cada etapa:
 19. Se o GitHub retornar 404 ou falhar por autenticação/permissão, diferencie repositório inexistente de repositório inacessível. Não conclua ausência apenas com base no 404. Avance na preparação local e documente o bloqueio remoto sem expor credenciais.
 20. A página explicativa deve usar as mesmas definições, fontes, versões e limitações dos documentos do projeto. Diferencie recursos implementados, planejados e experimentais. Um simulador didático não comprova suporte tributário do motor.
 21. Mantenha os arquivos da página, estilos, scripts, dados sintéticos e instruções de publicação no repositório oecd_p2. Não duplique regras normativas no frontend; a demonstração simplificada deve declarar suas hipóteses e limites.
+22. Quando o usuário digitar doit, releia tmp/doit.txt em UTF-8 e execute as instruções atuais. Informe ausência ou falha de leitura; não reutilize conteúdo anterior nem versione automaticamente tmp/.
+23. Trate a Plataforma Nacional de Inteligência Tributária Internacional como objetivo de longo prazo, com base aberta reutilizável internacionalmente. Separe visão futura, escopo da etapa e funcionalidades comprovadamente implementadas, sem presumir vínculo institucional.
+24. Mantenha no README explicação didática do Pilar 2, objetivo, módulos e diagrama Mermaid com alternativa textual, caminho de implementação e situação real. Preserve fontes verificadas e o exemplo 100/10/20 → 4 com suas limitações.
+25. Planeje ERP, normalização, motor, GIR, SPED, CbC, inteligência fiscal e painéis conforme as diretrizes atualizadas. IA auxilia a análise e a revisão humana; a apuração normativa permanece determinística. Tecnologias distribuídas dependem de necessidade demonstrada e ADR.

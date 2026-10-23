@@ -1,8 +1,8 @@
-# Prompts originais e ordem de execução
+# Prompts de trabalho e ordem de execução
 
-Fonte: caderno CO-STAR v0.3 fornecido em 23/10/2026, preservado integralmente em [caderno-COSTAR-v0_3.txt](caderno-COSTAR-v0_3.txt).
+Fonte histórica: caderno CO-STAR v0.3 fornecido em 23/10/2026, preservado integralmente em [caderno-COSTAR-v0_3.txt](caderno-COSTAR-v0_3.txt). Os prompts individuais incorporam as [diretrizes atualizadas da plataforma](diretrizes-plataforma.md): objetivo nacional, módulos futuros, explicação didática e diagrama no README, distinção entre visão e implementação e convenção `doit`.
 
-Aplicar P01 em todas as etapas. Ordem: P00, P02 a P09, P11, P10; P08 deve receber a especificação P11 para completar sua revisão da página. Carregar resultados anteriores e [decisões](../docs/decisoes.md). Os resultados desta rodada estão no [índice do projeto](../README.md).
+Aplicar P01 e as diretrizes atualizadas em todas as etapas. Ordem: P00, P02 a P09, P11, P10; P08 deve receber a especificação P11 para completar sua revisão da página. Carregar resultados anteriores e [decisões](../docs/decisoes.md). Os resultados desta rodada estão no [índice do projeto](../README.md). A atualização dos prompts não significa que os documentos de concepção e a página já tenham sido reconciliados com a visão ampliada.
 
 - [P00 — MAIN: CONCEPÇÃO E COORDENAÇÃO](P00.txt)
 - [P01 — LIB: INSTRUÇÕES COMUNS OBRIGATÓRIAS](P01.txt)

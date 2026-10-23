@@ -1,5 +1,7 @@
 # Execução do bootstrap técnico F0
 
+Leia também [diretrizes atualizadas da plataforma](diretrizes-plataforma.md) e AGENTS.md. Ao receber `doit`, releia `tmp/doit.txt` em UTF-8 e execute seu conteúdo atual; não versione automaticamente esse arquivo. Preserve no README a introdução didática, o objetivo revisado, os módulos e o diagrama Mermaid com alternativa textual e status reais. O bootstrap não implementa a plataforma futura.
+
 Receba a concepção v0.1, P01 integral, P07/P09/P10, docs/decisoes.md e o estado atual do workspace. Prepare somente o projeto, o repositório e a documentação operacional; não implemente o motor ou a página nesta etapa.
 
 1. Inspecione o diretório-base real, AGENTS.md aplicáveis, `oecd_p2/`, `oecd_p2.Rproj`, alterações, remotes e históricos. Há um .Rproj no diretório-base preservado nesta concepção. Resolva a raiz sem duplicar projetos nem perder sessão/arquivos. A raiz final RStudio/Git será oecd_p2; referências relativas não podem depender de caminho pessoal.

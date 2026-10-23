@@ -32,6 +32,8 @@ R — RESPOSTA
 12. Proponha documentação e exemplos em inglês e português, com estrutura para novas traduções.
 
 13. Adote amarallr/oecd_p2 como repositório canônico inicial. Documente nele instalação no RStudio, contribuição, licença e suporte; não inclua o arquivo .Rproj como dependência obrigatória para uso do motor por terceiros.
+14. Aplique prompts/diretrizes-plataforma.md: descreva a plataforma nacional como proposta de longo prazo, sem presumir adoção institucional. Preserve componentes abertos reutilizáveis por outras jurisdições e a licença vigente; tecnologias ou modelos de distribuição alternativos exigem decisão explícita.
+15. Planeje governança dos indicadores de risco e da IA assistiva: proveniência, revisão humana, controle de acesso e distinção entre indícios e conclusões fiscais. Mantenha o cálculo do imposto em regras determinísticas revisadas.
 
 Entregáveis: modelo de governança, recomendação de licenças e fluxo de contribuição.
 Aceite: terceiros devem poder executar, revisar, adaptar e distribuir o projeto nos termos da licença escolhida, sem autorização individual do mantenedor.
