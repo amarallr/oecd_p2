@@ -2,6 +2,8 @@
 
 Todos os ADRs abaixo estão em estado **proposta**, com data 2026-10-23. São escolhas reversíveis de concepção, sujeitas a validação por protótipo e revisão técnica.
 
+Atualização F0: ADR-002, ADR-003 e ADR-004 orientam a preparação sem antecipar o motor. ADR-001 continua proposto: não há Python funcional confirmado. Para F0/F0-web, Node sem bibliotecas externas executa preview e verificações; não há dependências R a restaurar, portanto renv é não aplicável nesta fase. A página utiliza somente HTML/CSS/JS. O Node de referência em CI fica em `.node-version`, com compatibilidade local desde 18.19.1.
+
 | ADR | Contexto | Decisão proposta | Alternativa e consequência | Critério de revisão |
 |---|---|---|---|---|
 | ADR-001 | Decimal fiscal e uso no RStudio | Núcleo Python Decimal; R para análise opcional | R com biblioteca decimal ou Java/.NET; segunda linguagem implica runtime e ambiente próprios | Executar exemplo com decimal, testar fronteiras e integração CLI no terminal RStudio |

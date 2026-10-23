@@ -2,7 +2,7 @@
 
 OECD Minimum Tax Implementation (Pillar Two).
 
-`oecd_p2` é uma proposta de infraestrutura aberta para modelar, calcular, explicar e revisar tributação mínima global. Esta entrega é a concepção v0.1, com corte normativo em **23/10/2026**. O motor, os pacotes nacionais e a página interativa ainda não foram implementados. Não há suporte a obrigações tributárias reais nem endosso institucional.
+`oecd_p2` é uma infraestrutura aberta em desenvolvimento para modelar, calcular, explicar e revisar tributação mínima global. O corte normativo inicial é **23/10/2026**. O projeto RStudio está preparado em F0; o motor e os pacotes nacionais ainda não foram implementados. Não há suporte a obrigações tributárias reais nem endosso institucional.
 
 ## Documentos da concepção
 
@@ -25,12 +25,12 @@ Consulte também [decisões e lacunas](docs/decisoes.md), [fontes verificadas](s
 
 ## Situação técnica
 
-A pasta contém especificações e exemplos de contrato, sem biblioteca de cálculo executável. O arquivo `oecd_p2.Rproj` do diretório-base foi preservado; a consolidação do projeto RStudio na raiz Git será realizada pelo prompt F0. O histórico remoto inicial foi identificado e será preservado na publicação dos artefatos.
+A pasta contém especificações e exemplos de contrato, sem biblioteca de cálculo executável. O arquivo `oecd_p2.Rproj` está na raiz Git, com sessão limpa e UTF-8. Seu conteúdo anterior foi preservado em backup fora do repositório. O histórico remoto inicial foi preservado.
 
 Repositório confirmado: [amarallr/oecd_p2](https://github.com/amarallr/oecd_p2), público, branch `main`. O acesso foi confirmado após a criação pelo proponente; o bloqueio inicial de consulta está resolvido. A [atualização do repositório](docs/github.md) registra a continuidade do histórico. A publicação da página permanece pendente; nenhum endereço de site é anunciado como ativo.
 
-Para começar, leia a carta, os contratos e o roadmap neste diretório. Para implementar, execute primeiro [F0](prompts/execucao-F0.md); abra o projeto resultante no RStudio conforme o roteiro de ambiente. Os comandos de restauração, exemplos e testes futuros serão documentados junto da implementação. Não há instalação de dependências necessária para ler esta concepção.
+Abra `oecd_p2.Rproj` no RStudio ou use o terminal na raiz. Leia o [guia de preparação F0](docs/ambiente-F0.md). Node 18.19.1 ou superior executa as ferramentas atuais, sem instalar bibliotecas; a versão de referência fica em `.node-version`. O núcleo Python/Decimal permanece decisão de F1. Não há pacotes R dependentes de renv nesta fase.
 
 ## Participação e licença
 
-A governança propõe revisão técnica e tributária por competências distintas. Exemplos utilizam somente dados sintéticos. Apache-2.0 para código e CC BY 4.0 para documentação e dados sintéticos são recomendações em análise; esta concepção não declara a concessão de licenças pelos titulares nem incorpora textos normativos de terceiros.
+Consulte [CONTRIBUTING](CONTRIBUTING.md), [GOVERNANCE](GOVERNANCE.md), [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) e [SECURITY](SECURITY.md). Exemplos utilizam somente dados sintéticos. O material original do projeto adota [Apache-2.0](LICENSE); materiais recebidos e de terceiros conservam seus direitos conforme [NOTICE](NOTICE). Não há parecer jurídico institucional ou licença de documentos normativos implícita.

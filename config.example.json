@@ -1,0 +1,8 @@
+{
+  "project": "oecd_p2",
+  "preview": { "host": "127.0.0.1", "port": 8000 },
+  "repository": "https://github.com/amarallr/oecd_p2",
+  "normative_cutoff": "2026-10-23",
+  "mode": "hypothetical",
+  "real_taxpayer_data_allowed": false
+}

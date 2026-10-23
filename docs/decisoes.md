@@ -8,11 +8,11 @@ Versão da concepção: 0.1.0, em 2026-10-23. “Validada pelo proponente” aba
 | D02 | Começar por jurisdições fictícias e dados sintéticos | Validada pelo proponente | Sem país real ou exercício escolhido |
 | D03 | Monólito modular, biblioteca/CLI local | Proposta | ADR-002; offline e menor operação |
 | D04 | Núcleo Python Decimal, R opcional para análise | Proposta | ADR-001; validar protótipo e integração no RStudio |
-| D05 | Apache-2.0 para código; CC BY 4.0 para docs/dados originais | Proposta | P09; titularidade, texto e compatibilidade ainda por revisar |
+| D05 | Apache-2.0 para código, documentação e dados sintéticos originais; materiais recebidos e terceiros separados | Validada para F0 | Substitui proposta de dupla licença, simplifica distribuição e preserva direitos alheios conforme LICENSE/NOTICE; sem parecer jurídico institucional |
 | D06 | Revisão técnica e tributária distintas para mudança material | Proposta | Governança P09; revisores não nomeados |
 | D07 | Página HTML/CSS/JS sem backend | Proposta | ADR-003; execução futura F0-web |
 | D08 | Snapshots e regras bitemporais sem atualização silenciosa | Proposta | ADR-004; determinismo histórico |
-| D09 | Preservar .Rproj existente e consolidar raiz no F0 | Proposta | Evitar mover sessão ativa ou criar projeto duplicado |
+| D09 | .Rproj consolidado na raiz Git e sessão limpa | Validada em F0 | Arquivo anterior preservado em backup fora do repositório; sessão .Rproj.user não movida nem publicada |
 | D10 | Reutilizar histórico inicial remoto confirmado | Validada | Repositório público acessível, branch main e commit inicial 468aafcde89147fa31ead7ad767a9d87dd946de8; preservar a ancestralidade |
 
 ## Lacunas materiais
