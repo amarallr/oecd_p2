@@ -14,7 +14,8 @@ Atualização: 2026-10-23. Descrever um recurso não o torna implementado. Estad
 | Pacotes FICT-A/FICT-B | SYNTHETIC-PERIOD-01 | Não suportado como software | Manifestos ilustrativos P06 |
 | Pacote nacional real | Não selecionado | Não suportado | Planejado F3 |
 | GIR, API e aplicação operacional | Não definido | Não suportado | Planejado F4 |
-| Página explicativa e simulador | Público | Não suportado como recurso web | Especificação P11; F0-web pendente |
+| Preparação RStudio/Git | Projeto | Suportado para desenvolvimento | F0 implementado; abertura gráfica pelo usuário não presumida |
+| Página explicativa e simulador | Público | Experimental, somente didático | F0-web implementado localmente, sujeito às evidências de navegador/deployment |
 | Acesso ao repositório GitHub | amarallr/oecd_p2 | Suportado para armazenamento de artefatos | Repositório público e main confirmados; não implica motor, CI ou deployment |
 
 Uma execução futura com campo material ausente será `pendente de dados` na cobertura e `incomplete` no resultado. `Não aplicável` requer motivo, não é substituto para trabalho ausente. Nenhuma linha constitui certificação ou endosso.

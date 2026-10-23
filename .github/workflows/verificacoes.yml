@@ -1,0 +1,50 @@
+name: Verificações do projeto e da página
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .node-version
+      - name: Verificar preparação e recursos locais
+        run: node scripts/verificar-projeto.cjs --web
+      - name: Testar contrato didático e limites
+        run: node tests/site.test.cjs
+      - name: Verificar sintaxe JavaScript
+        run: |
+          node --check site/assets/js/app.js
+          node --check site/assets/js/demo.js
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .node-version
+      - name: Iniciar servidor local e Chromium isolado
+        run: |
+          node scripts/servir-site.cjs > "$RUNNER_TEMP/p2-server.log" 2>&1 &
+          google-chrome --headless=new --no-sandbox --disable-dev-shm-usage --remote-debugging-port=9224 --user-data-dir="$RUNNER_TEMP/p2-chrome" --no-first-run --disable-background-networking about:blank > "$RUNNER_TEMP/p2-chrome.log" 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --silent --fail http://127.0.0.1:9224/json > /dev/null && curl --silent --fail http://127.0.0.1:8000/oecd_p2/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/p2-chrome.log"
+          exit 1
+      - name: Navegação, teclado, responsividade e ausência de JavaScript
+        run: node scripts/testar-navegador.cjs
+      - name: Preservar capturas e relatório
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: evidencias-f0-web
+          path: docs/evidencias/
+          retention-days: 30

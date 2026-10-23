@@ -14,7 +14,7 @@ No terminal com Node no PATH:
 
 ```text
 node scripts/verificar-projeto.cjs
-node --test tests/site.test.cjs
+node tests/site.test.cjs
 node scripts/servir-site.cjs
 ```
 

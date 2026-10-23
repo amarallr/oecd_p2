@@ -20,3 +20,7 @@ secrets/
 *.pem
 *.key
 *.log
+tmp/
+coverage/
+config.local.json
+docs/evidencias/navegador-falha.json

@@ -8,7 +8,7 @@ F0: configuração RStudio, prompts, arquivos de governança/licença e prepara�
 
 ## Roteiro
 
-Executar `node scripts/verificar-projeto.cjs --web` e `node --test tests/site.test.cjs`. Iniciar o servidor por `node scripts/servir-site.cjs`. O teste real de navegador usa Chromium disponível e CDP local, sem instalar biblioteca ou navegador. Executar `node scripts/testar-navegador.cjs` após iniciar o Chromium com o roteiro de publicação/preview. Screenshots e relatório ficam em `docs/evidencias/`; perfis e logs temporários são ignorados.
+Executar `node scripts/verificar-projeto.cjs --web` e `node tests/site.test.cjs`. Iniciar o servidor por `node scripts/servir-site.cjs`. O teste real de navegador usa Chromium disponível e CDP local, sem instalar biblioteca ou navegador. Executar `node scripts/testar-navegador.cjs` após iniciar o Chromium com o roteiro de publicação/preview. Screenshots e relatório ficam em `docs/evidencias/`; perfis e logs temporários são ignorados.
 
 Comparar manualmente 100/10/20 → ETR 10%, percentual 5%, excedente 80 e imposto 4; exclusão zero → 5. Testar renda zero/negativa, tributos negativos, exclusão negativa/maior que a renda, vazio, texto, infinito, sintaxe decimal e reset. Verificar telas 360/768/1440 px, zoom 200%, teclado, foco, redução de movimento e página sem scripts.
 

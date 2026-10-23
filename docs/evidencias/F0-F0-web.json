@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-23",
+  "f0": {"commit": "3ed3bb1767758382f3d619528ee3b45d5d5b4673", "repository": "https://github.com/amarallr/oecd_p2", "branch": "main", "rproj_in_git_root": true, "graphical_rstudio_open_verified": false, "renv": "not_applicable_no_R_package_dependencies"},
+  "local_checks": {"node": "18.19.1", "project_errors": [], "contract_tests_passed": 22, "contract_tests_failed": 0, "runner": "node tests/site.test.cjs, in process", "binary_decimal_fiscal_engine": false},
+  "local_browser": {"status": "blocked", "reason": "Windows sandbox denied Chrome internal IPC channels; CDP port was not available"},
+  "remote_browser": {"status": "workflow_prepared_pending_run", "evidence": "GitHub Actions artifact evidencias-f0-web"},
+  "pages": {"status": "pending", "reason": "Connector has no Pages administration endpoint; enable GitHub Actions source in Settings/Pages if not enabled"},
+  "engine_implemented": false,
+  "normative_validation": false
+}

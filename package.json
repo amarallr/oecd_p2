@@ -2,12 +2,13 @@
   "name": "oecd-p2-project",
   "version": "0.2.0",
   "private": true,
+  "type": "module",
   "description": "Preparação do projeto e página explicativa estática oecd_p2",
   "license": "Apache-2.0",
   "engines": { "node": ">=18.19.1" },
   "scripts": {
     "start": "node scripts/servir-site.cjs",
     "check": "node scripts/verificar-projeto.cjs",
-    "test": "node --test tests/site.test.cjs"
+    "test": "node tests/site.test.cjs"
   }
 }

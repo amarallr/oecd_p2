@@ -1,0 +1,14 @@
+{
+  "project": "oecd_p2",
+  "page_version": "0.2.0",
+  "updated": "2026-10-23",
+  "normative_cutoff": "2026-10-23",
+  "repository": "https://github.com/amarallr/oecd_p2",
+  "profile": "ordinary_synthetic_v1",
+  "jurisdiction": "FICT-A",
+  "currency": "XUM",
+  "minimum_rate": "0.15",
+  "example": {"income": "100", "adjusted_covered_taxes": "10", "substance_exclusion": "20", "manual_expected": "4"},
+  "capabilities": {"project_setup": "implemented", "explanatory_page": "implemented", "fiscal_engine": "planned", "real_jurisdictions": "unsupported", "gir": "planned"},
+  "publication": "requires_verified_deployment"
+}

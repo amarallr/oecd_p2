@@ -2,7 +2,7 @@
 
 OECD Minimum Tax Implementation (Pillar Two).
 
-`oecd_p2` é uma infraestrutura aberta em desenvolvimento para modelar, calcular, explicar e revisar tributação mínima global. O corte normativo inicial é **23/10/2026**. O projeto RStudio está preparado em F0; o motor e os pacotes nacionais ainda não foram implementados. Não há suporte a obrigações tributárias reais nem endosso institucional.
+`oecd_p2` é uma infraestrutura aberta em desenvolvimento para modelar, calcular, explicar e revisar tributação mínima global. O corte normativo inicial é **23/10/2026**. O projeto RStudio e a página explicativa estão implementados; o motor e os pacotes nacionais ainda não foram implementados. Não há suporte a obrigações tributárias reais nem endosso institucional.
 
 ## Documentos da concepção
 
@@ -30,6 +30,12 @@ A pasta contém especificações e exemplos de contrato, sem biblioteca de cálc
 Repositório confirmado: [amarallr/oecd_p2](https://github.com/amarallr/oecd_p2), público, branch `main`. O acesso foi confirmado após a criação pelo proponente; o bloqueio inicial de consulta está resolvido. A [atualização do repositório](docs/github.md) registra a continuidade do histórico. A publicação da página permanece pendente; nenhum endereço de site é anunciado como ativo.
 
 Abra `oecd_p2.Rproj` no RStudio ou use o terminal na raiz. Leia o [guia de preparação F0](docs/ambiente-F0.md). Node 18.19.1 ou superior executa as ferramentas atuais, sem instalar bibliotecas; a versão de referência fica em `.node-version`. O núcleo Python/Decimal permanece decisão de F1. Não há pacotes R dependentes de renv nesta fase.
+
+## Página interativa
+
+Execute `node scripts/servir-site.cjs` e abra `http://127.0.0.1:8000/oecd_p2/`. No Windows sem Node no PATH, use `powershell -File scripts/servir-site.ps1`. A página reúne conceitos, arquitetura, fluxo guiado, demonstrador 100/10/20 → 4, memória, roadmap e fontes. Veja [execução e publicação](docs/publicacao.md) e [evidências de validação](docs/validacao-web.md). A publicação no Pages permanece pendente até deployment e URL verificados.
+
+Verificações: `node scripts/verificar-projeto.cjs --web` e `node tests/site.test.cjs`. As actions de CI verificam os contratos e executam Chromium com capturas; seus resultados precisam ser consultados em cada run. Esses testes não validam obrigações tributárias reais.
 
 ## Participação e licença
 
