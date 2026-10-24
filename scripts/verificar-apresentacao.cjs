@@ -22,7 +22,7 @@ module.exports = async function verify(cdp, target) {
   await cdp.call('Page.navigate', {url:target});
   for(let i=0;i<60;i++){if(await evaluate(`document.body?.dataset.ready === 'true'`))break;await pause(100);}
   assert.equal(await evaluate(`document.body.dataset.ready`),'true');
-  const slideCount = 11;
+  const slideCount = 12;
   assert.equal(await evaluate(`document.querySelectorAll('.slide').length`),slideCount);
   assert.equal(await evaluate(`document.querySelectorAll('.slide')[1].id`),'mapa-projeto');
   assert.equal(await evaluate(`document.querySelector('#calc-result').textContent`),'4,00');
@@ -32,7 +32,7 @@ module.exports = async function verify(cdp, target) {
   assert.equal(await evaluate(`document.querySelectorAll('.slide:not([hidden])').length`),1);
   assert.equal(await evaluate(`document.querySelector('#prev').disabled`),true);
   await key('ArrowRight');assert.equal(await evaluate(`location.hash`),'#mapa-projeto');
-  assert.equal(await evaluate(`document.querySelector('#position').textContent`),'02 / 11');
+  assert.equal(await evaluate(`document.querySelector('#position').textContent`),'02 / 12');
   await screenshot('mapa-projeto-desktop.png');
   await key('ArrowRight');assert.equal(await evaluate(`location.hash`),'#desafio');
   await key('End');assert.equal(await evaluate(`location.hash`),'#referencias');assert.equal(await evaluate(`document.querySelector('#next').disabled`),true);
