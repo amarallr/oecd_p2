@@ -21,9 +21,11 @@ A GIR passou a ser especificada como entrada de conferência e saída futura, em
 | `tests/gir-design.test.cjs` | 6 testes aprovados | Hash/proveniência, não circularidade, ambos os percursos e links; não importa GIR |
 | `tests/site.test.cjs` | 22 testes aprovados | Demonstrador JavaScript já existente e metadados |
 | Navegador local | Não concluído | Chrome encerrou antes de abrir a porta CDP; navegador e impressão permanecem dependentes do CI |
+| CI de verificações e navegador | Sucesso no commit `6feed5e` | [Workflow de verificações](https://github.com/amarallr/oecd_p2/actions/runs/40043129733); incluiu página e apresentação, navegação responsiva e impressão PDF de 11 temas |
+| Publicação GitHub Pages | Sucesso no commit `6feed5e`; página retornou HTTP 200 e contém ambos os percursos | [Workflow de publicação](https://github.com/amarallr/oecd_p2/actions/runs/40043129772); [apresentação publicada](https://amarallr.github.io/oecd_p2/apresentacao.html) |
 | XSD, importação XML e recálculo | Não executados | Não há XSD fixado, leitor ou motor fiscal nesta entrega |
 
-O workflow de CI executa cobertura de navegador para a página e a apresentação e verifica os testes de contrato. Resultados de workflow e publicação devem ser consultados após o push, antes de afirmar que a versão pública já foi atualizada.
+Os workflows confirmaram o commit publicado. Isso cobre o navegador e a impressão da apresentação, mas não valida conteúdo GIR via XSD, importação XML ou apuração tributária.
 
 ## Implementação e pendências
 
