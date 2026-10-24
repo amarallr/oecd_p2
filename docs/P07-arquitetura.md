@@ -10,29 +10,31 @@ Visão C4 de contêineres proposta:
 
 ```mermaid
 flowchart LR
-  A[Exportações contábeis] --> B[Adaptadores e validação]
-  B --> C[Contratos canônicos]
-  C --> D[Biblioteca de domínio e cálculo]
+  ERP[ERP e exportações contábeis] --> B[Preparação, normalização e validação]
+  SPED[SPED e bases domésticas] --> B
+  CBC[CbC] --> B
+  GIRIN[GIR recebida como fonte declaratória] --> O[Original imutável, hash e contexto]
+  O --> V[Perfil, leitura segura e validações]
+  V --> FD[Fatos declarados]
+  FD --> B
+  B --> C[Contratos canônicos e conciliação]
+  C --> D[Biblioteca de domínio, cotejamento e cálculo]
   R[Regras e pacotes versionados] --> D
   S[Snapshots de contexto] --> D
   CLI[CLI local] --> D
-  D --> M[Memória canônica e relatórios]
-  M --> G[Exportação da GIR produzida]
-  GI[GIR recebida em arquivo autorizado] --> O[Original imutável e hash]
-  O --> V[Perfil, leitura segura e validações]
-  V --> FD[Fatos declarados]
-  FD --> FN[Normalização com proveniência]
-  FN --> X[Conciliação e suficiência]
+  FD --> X[Cotejamento GIR × outras fontes]
   C --> X
-  X --> RC[Recálculo quando suportado]
+  X --> RC[Recálculo se houver perfil e insumos suficientes]
   R --> RC
-  FD --> COMP[Comparação e evidências]
-  RC --> COMP
-  COMP --> M
-  DOC[Conteúdo público revisado] --> WEB[Página estática didática]
+  D --> M[Resultados, diferenças, cobertura, memória e evidências]
+  FD -. referência declarada preservada .-> M
+  RC --> M
+  X --> M
+  M --> REPORT[Relatório comparativo e evidências]
+  WEB[Conteúdo público revisado] --> SITE[Página estática didática]
 ```
 
-Em texto: dados empresariais alimentam cálculo e exportação da GIR produzida. Outra jornada preserva a GIR recebida, valida por perfil e separa declarado e normalizado. Fontes externas conciliadas podem alimentar recálculo; a comparação conserva a referência declarada. Recepção institucional e transmissão são externas à ingestão local. A página explicativa é independente do motor.
+Em texto: GIR recebida, ERP, SPED, CbC e demais fontes entram como pares na etapa de preparação. Arquivo e fatos declarados da GIR mantêm origem e identidade próprias ao serem normalizados, conciliados e inicialmente cotejados. O núcleo aprofunda a análise comparativa e calcula apenas os casos com regras e insumos suficientes. A etapa de resultados apresenta relatório, diferenças, cobertura, memória e evidências. A plataforma não gera GIR de saída. Recepção institucional não faz parte da ingestão local. A página explicativa é independente do motor.
 
 | Módulo | Responsabilidade e fronteira |
 |---|---|
@@ -40,7 +42,7 @@ Em texto: dados empresariais alimentam cálculo e exportação da GIR produzida.
 | core/engine | Grafo determinístico e despacho por perfil |
 | rules | Metadados, interpretações revisadas e aplicabilidade |
 | jurisdictions | Manifestos e extensões nacionais ou fictícias |
-| adapters | CSV/JSON internos, contabilidade, relatórios e futuros gir/ingest e gir/export separados |
+| adapters | CSV/JSON internos, contabilidade, relatórios e futuro gir/ingest; sem adaptador GIR de saída |
 | review | Contratos de validação, conciliação, suficiência e comparação, sem exigir motor completo |
 | audit | Serialização canônica, hashes e memória |
 | CLI | Validação de argumentos, códigos de saída e arquivos |
@@ -88,7 +90,7 @@ Meta de engenharia proposta, ainda não medida: validar/canonizar/calcular 10 mi
 
 Adaptador GIR separa conteúdo, XSD, intercâmbio e recepção interna. Seleção considera calendário do S6, destinatário e correções, não só exercício. Validar XML não comprova correção semântica nem aceitação pelo fisco.
 
-O [ADR-005](adr/ADR-005-gir-bidirecional.md) e a [P12](P12-gir-entrada-conferencia.md) detalham os dois sentidos. Contratos propostos: `ingest_gir(file, profile) -> submission + diagnostics`, `reconcile(submission, sources) -> coverage`, `compare(declared, run, policy) -> comparison`. Não existem como software nesta fase. Original, declarado, normalizado e recalculado não são sobrescritos. Hash, perfil, mapeamento e snapshots sustentam idempotência e correções rastreáveis. Leitor XML sem DTD/XXE/XInclude, schemas locais e limites precedem mapeamento material.
+O [ADR-005](adr/ADR-005-gir-analise-comparativa.md) e a [P12](P12-gir-entrada-conferencia.md) detalham a GIR como fonte e o relatório comparativo esperado. Contratos propostos: `ingest_gir(file, profile) -> submission + diagnostics`, `reconcile(submission, sources) -> coverage`, `compare(declared, run, policy) -> comparison` e `report(comparisons, coverage, evidence) -> analysis`. Não existem como software nesta fase. Original, declarado, normalizado e recalculado não são sobrescritos. Hash, perfil, mapeamento e snapshots sustentam idempotência e correções rastreáveis. Leitor XML sem DTD/XXE/XInclude, schemas locais e limites precedem mapeamento material.
 
 Página: `site/index.html`, `site/assets/css/styles.css`, `site/assets/js/app.js`, dados locais opcionais. HTML/CSS/JS sem framework e sem backend; caminhos relativos. Preview futuro pelo terminal RStudio: `python -m http.server 8000 --directory site --bind 127.0.0.1`, após confirmar Python, e abrir `http://127.0.0.1:8000`. Não usar file:// como validação. GitHub Pages por workflow com artefato de site; confirmar configuração, deployment e URL real antes de publicar link no README.
 

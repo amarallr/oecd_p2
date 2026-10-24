@@ -1,15 +1,15 @@
 ====================================================================
-P12 — GIR COMO ENTRADA, SAÍDA E FONTE DE CONFERÊNCIA
+P12 — ANÁLISE COMPARATIVA DA GIR DE ENTRADA
 ====================================================================
 
 C — CONTEXTO
-Receba P01, P04/P05/P07/P08/P10/P11, docs/P12-gir-entrada-conferencia.md, ADR-005, sources/gir.md, suporte e decisões atualizados. O framework oecd_p2 é aberto, reutilizável internacionalmente e desenvolvido no RStudio. GIR recebida é fonte declaratória; GIR produzida é saída. Nenhum importador ou motor completo é presumido.
+Receba P01, P04/P05/P07/P08/P10/P11, docs/P12-gir-entrada-conferencia.md, ADR-005, sources/gir.md, suporte e decisões atualizados. O framework oecd_p2 é aberto, reutilizável internacionalmente e desenvolvido no RStudio. GIR é fonte declaratória de entrada comparada com as demais. A saída é relatório analítico e evidências; **não haverá GIR de saída**. Nenhum importador ou motor completo é presumido.
 
 O — OBJETIVO
-Manter contratos e implementação incremental para duas jornadas: preparação/exportação da declaração; ingestão local/conferência da declaração recebida. Não exigir motor completo para preservar, validar ou mapear um arquivo. Recálculo só com perfil suportado e insumos suficientes.
+Manter contratos e implementação incremental de ingestão local, preservação, normalização, cotejamentos, comparação e relatório. Na etapa 02, preparar e iniciar cotejamentos; na 03, aprofundar análises e recálculos suportados; na 04, apresentar relatório GIR × demais fontes. Não gerar ou transmitir arquivo GIR. Não exigir motor completo para preservar, validar ou mapear um arquivo. Recálculo só com perfil suportado e insumos suficientes.
 
 S — ESTILO
-Contratos com chaves, cardinalidades, campos, estados, temporalidade, classificação e proveniência. Tabelas de cobertura e aceite; Mermaid com os dois fluxos e alternativa textual.
+Contratos com chaves, cardinalidades, campos, estados, temporalidade, classificação e proveniência. Tabelas de cobertura e aceite; Mermaid de fontes → preparação → núcleo → relatório, com GIR como fonte no mesmo nível das demais.
 
 T — TOM
 Preciso e verificável; divergência é evidência de conferência, não prova de infração. Não confundir requisito, hipótese, implementação e validação executada.
@@ -19,7 +19,7 @@ Preparadores de GIR, especialistas, desenvolvedores, auditores e administraçõe
 
 R — RESPOSTA
 1. Inspecione AGENTS.md, estado Git e artefatos atuais; preserve alterações. Consulte fontes OCDE e registre título, URL, publicação, versão, consulta e finalidade. Não selecione automaticamente o schema mais recente.
-2. Separe recepção institucional, ingestão local e exportação; conteúdo, envelope de intercâmbio e exigência doméstica. Nenhum importador implica conexão institucional ou declaração aceita.
+2. Separe recepção institucional de ingestão local e relatório analítico; conteúdo, envelope de intercâmbio e exigência doméstica. Nenhum importador implica conexão institucional ou declaração aceita.
 3. Preserve bytes, origem, tamanho, SHA-256 real e data de ingestão. Identifique formato/namespace/versão/mensagem por leitura limitada segura; selecione perfil explícito, bloqueando incompatibilidade material.
 4. Separe leitura segura, estrutura XSD, semântica, consistência, mapeamento e cobertura. XML sem DTD/XXE/XInclude, resolução externa ou rede; limites de recursos e schemas locais fixados. JSON/CSV internos não são GIR oficial.
 5. Aplique os nove contratos P12 e suas FKs/temporalidade. Preserve lexema, decimal textual, moeda, unidade, escala e sinal; ausência/desconhecido/não aplicável não viram zero. Campo material sem mapa gera cobertura incompleta e bloqueio afetado.

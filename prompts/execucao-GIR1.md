@@ -1,6 +1,6 @@
 # GIR-1 — Preservação, leitura segura e validação estrutural delimitada
 
-Receba AGENTS.md, P01/P04/P07/P08/P10/P12, [P12](../docs/P12-gir-entrada-conferencia.md), [ADR-005](../docs/adr/ADR-005-gir-bidirecional.md), [fontes GIR](../sources/gir.md), suporte, decisões e o estado real do projeto. Leia novamente antes de agir; não execute automaticamente este prompt ao atualizar a concepção.
+Receba AGENTS.md, P01/P04/P07/P08/P10/P12, [P12](../docs/P12-gir-entrada-conferencia.md), [ADR-005](../docs/adr/ADR-005-gir-analise-comparativa.md), [fontes GIR](../sources/gir.md), suporte, decisões e o estado real do projeto. Leia novamente antes de agir; não execute automaticamente este prompt ao atualizar a concepção.
 
 Implemente somente GIR-1: ingestão local de arquivo autorizado, preservação e estrutura de **um perfil explicitamente escolhido**. Não implementar apuração fiscal, transmissão institucional, geração de GIR, correções operacionais, cruzamentos ou interface que aceite dados reais no site público.
 

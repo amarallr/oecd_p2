@@ -24,10 +24,12 @@ for (let i = 0; i < matches.length; i++) {
   const end = i + 1 < matches.length ? matches[i + 1].index : finalBoundary;
   preserve(path.join(dest, matches[i][1] + '.txt'), content.slice(matches[i].index, end).trimEnd() + '\n');
 }
-const index = '# Prompts originais e ordem de execução\n\n' +
+const orderedMatches = [...matches].sort((a, b) => Number(a[1].slice(1)) - Number(b[1].slice(1)));
+const index = '# Prompts originais em ordem numérica\n\n' +
   'Fonte: caderno CO-STAR v0.3 fornecido em 23/10/2026, preservado integralmente em [caderno-COSTAR-v0_3.txt](caderno-COSTAR-v0_3.txt).\n\n' +
-  'Aplicar P01 em todas as etapas. Ordem: P00, P02 a P09, P11, P10; P08 deve receber a especificação P11 para completar sua revisão da página. Carregar resultados anteriores e [decisões](../docs/decisoes.md). Os resultados desta rodada estão no [índice do projeto](../README.md).\n\n' +
-  matches.map(m => `- [${m[1]} — ${m[2]}](${m[1]}.txt)`).join('\n') +
+  'Aplicar P01 e as diretrizes atualizadas em todas as etapas. A lista está em ordem numérica; dependências de execução estão no roadmap. P08 deve receber a especificação P11 ao revisar a página. Carregar resultados anteriores e [decisões](../docs/decisoes.md). Documentação principal: [Português (Brasil)](../README.md) · [English (US)](../README.en.md).\n\n' +
+  orderedMatches.map(m => `- [${m[1]} — ${m[2]}](${m[1]}.txt)`).join('\n') +
+  '\n- [P12 — ANÁLISE COMPARATIVA DA GIR DE ENTRADA](P12.txt)\n' +
   '\n\nA concepção não executa automaticamente os prompts futuros [F0](execucao-F0.md), [F0-web](execucao-F0-web.md) e [F1](execucao-F1.md). Eles delimitam os próximos incrementos.\n';
 preserve(path.join(dest, 'README.md'), index);
 console.log(JSON.stringify({prompts: matches.length, input_sha256: crypto.createHash('sha256').update(bytes).digest('hex')}, null, 2));

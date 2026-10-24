@@ -17,7 +17,7 @@ Versão da concepção: 0.1.0, em 2026-10-23. “Validada pelo proponente” aba
 
 ## Lacunas materiais
 
-**D11 — GIR bidirecional:** requisito autorizado nesta rodada e incorporado em [P12](P12-gir-entrada-conferencia.md) e [ADR-005](adr/ADR-005-gir-bidirecional.md). Preparação/exportação e ingestão/conferência são fluxos distintos; recepção institucional externa; declarado, normalizado e recalculado não se sobrescrevem. Contratos e plano entregues; importador e motor pendentes.
+**D11 — GIR como fonte de entrada:** conforme esclarecimento do proponente, a GIR é cotejada com ERP, SPED, CbC e demais fontes nas etapas de preparação e núcleo; a saída esperada é relatório analítico e evidências. Não haverá geração de GIR pela plataforma. Recepção institucional permanece externa; declarado, normalizado e recalculado não se sobrescrevem. Contratos e plano especificados; importador, relatório executável e motor pendentes.
 
 | ID | Questão e evidência | Impacto e próximo passo | Competência |
 |---|---|---|---|

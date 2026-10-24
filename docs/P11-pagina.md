@@ -4,7 +4,7 @@ A página deverá explicar o framework, suas camadas, sua auditabilidade e o est
 
 ## Conteúdo e wireframe
 
-Extensão [P12](P12-gir-entrada-conferencia.md): página e apresentação devem mostrar GIR como entrada declaratória, saída produzida e fonte de conferência. Os diagramas distinguem preparação/exportação de ingestão/validação/conciliação/recálculo possível/comparação. Indicar que todos esses módulos operacionais são planejados; ingestão local não significa recepção institucional. Não criar upload de GIR real no site público. Declaração estruturalmente válida pode continuar incompleta ou não comparável.
+Extensão [P12](P12-gir-entrada-conferencia.md): página e apresentação devem mostrar a GIR recebida como fonte de entrada junto de ERP, SPED, CbC e demais fontes. Etapa 02 preserva, prepara e inicia cotejamentos; etapa 03 aprofunda análises e recálculo possível; etapa 04 apresenta relatório GIR × demais fontes e evidências. A plataforma não gera GIR de saída. Módulos operacionais são planejados; ingestão local não significa recepção institucional. Não criar upload de GIR real no site público. Declaração estruturalmente válida pode continuar incompleta ou não comparável.
 
 | Seção e âncora | Conteúdo | Forma e aceite |
 |---|---|---|

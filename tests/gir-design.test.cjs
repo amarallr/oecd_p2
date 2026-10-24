@@ -34,19 +34,34 @@ test('documentação delimita perfis sem suporte e matriz de aceite futuro',()=>
   for(const token of ['GIR-R01','GIR-R10','GIR-C01','GIR-C06','GIR-0','GIR-6','not_comparable','insufficient_data','unsupported_rule','not_executed'])assert.ok(spec.includes(token));
   assert.equal(fixture.manual_expected_not_engine_output.legal_conclusion,null);
 });
-test('README, página e slide-mapa distinguem preparação e conferência da GIR',()=>{
+test('README, página e slide-mapa mostram o relatório GIR versus demais fontes',()=>{
   const readme=fs.readFileSync(path.join(root,'README.md'),'utf8');
   const page=fs.readFileSync(path.join(root,'site/index.html'),'utf8');
   const deck=fs.readFileSync(path.join(root,'site/apresentacao.html'),'utf8');
   const script=fs.readFileSync(path.join(root,'site/assets/js/apresentacao.js'),'utf8');
-  assert.match(readme,/preparar dados e resultados para uma GIR futura/);assert.match(readme,/receber uma GIR disponibilizada localmente/);
-  assert.match(page,/Preparar<\/strong>/);assert.match(page,/Conferir<\/strong>/);
-  assert.match(deck,/GIR · DOIS FLUXOS/);assert.match(deck,/GIR recebida → preservar e validar/);
-  assert.match(script,/GIR: entrada, saída e conferência/);
-  assert.match(deck,/ainda não implementados/);
+  assert.match(readme,/fonte de entrada ao lado de ERP, SPED, CbC/);assert.match(readme,/etapa 04 produz relatório de análises/);assert.match(readme,/não produzirá uma GIR de saída/);
+  assert.match(page,/01 \/ Fontes/);assert.match(page,/04 \/ Resultados e uso/);assert.match(page,/relatório analítico GIR × demais fontes/);
+  assert.match(deck,/GIR recebida/);assert.match(deck,/Relatório GIR × outras fontes/);assert.match(deck,/Não haverá GIR de saída/);
+  assert.match(script,/Relatório de análise: GIR × demais fontes/);
+  assert.match(deck,/importador, validação XML e motor não estão implementados/);
+  assert.doesNotMatch(`${readme}\n${page}\n${deck}\n${script}`,/GIR produzida|Prepared GIR|Produced GIR/i);
+});
+test('a documentação oferece PT-BR e English (US), e o índice enumera P00 a P12',()=>{
+  const readme=fs.readFileSync(path.join(root,'README.md'),'utf8');
+  const readmeEn=fs.readFileSync(path.join(root,'README.en.md'),'utf8');
+  const promptIndex=fs.readFileSync(path.join(root,'prompts/README.md'),'utf8');
+  const promptIndexEn=fs.readFileSync(path.join(root,'prompts/README.en.md'),'utf8');
+  const page=fs.readFileSync(path.join(root,'site/index.html'),'utf8');
+  assert.match(readme,/Português \(Brasil\)/);assert.match(readme,/README\.en\.md/);
+  assert.match(readmeEn,/Português \(Brasil\)/);assert.match(readmeEn,/English \(US\)/);
+  assert.match(page,/English \(US\) documentation/);
+  assert.deepEqual([...promptIndex.matchAll(/^- \[(P\d{2})/gm)].map(match=>match[1]),Array.from({length:13},(_,i)=>`P${String(i).padStart(2,'0')}`));
+  assert.match(promptIndexEn,/13\. \[P12/);
+  assert.match(promptIndex,/Português \(Brasil\).*English \(US\)/s);
+  for(const relative of ['README.en.md','docs/en/P12-gir-input-review.md','docs/en/gir-sources.md','prompts/README.en.md'])assert.ok(fs.existsSync(path.join(root,relative)),`${relative} missing`);
 });
 test('referências locais da especificação GIR e README existem',()=>{
-  for(const relative of ['README.md','docs/P12-gir-entrada-conferencia.md','docs/adr/ADR-005-gir-bidirecional.md','docs/evidencias/gir-concepcao-2026-10-23.md','sources/gir.md','prompts/P12.txt','prompts/execucao-GIR1.md']){
+  for(const relative of ['README.md','README.en.md','docs/P12-gir-entrada-conferencia.md','docs/en/P12-gir-input-review.md','docs/en/gir-sources.md','docs/adr/ADR-005-gir-analise-comparativa.md','docs/evidencias/gir-concepcao-2026-10-23.md','sources/gir.md','prompts/P12.txt','prompts/README.en.md','prompts/execucao-GIR1.md']){
     const sourcePath=path.join(root,relative),text=fs.readFileSync(sourcePath,'utf8');
     for(const match of text.matchAll(/\[[^\]]*\]\(([^)]+)\)/g)){
       const target=match[1].split('#')[0];if(!target||/^(?:https?:|mailto:)/i.test(target))continue;

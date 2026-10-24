@@ -4,7 +4,7 @@ O projeto propõe um framework aberto que permita compartilhar contratos e méto
 
 ## Resultados e limites
 
-A extensão [P12](P12-gir-entrada-conferencia.md) incorpora GIR como entrada, saída e fonte de conferência. Preparar e conferir declarações são jornadas complementares. Ingestão local não é recepção institucional; declarado, normalizado e recalculado ficam separados. Importador, validações e comparações fiscais continuam planejados.
+A extensão [P12](P12-gir-entrada-conferencia.md) incorpora a GIR recebida como fonte de entrada comparada com ERP, SPED, CbC e demais fontes. A preparação inicia cotejamentos, o núcleo aprofunda análises e a saída é um relatório analítico com evidências; a plataforma não gera uma GIR. Ingestão local não é recepção institucional; declarado, normalizado e recalculado ficam separados. Importador, validações e comparações fiscais continuam planejados.
 
 O framework abrange domínio, regras, contratos, motor, pacotes, validação e governança. O motor executa regras determinísticas; os adaptadores traduzem entradas e saídas; uma aplicação organiza a experiência de uso. A GIR é uma obrigação informacional que requer adaptador próprio. A página explicativa é uma apresentação pública e não executa apuração normativa.
 

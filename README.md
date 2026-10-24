@@ -2,6 +2,8 @@
 
 OECD Minimum Tax Implementation (Pillar Two).
 
+**Idioma / Language:** [Português (Brasil)](README.md) · [English (US)](README.en.md)
+
 Para conhecer o projeto de forma visual e didática, a apresentação interativa explica o Pilar 2, o objetivo da plataforma, sua arquitetura e as etapas de desenvolvimento. Ela inclui navegação por slides, um exemplo de cálculo e a opção de salvar em PDF.
 
 **[Abrir a apresentação do projeto →](https://amarallr.github.io/oecd_p2/apresentacao.html)**
@@ -28,7 +30,7 @@ As regras coordenam quem pode cobrar esse complemento:
 
 A aplicação depende da legislação de cada jurisdição, do período, das exclusões, das eleições e dos *safe harbours* — mecanismos de simplificação sujeitos a condições. Consulte o [resumo das regras GloBE da OCDE](https://www.oecd.org/content/dam/oecd/en/topics/policy-sub-issues/global-minimum-tax/pillar-two-model-rules-in-a-nutshell.pdf) e o [catálogo de fontes e versões do projeto](sources/catalogo.md). O Pilar 2 também compreende a STTR (*Subject to Tax Rule*), tratada separadamente do motor GloBE neste projeto.
 
-A **GIR — GloBE Information Return** reúne informações do grupo, cálculos e dados por jurisdição para a administração tributária. A plataforma deve contemplar dois fluxos: preparar dados e resultados para uma GIR futura; e receber uma GIR disponibilizada localmente para validar, normalizar, cruzar com fontes independentes e comparar quando houver dados suficientes. A importação não comprova a correção do cálculo nem a aceitação institucional. O intercâmbio tem um [schema XML publicado pela OCDE](https://www.oecd.org/en/publications/globe-information-return-pillar-two-xml-schema-october-2026_1552c9aa-en.html); versão e perfil precisam corresponder ao documento e ao fluxo aplicável.
+A **GIR — GloBE Information Return** é uma fonte de entrada ao lado de ERP, SPED, CbC e demais dados autorizados. Nas etapas 02 e 03, a plataforma prepara e coteja seus valores com as outras fontes, recalculando somente quando houver regra e insumos suficientes. A saída prevista é um relatório com consistências, divergências, cobertura, limitações e evidências: **a plataforma não produzirá uma GIR de saída**. Importação e validação estrutural não comprovam correção fiscal nem aceitação institucional. O intercâmbio tem um [schema XML publicado pela OCDE](https://www.oecd.org/en/publications/globe-information-return-pillar-two-xml-schema-october-2026_1552c9aa-en.html); versão e perfil precisam corresponder ao documento e ao contexto.
 
 ## Objetivo do projeto
 
@@ -43,7 +45,7 @@ A proposta responde a um problema concreto: a aplicação do Pilar 2 exige combi
 | Integração com ERPs | Desenvolver adaptadores para exportações e interfaces de sistemas como SAP, Oracle, Microsoft e TOTVS, capturando balancetes, planos de contas, tributos correntes e diferidos, operações entre empresas do grupo e dados de consolidação. |
 | Normalização e conciliação | Converter diferentes estruturas de origem em contratos comuns, compatíveis com os cálculos GloBE, mantendo a rastreabilidade até os registros contábeis e documentais. |
 | Motor GloBE | Apurar lucro GloBE, tributos cobertos ajustados, ETR e imposto complementar; incorporar progressivamente QDMTT, IIR, UTPR, exclusões e *safe harbours*, com regras versionadas e memória de cálculo. |
-| GIR: preparação e conferência | Preparar uma declaração futura a partir dos dados e resultados suportados; em fluxo separado, ingerir arquivo autorizado localmente, preservar original e proveniência, validar, mapear e comparar quando possível. Schema, recepção institucional e exigências domésticas são escopos distintos. |
+| Análise comparativa da GIR | Tratar a GIR recebida como fonte junto às demais; preservar arquivo e proveniência, validar, mapear e cotejar dados em P02/P03. Gerar relatório das análises, diferenças e cobertura. Não gerar GIR de saída. |
 | Integração com SPED e documentos fiscais | Planejar cruzamentos com ECD, ECF, NF-e, EFD-Contribuições e EFD-ICMS/IPI, conforme disponibilidade, autorização e pertinência de cada fonte, para conciliar informações domésticas e internacionais. |
 | Processamento de CbC | Integrar o *Country-by-Country Reporting* (Declaração País-a-País) para analisar receitas, lucros, tributos, empregados, ativos e entidades por jurisdição, apoiando a avaliação de riscos e os cruzamentos com ERP, SPED e GIR. |
 | Inteligência fiscal | Aplicar ciência de dados, aprendizado de máquina e análise de grafos ao mapeamento societário e à identificação de padrões atípicos. A leitura assistida de notas explicativas e divulgações financeiras poderá complementar a análise, com evidências para revisão humana. |
@@ -62,25 +64,29 @@ flowchart TD
     SPED[SPED e documentos fiscais eletrônicos]
     CBC[Declaração País-a-País - CbC]
     DOC[Notas explicativas e divulgações financeiras]
-    GIRIN[GIR recebida localmente]
+  GIRIN[GIR recebida · fonte declaratória]
   end
   ERP --> DADOS[Adaptadores, normalização e conciliação]
   SPED --> DADOS
   CBC --> DADOS
   DADOS --> BASE[Dados canônicos com origem e versões]
   GIRIN --> PRESERVA[Preservação do original, hash e contexto]
-  PRESERVA --> INGESTAO[Perfil suportado, leitura segura e validações]
+  PRESERVA --> INGESTAO[Identificação, leitura segura e validações]
   INGESTAO --> DECL[Valores declarados preservados]
-  DECL --> NORM[Fatos normalizados com proveniência]
-  NORM --> CRUZ[Conciliação com fontes independentes]
+  DECL --> NORM[Normalização com proveniência]
+  NORM --> DADOS
+  DADOS --> CRUZ[Conciliação e cotejamento das fontes]
   REGRAS[Fontes normativas, regras e pacotes nacionais] --> MOTOR[Motor GloBE determinístico]
   BASE --> MOTOR
   CRUZ --> MOTOR
-  NORM -. somente quando elegível e sem circularidade .-> COMP[Comparação: declarado × recálculo]
+  DECL -. somente com dados suficientes e sem circularidade .-> COMP[Comparação: GIR × outras fontes e recálculo]
+  CRUZ --> COMP
   MOTOR --> COMP
+  COMP --> RESULT[Resultados, diferenças, cobertura e evidências]
+  RESULT --> PAINEL[Painéis para revisão humana]
   MOTOR --> MEM[Memória de cálculo e evidências]
-  MOTOR --> GIR[Adaptador GIR e validações declaratórias]
-  GIR --> SAIDA[GIR preparada para fluxo de entrega aplicável]
+  COMP --> REL[Relatório GIR × demais fontes: análises, diferenças e cobertura]
+  REL --> PAINEL[Painéis para revisão humana]
   BASE --> RISCO[Análise de riscos, grafos e IA assistiva]
   DOC --> RISCO
   MEM --> RISCO
@@ -95,11 +101,11 @@ flowchart TD
   CONCEPCAO -. fundamenta .-> SITE
 ```
 
-Em texto: há dois percursos GIR. **Preparação:** fontes contábeis, fiscais e societárias alimentam dados canônicos, regras e o motor; resultados suportados podem compor uma GIR preparada para o fluxo de entrega pertinente. **Conferência:** uma GIR disponibilizada ao operador é preservada com hash e contexto, passa por perfil, validação e mapeamento; fatos elegíveis podem ser conciliados com fontes independentes e comparados a recálculo quando os insumos permitirem. Declarado, normalizado e recalculado permanecem separados: reproduzir agregados da própria declaração não é conferência independente. A documentação detalhada está em [P12 — entrada e conferência da GIR](docs/P12-gir-entrada-conferencia.md), com [fontes e versões examinadas](sources/gir.md) e [próximo incremento proposto](prompts/execucao-GIR1.md). Esses contratos estão especificados; importador, validação XML e motor fiscal ainda não estão implementados.
+Em texto: a GIR recebida é fonte de entrada no mesmo nível que ERP, SPED, CbC e outras fontes. A etapa 02 preserva, identifica, normaliza, inicia os cotejamentos e concilia os dados sem apagar a origem; a etapa 03 aprofunda a comparação entre declaração e demais fontes, com recálculo apenas quando regras e insumos forem suficientes; a etapa 04 produz relatório de análises, diferenças, cobertura, limitações, memória e evidências. **Não haverá GIR de saída.** Declarado, normalizado e recalculado permanecem separados: reproduzir agregados da GIR não é conferência independente. Consulte [P12 — análise comparativa da GIR](docs/P12-gir-entrada-conferencia.md), [fontes e versões examinadas](sources/gir.md) e o [próximo incremento proposto](prompts/execucao-GIR1.md). Os contratos estão especificados; importador, validação XML, relatório executável e motor fiscal ainda não estão implementados.
 
 ### Caminho de implementação
 
-O projeto começa pela especificação dos dados e por um motor determinístico local, com casos sintéticos e escopo delimitado. A ingestão da GIR tem trilha incremental própria, independente de um motor completo; conectores empresariais, integração com sistemas fiscais, preparação/exportação da GIR e recursos de inteligência avançam conforme seus critérios de cobertura. As escolhas iniciais estão descritas na [arquitetura](docs/P07-arquitetura.md), no [roadmap](docs/P10-roadmap.md) e na especificação [P12](docs/P12-gir-entrada-conferencia.md).
+O projeto começa pela especificação dos dados e por um motor determinístico local, com casos sintéticos e escopo delimitado. A ingestão e o cotejamento da GIR têm trilha incremental própria, independente de um motor completo. O relatório analítico é a saída prevista para GIR × demais fontes; geração de arquivo GIR não faz parte do projeto. As escolhas iniciais estão descritas na [arquitetura](docs/P07-arquitetura.md), no [roadmap](docs/P10-roadmap.md) e na especificação [P12](docs/P12-gir-entrada-conferencia.md).
 
 Em fases posteriores, requisitos de escala poderão justificar processamento distribuído e armazenamento analítico. Kafka, Spark, DuckDB, ClickHouse, Neo4j, FastAPI e ferramentas de IA em Python são possibilidades a avaliar conforme o problema de cada módulo. A proposta mantém o compromisso com código aberto, contratos interoperáveis, execução soberana e auditabilidade.
 
@@ -119,9 +125,14 @@ Em fases posteriores, requisitos de escala poderão justificar processamento dis
 | P07 | [Arquitetura e ambiente](docs/P07-arquitetura.md) | P02 a P06 |
 | P08 | [Validação](docs/P08-validacao.md) | P03 a P07 e P11 |
 | P09 | [Governança](docs/P09-governanca.md) | P00 a P08 |
-| P11 | [Especificação da página](docs/P11-pagina.md) | P00 a P09 |
 | P10 | [Roadmap e próximos prompts](docs/P10-roadmap.md) | P00 a P09 e P11 |
-| P12 | [Entrada e conferência da GIR](docs/P12-gir-entrada-conferencia.md) | P04, P07, P08 e P10 |
+| P11 | [Especificação da página](docs/P11-pagina.md) | P00 a P09 |
+| P12 | [Análise comparativa da GIR de entrada](docs/P12-gir-entrada-conferencia.md) | P04, P07, P08 e P10 |
+
+| Idioma | Documentação principal |
+|---|---|
+| Português (Brasil) | Este README e [P12](docs/P12-gir-entrada-conferencia.md) |
+| English (US) | [Project README](README.en.md) and [GIR input and review specification](docs/en/P12-gir-input-review.md) |
 
 Consulte também [decisões e lacunas](docs/decisoes.md), [fontes verificadas](sources/catalogo.md), [cobertura](docs/suporte.md), [ambiente observado](docs/ambiente.md), [ADRs](docs/adr/README.md), [prompts de trabalho e fonte original](prompts/README.md) e [evidências da entrega](docs/entrega-concepcao.md).
 

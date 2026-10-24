@@ -2,11 +2,11 @@
 
 ## Resultado
 
-A GIR passou a ser especificada como entrada de conferência e saída futura, em percursos distintos. O documento normativo interno é [P12](../P12-gir-entrada-conferencia.md); a arquitetura foi registrada em [ADR-005](../adr/ADR-005-gir-bidirecional.md). Fontes consultadas e lacunas de XSD estão em [sources/gir.md](../../sources/gir.md).
+A GIR recebida é especificada como fonte de entrada comparada com as demais, e o resultado previsto é um relatório analítico. Não haverá geração de GIR de saída. O documento normativo interno é [P12](../P12-gir-entrada-conferencia.md); a arquitetura foi registrada em [ADR-005](../adr/ADR-005-gir-analise-comparativa.md). Fontes consultadas e lacunas de XSD estão em [sources/gir.md](../../sources/gir.md).
 
 ## Artefatos
 
-- Contratos e trilha de implementação: `docs/P12-gir-entrada-conferencia.md`, `docs/adr/ADR-005-gir-bidirecional.md`, `docs/P04-dados.md`, `docs/P05-motor.md`, `docs/P07-arquitetura.md`, `docs/P08-validacao.md`, `docs/P10-roadmap.md`, `docs/P00-carta.md`, `docs/P11-pagina.md`, `docs/decisoes.md`, `docs/suporte.md` e índice de ADRs.
+- Contratos e trilha de implementação: `docs/P12-gir-entrada-conferencia.md`, `docs/adr/ADR-005-gir-analise-comparativa.md`, `docs/P04-dados.md`, `docs/P05-motor.md`, `docs/P07-arquitetura.md`, `docs/P08-validacao.md`, `docs/P10-roadmap.md`, `docs/P00-carta.md`, `docs/P11-pagina.md`, `docs/decisoes.md`, `docs/suporte.md` e índice de ADRs.
 - Fontes oficiais e cobertura: `sources/gir.md` e `sources/catalogo.md`.
 - Prompts: P01, P04, P07, P08, P10, P11, P12, execução GIR-1, índice e diretrizes da plataforma.
 - Exemplo não oficial e sintético: `examples/gir-review-synthetic.source.json` e `examples/gir-review.design.json`. Hashes conferem com os bytes locais; sem XSD ou parser.
@@ -29,6 +29,6 @@ Os workflows confirmaram o commit publicado. Isso cobre o navegador e a impress�
 
 ## Implementação e pendências
 
-Implementados nesta rodada: especificação, decisão proposta, fonte de metadados, contratos e exemplo JSON sintético, testes de integridade e explicações nos artefatos públicos. **Não** foram implementados importador, leitor XML, validação XSD, motor GloBE, cruzamentos institucionais ou exportador/transmissor GIR. A fixture não é XML GIR oficial e não deve ser anunciada como validada pela OCDE.
+Implementados nesta rodada: especificação, decisão proposta, fonte de metadados, contratos e exemplo JSON sintético, testes de integridade e explicações nos artefatos públicos. **Não** foram implementados importador, leitor XML, validação XSD, motor GloBE, relatório executável ou cruzamentos institucionais. Geração de GIR de saída está fora do escopo aprovado. A fixture não é XML GIR oficial e não deve ser anunciada como validada pela OCDE.
 
 Dependências abertas: fixar legalmente um perfil XSD e hashes de dependências, homologar seletores e cardinalidades, identificar requisitos domésticos e autorização de recepção, prototipar parser seguro/idempotente e confirmar o calendário 16–24/06/2028 registrado em CONFLICT-02. Próxima tarefa delimitada: [prompt GIR-1](../../prompts/execucao-GIR1.md).

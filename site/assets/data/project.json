@@ -1,6 +1,6 @@
 {
   "project": "oecd_p2",
-  "page_version": "0.3.0",
+  "page_version": "0.4.0",
   "updated": "2026-10-23",
   "normative_cutoff": "2026-10-23",
   "repository": "https://github.com/amarallr/oecd_p2",
@@ -9,6 +9,6 @@
   "currency": "XUM",
   "minimum_rate": "0.15",
   "example": {"income": "100", "adjusted_covered_taxes": "10", "substance_exclusion": "20", "manual_expected": "4"},
-  "capabilities": {"project_setup": "implemented", "explanatory_page": "implemented", "fiscal_engine": "planned", "real_jurisdictions": "unsupported", "gir": "planned", "gir_ingestion": "planned", "gir_review": "planned", "gir_export": "planned", "institutional_gir_receipt": "unsupported"},
+  "capabilities": {"project_setup": "implemented", "explanatory_page": "implemented", "fiscal_engine": "planned", "real_jurisdictions": "unsupported", "gir_input": "planned", "gir_reconciliation_report": "planned", "gir_output": "out_of_scope", "institutional_gir_receipt": "unsupported"},
   "publication": "requires_verified_deployment"
 }

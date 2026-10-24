@@ -21,7 +21,7 @@ Corte e acesso desta rodada: **2026-10-23**. Fontes OCDE têm alcance internacio
 
 ## Fontes técnicas e de governança
 
-### Complemento GIR — entrada, saída e conferência
+### Complemento GIR — fonte de entrada e análise comparativa
 
 A [pesquisa GIR de 23/10/2026](gir.md) detalha título, URL, publicação, versão, consulta e finalidade de S6/S11/S12, reconfirmados, e acrescenta S21 (Status Message XML Schema, 30/07/2025) e S22 (GIR XML Schema, 15/01/2025). Páginas e trechos de guias foram consultados; XSDs e dependências não foram obtidos/fixados localmente, e não há validação XSD executada. S11 delimita a edição setembro/2026 a exercícios iniciados em ou após 31/12/2025. Essa dimensão de conteúdo não substitui o calendário de intercâmbio S6 ou os requisitos domésticos. CONFLICT-02 permanece aberto.
 

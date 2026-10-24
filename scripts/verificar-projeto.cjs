@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const errors = [];
-for (const file of ['oecd_p2.Rproj', '.gitignore', '.gitattributes', 'README.md', 'LICENSE', 'NOTICE', 'CONTRIBUTING.md', 'GOVERNANCE.md', 'SECURITY.md', 'CODE_OF_CONDUCT.md', 'CHANGELOG.md', 'config.example.json']) {
+for (const file of ['oecd_p2.Rproj', '.gitignore', '.gitattributes', 'README.md', 'README.en.md', 'prompts/README.en.md', 'docs/en/P12-gir-input-review.md', 'docs/en/gir-sources.md', 'LICENSE', 'NOTICE', 'CONTRIBUTING.md', 'GOVERNANCE.md', 'SECURITY.md', 'CODE_OF_CONDUCT.md', 'CHANGELOG.md', 'config.example.json']) {
   if (!fs.existsSync(path.join(root, file))) errors.push(`Arquivo ausente: ${file}`);
 }
 const project = fs.readFileSync(path.join(root, 'oecd_p2.Rproj'), 'utf8');
@@ -32,7 +32,7 @@ if (process.argv.includes('--web')) {
     if (/https?:\/\//.test(fs.readFileSync(path.join(root, 'site/assets/css', css), 'utf8'))) errors.push(`CSS com dependência externa: ${css}`);
   }
   const publicData = JSON.parse(fs.readFileSync(path.join(root, 'site/assets/data/project.json'), 'utf8'));
-  if (publicData.capabilities.gir_ingestion !== 'planned' || publicData.capabilities.gir_review !== 'planned' || publicData.capabilities.gir_export !== 'planned' || publicData.capabilities.institutional_gir_receipt !== 'unsupported') errors.push('Status público das capacidades GIR incompatível');
+  if (publicData.capabilities.gir_input !== 'planned' || publicData.capabilities.gir_reconciliation_report !== 'planned' || publicData.capabilities.gir_output !== 'out_of_scope' || publicData.capabilities.institutional_gir_receipt !== 'unsupported') errors.push('Status público das capacidades GIR incompatível');
 }
 const report = { phase: process.argv.includes('--web') ? 'F0-web' : 'F0', node: process.versions.node, errors, engine_implemented: false, dependencies: [] };
 console.log(JSON.stringify(report, null, 2));

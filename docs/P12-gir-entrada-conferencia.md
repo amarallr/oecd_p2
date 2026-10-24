@@ -1,6 +1,6 @@
-# P12 — GIR como entrada, saída e fonte de conferência
+# P12 — Análise comparativa da GIR de entrada
 
-Versão: `0.1.0-design`, 23/10/2026. **Requisito incorporado à concepção; importador, validação XSD, conferência e motor ainda não implementados.** O exemplo JSON é contrato interno sintético, não GIR oficial nem fixture validada contra XSD. Fontes e lacunas: [catálogo GIR](../sources/gir.md). Decisão: [ADR-005](adr/ADR-005-gir-bidirecional.md).
+Versão: `0.2.0-design`, 23/10/2026. **Requisito incorporado à concepção; importador, validação XSD, relatório executável e motor ainda não implementados.** O exemplo JSON é contrato interno sintético, não GIR oficial nem fixture validada contra XSD. Fontes e lacunas: [catálogo GIR](../sources/gir.md). Decisão: [ADR-005](adr/ADR-005-gir-analise-comparativa.md).
 
 ## 1. Finalidade e fronteiras
 
@@ -10,36 +10,36 @@ A plataforma deve explicar o que o grupo declarou, em qual arquivo/versão/exerc
 |---|---|
 | Recepção institucional | Entrega ou intercâmbio por canal autorizado, fora deste primeiro escopo; registrar evidência externa quando disponibilizada. Importar não confirma recepção ou aceitação fiscal. |
 | Ingestão local | Operador disponibiliza arquivo autorizado; preservar bytes, identificar perfil, validar e mapear offline. Não conectar automaticamente à OCDE ou a fiscos. |
-| Exportação | Produzir arquivo para um fluxo identificado; conteúdo, envelope de intercâmbio e requisitos domésticos têm versões e validações distintas. Exportar não transmite. |
+| Relatório de análise | Apresentar cotejamentos GIR × demais fontes, resultados, diferenças, cobertura, limitações e evidências ao operador. Não gerar arquivo GIR nem transmitir declaração. |
 
-Há duas jornadas complementares, ambas planejadas:
+O arquivo recebido entra como fonte declaratória junto das demais fontes. A preparação e o núcleo reúnem os fatos com proveniência, cotejam conceitos e contextos compatíveis e calculam somente quando regra e dados permitem. A saída esperada é um relatório das análises GIR × demais fontes. **A plataforma não produzirá uma GIR de saída.**
 
 ```mermaid
 flowchart LR
-  A[Dados contábeis, fiscais e societários] --> B[Normalização e conciliação]
-  B --> C[Motor GloBE por perfil suportado]
-  R[Regras e pacotes versionados] --> C
-  C --> M[Memória e resultados]
-  M --> E[Preparação e exportação da GIR produzida]
-  G[GIR recebida de grupo ou canal autorizado] --> O[Arquivo original imutável e hash]
-  O --> V[Leitura segura, perfil e validações]
-  V --> D[Fatos declarados e normalizados separados]
-  D --> X[Cruzamentos e diagnóstico de suficiência]
-  B --> X
-  X --> I[Recálculo independente quando possível]
-  R --> I
-  I --> Q[Comparação com o declarado]
-  D --> Q
-  Q --> H[Evidências, riscos e revisão humana]
+  ERP[ERP e exportações contábeis] --> P[01 · Fontes]
+  SPED[SPED e bases domésticas] --> P
+  CBC[CbC e outras fontes autorizadas] --> P
+  G[GIR recebida · fonte declaratória] --> O[Preservar original, hash e contexto]
+  O --> V[Identificar perfil, ler com segurança e validar]
+  V --> D[Declarado com proveniência]
+  D --> P
+  P --> N[02 · Preparação: normalizar, conciliar e iniciar cotejamentos]
+  N --> X[03 · Núcleo: comparar GIR × demais fontes e analisar]
+  R[Regras versionadas e contexto] --> X
+  X --> I[Recalcular apenas com suporte e insumos suficientes]
+  I --> C[Comparar declarado, outras fontes e recálculo]
+  D --> C
+  N --> C
+  C --> H[04 · Relatório: análises, diferenças, cobertura e evidências]
 ```
 
-Em texto: a preparação usa dados empresariais para cálculo e exportação. A conferência parte da GIR recebida, preserva o original e produz fatos declarados separados das transformações. Só insumos suficientes e compatíveis permitem recálculo. O resultado nunca substitui silenciosamente a referência declarada. Não há obrigação de passar por um motor completo para preservar e validar um arquivo.
+Em texto: a GIR é fonte de entrada ao lado das demais, não uma jornada paralela isolada. A preparação preserva originais, normaliza, concilia e inicia cotejamentos entre informações compatíveis; o núcleo aprofunda análises da GIR frente às outras fontes e recalcula somente o que tiver suporte. A etapa 04 produz o relatório de consistências, diferenças, cobertura, insuficiências e evidências. Valores declarados não são substituídos por normalizados ou recalculados. A plataforma não gera nem transmite uma GIR. Recepção institucional e ingestão local continuam fronteiras separadas.
 
 ## 2. Requisitos verificáveis
 
 | ID | Requisito | Evidência e bloqueio futuro |
 |---|---|---|
-| GIR-R01 | Separar recepção, ingestão e exportação; conteúdo, envelope e regra doméstica | Manifesto com finalidade e destinatário; sem alegar entrega por sucesso do parser |
+| GIR-R01 | Separar recepção institucional, ingestão local e relatório de análise; conteúdo, envelope e regra doméstica | Registro de origem e finalidade; relatório não se apresenta como entrega/aceitação |
 | GIR-R02 | Original imutável, origem, hash SHA-256 dos bytes e data UTC de ingestão | Releitura com hash igual; original disponível mesmo após rejeição conforme retenção |
 | GIR-R03 | Selecionar perfil por formato, namespace, versão, mensagem, contexto e fluxo | Perfil desconhecido: preservar e diagnosticar, sem processamento material ou fallback |
 | GIR-R04 | Leitura XML segura e validações independentes de estrutura/semântica | DTD e entidades externas rejeitados; XSD local fixado, sem acesso à rede |
@@ -54,7 +54,7 @@ São requisitos de produto e decisões de engenharia, fundamentados na necessida
 
 ## 3. Perfil de processamento e pipeline
 
-O manifesto de perfil terá `profile_id`, versão, `flow` (ingestão/exportação), versões de conteúdo, envelope e regra doméstica, formatos, namespaces/versões/mensagens aceitos, XSDs e dependências com hashes reais, parser/validador e limites, mapa de campos, regras semânticas e cobertura. Nenhum desses valores oficiais será inferido a partir da edição mais recente. Namespace pode identificar só a versão maior; não substitui a versão exata do arquivo e do XSD. Os perfis XML 1.0 e 2.0 são **candidatos não suportados**, sem namespace literal ou XSD fixado neste repositório.
+O manifesto de perfil terá `profile_id`, versão, finalidade de ingestão local, versões de conteúdo/envelope/regra doméstica, formatos, namespaces/versões/mensagens aceitos, XSDs e dependências com hashes reais, parser/validador e limites, mapa de campos, regras semânticas e cobertura. Nenhum desses valores oficiais será inferido a partir da edição mais recente. Namespace pode identificar só a versão maior; não substitui a versão exata do arquivo e do XSD. Os perfis XML 1.0 e 2.0 são **candidatos não suportados**, sem namespace literal ou XSD fixado neste repositório.
 
 | Etapa | Saída imutável ou diagnóstico | Condição para avançar |
 |---|---|---|
@@ -150,7 +150,7 @@ Causas são hipóteses até revisão: arredondamento, câmbio, período/perímet
 
 | Etapa | Entrega e dependências | Testes e conclusão futura | Limitações |
 |---|---|---|---|
-| GIR-0 | Contratos P12, fontes, cobertura e exemplo interno; independente de F1 | Integridade do exemplo, links e referências; documento e lacunas explícitos | Entrega desta rodada; não é importador |
+| GIR-0 | Contratos P12, fontes, cobertura e exemplo interno; independente de F1 | Integridade do exemplo, links e referências; documento e lacunas explícitos | Entrega desta rodada; não é importador nem relatório executável |
 | GIR-1 | Leitura segura e estrutura de um único perfil; XSD local e dependências verificadas, runtime/parser fixados | Original/hash, repetição idempotente, versão rejeitada, DTD/XXE, tamanho/profundidade, estrutura inválida e rede bloqueada | Sem cálculo, conexão institucional ou suporte implícito a outra versão |
 | GIR-2 | Mapeamento para declarado/normalizado; GIR-1 + seletores e regras revisados | Lexemas, namespaces/ocorrências, estados de ausência, campos materiais sem mapa | Cobertura publicada por campo; sem apuração |
 | GIR-3 | Consistências internas; GIR-2 + regras de tabelas e contexto | Totais e relações com esperados independentes, condições especiais bloqueadas | Não chama reprodução da GIR de conferência independente |

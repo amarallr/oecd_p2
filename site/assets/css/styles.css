@@ -12,4 +12,6 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 /* Os dois percursos da GIR ficam visíveis também em telas estreitas. */
 .gir-flows{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}.gir-flows article{display:flex;flex-direction:column;gap:7px;padding:16px 18px;background:#fff;border-left:3px solid var(--teal);font-size:.82rem}.gir-flows article strong{font-size:.78rem}.gir-flows article span{color:var(--muted);line-height:1.5}
+.gir-flows{grid-template-columns:repeat(4,minmax(0,1fr))}.gir-flows article{min-width:0}
+@media(max-width:1000px){.gir-flows{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.gir-flows{grid-template-columns:1fr}}
