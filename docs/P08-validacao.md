@@ -49,6 +49,10 @@ Camadas: testes unitários de regra; contratos de dados/pacotes; integração da
 
 ## Bootstrap, página e CI
 
+A [P12, seção 9](P12-gir-entrada-conferencia.md#9-implantação-incremental-e-aceite) acrescenta os testes de GIR, todos **planejados**: fixture validada pelo XSD pertinente; idempotência; versão incompatível; DTD/XXE e limites; material ausente/sem mapa; moedas/períodos incompatíveis; correção inválida; dados insuficientes; divergência preservada; reprodução antiga e sigilo de logs.
+
+`not_executed` não gera `passed` ou `consistent_in_scope`. Aritmética declarada, recálculo com GIR e com fontes independentes são categorias distintas. Independência exige linhagem sem circularidade e contexto conciliado. Tolerância não apaga diferença exata; divergência não prova infração. Os testes desta concepção conferem integridade do JSON interno e comunicação pública, não XSD, parser, imposto ou recepção institucional.
+
 F0: preparar clone limpo, abrir projeto, restaurar dependências aplicáveis, usar sessão sem .RData e caminhos pessoais; Rscript não interativo para componentes R. Distinguir arquivo preparado de projeto efetivamente aberto e validado no RStudio. Nesta rodada o arquivo existente foi apenas lido.
 
 Página: W01 menu/âncoras; W02 seleção de todos os módulos por mouse e teclado; W03 avançar/voltar/selecionar etapa, sem autoavanço; W04 reproduzir T01–T08 e restaurar exemplo; W05 erros com labels, foco e anúncio; W06 360/768/1440 px sem overflow horizontal; W07 contraste e foco; W08 conteúdo essencial sem JS; W09 links/fontes; W10 console sem erro e recursos em subdiretório; W11 memória M01–M09 e limitações visíveis; W12 preferência por movimento reduzido. Registrar screenshots e inspeção manual no navegador; teste automático não prova sozinho acessibilidade.

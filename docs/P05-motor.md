@@ -4,6 +4,8 @@ O futuro motor executará somente perfis explicitamente habilitados. Esta especi
 
 ## Operações e estados
 
+Na extensão [P12](P12-gir-entrada-conferencia.md), fatos da GIR recebida só alimentam o motor com perfil, cobertura e proveniência explícitos. `declared_arithmetic`, `gir_based` e `independent_sources` distinguem aritmética declarada, recálculo com GIR e com fontes externas conciliadas. O perfil ordinário não se aplica automaticamente aos agregados. A comparação é separada; o motor não altera o declarado e não conclui sem dados ou regra suportada.
+
 | Operação | Entradas e pré-condições | Saída | Erro bloqueante |
 |---|---|---|---|
 | validate_context | Grupo, período, versões e perfil identificados | Contexto validado | E_CONTEXT / E_PERIOD |

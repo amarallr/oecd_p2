@@ -2,7 +2,7 @@ name: Publicar página explicativa
 on:
   push:
     branches: [main]
-    paths: ['site/**', '.github/workflows/pages.yml', 'scripts/verificar-projeto.cjs', 'scripts/testar-navegador.cjs', 'scripts/verificar-apresentacao.cjs', 'tests/site.test.cjs', '.node-version']
+    paths: ['site/**', '.github/workflows/pages.yml', 'scripts/verificar-projeto.cjs', 'scripts/testar-navegador.cjs', 'scripts/verificar-apresentacao.cjs', 'tests/site.test.cjs', 'tests/gir-design.test.cjs', 'examples/gir-review*', '.node-version']
   workflow_dispatch:
 permissions:
   contents: read
@@ -19,6 +19,7 @@ jobs:
           node-version-file: .node-version
       - run: node scripts/verificar-projeto.cjs --web
       - run: node tests/site.test.cjs
+      - run: node tests/gir-design.test.cjs
       - name: Iniciar servidor e Chromium para validação antes da publicação
         run: |
           node scripts/servir-site.cjs > "$RUNNER_TEMP/p2-server.log" 2>&1 &

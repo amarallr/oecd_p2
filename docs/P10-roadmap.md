@@ -11,7 +11,7 @@ A revisão de consistência mantém o mesmo perfil em domínio, dados, motor, pa
 | F1 | Perfil fechado e contrato → biblioteca/CLI decimal, memória, dados e bloqueios | T01–T09/T16/T24/T25 e rejeição dos demais; operação offline; suporte experimental publicado | P04/P05/P07/P08; engenharia e revisores | Falsa cobertura de ajustes recebidos prontos |
 | F2 | Contrato de coordenação revisado → dois pacotes fictícios e ledger | Esperados manuais, ausência de dupla contagem e reconciliação | F1, P06, T20/T23; especialistas de alocação | Coordenação simplificada parecer regra real |
 | F3 | País e exercício selecionados → primeiro pacote real revisado | Corpus doméstico, qualificação quando necessária, revisão independente e cenários oficiais | L01–L04/L08 e F2; juristas/contadores nacionais | Mudança normativa e interpretação não resolvida |
-| F4 | Necessidades priorizadas → relatórios, GIR, API/interface | Contratos versionados; schema, semântica e recepção separados | F3 para obrigação real; L05; operadores e segurança | XML válido ser confundido com entrega aceita |
+| F4 | Necessidades priorizadas → relatórios, exportação GIR e API/interface; ingestão segue trilha própria | Contratos versionados; schema, semântica e recepção separados | F3 para obrigação real; L05; operadores e segurança | XML válido ser confundido com entrega aceita |
 | F5 | Demanda e capacidade → expansão de casos/países e desempenho | Suporte por capacidade/período comprovado e manutenção financiada | Fases anteriores e governança | Dívida normativa e concentração de mantenedores |
 
 F0 técnico pode avançar enquanto lacunas jurídicas independentes são estudadas. A aprovação técnica de corpus/escopo continua necessária para liberar capacidades normativas; não impede preparar arquivos ou site didático com limites explícitos.
@@ -32,13 +32,29 @@ Esforço relativo é comparativo (P/M/G), sem orçamento ou prazo prometido. A h
 | B08 | Como auditor, reproduzir versão e retificação | P01/P05 | B07 | M | Hash canônico e comparação histórica |
 | B09 | Como desenvolvedor nacional, testar diferenças explicáveis | P06 | B07/B08 | G | FICT-A/B e ledger de alocação revisado |
 | B10 | Como especialista, delimitar país/exercício de piloto real | P02/P03/P06 | Levantamento, não escolha arbitrária | G | Corpus doméstico, qualificação e ficha de suporte |
-| B11 | Como declarante futuro, exportar versão GIR correta | P07/S6/S11/S12 | L05 e perfil real | G | XSD, semântica e calendário evidenciados |
+| B11 | Como declarante futuro, exportar GIR correta, separada da GIR recebida | P07/P12/S6/S11/S12 | L05 e perfil real | G | XSD, semântica e calendário evidenciados |
 | B12 | Como contribuidor, saber revisar e redistribuir | P09/S18/S19 | Titularidade e licenças | M | Documentos finais e revisão de licenças/dependências |
 | B13 | Como mantenedor, publicar versões verificáveis | P08/P09 | Escopo implementado | M | CI, SBOM, release e canal de segurança real |
 
 Caminho crítico para obrigação real: corpus/IFRS e piloto → contratos e interpretação → motor revisado → coordenação → pacote nacional → validação independente. Página e levantamento de fontes são entregas independentes. Custos recorrentes: atualização normativa por país/período, regressões, revisão de dependências, traduções, acessibilidade e atendimento a falhas. Dimensionar equipe e volume antes de estimar calendário ou orçamento.
 
 ## Entregas e próximos prompts
+
+### Trilha GIR de ingestão e conferência
+
+A [P12](P12-gir-entrada-conferencia.md) define GIR-0 a GIR-6. Contratos e ingestão não esperam motor completo ou pacote real; somente recálculo depende de perfil de cálculo suportado. Os módulos de importação abaixo não estão implementados.
+
+| Backlog / etapa | Entrega | Dependências e aceite |
+|---|---|---|
+| B14 / GIR-0 | Contratos, fontes, cobertura e exemplo interno | P12/ADR-005; integridade, sem alegar XSD |
+| B15 / GIR-1 | Preservação, leitura segura e estrutura de um perfil | XSD/dependências fixados, parser/runtime; hash/idempotência, versão rejeitada, XXE/DTD e limites |
+| B16 / GIR-2 | Mapeamento declarado/normalizado | B15 e seletores revisados; proveniência, ausência e campo material sem mapa |
+| B17 / GIR-3 | Consistências internas | B16 e regras revisadas; totais/condições, sem alegar independência |
+| B18 / GIR-4 | Comparação e suficiência | B17 + F1 ou perfil posterior suportado; contexto conciliado e independência identificada |
+| B19 / GIR-5 | Histórico e correções | B16 e semântica de mensagens homologada; referências, parcialidade e reprodução antiga |
+| B20 / GIR-6 | Cruzamentos e relatórios | B17/B19 e acesso autorizado; chaves, cobertura, conceitos e sigilo |
+
+Próximo prompt independente: [GIR-1](../prompts/execucao-GIR1.md). Não antecipa F1, transmissão institucional ou suporte a todas as versões.
 
 Estrutura prevista: raiz com `.Rproj`, `.gitignore`, README e licença adotada; prompts, docs/adr, sources, schemas, core, rules, jurisdictions, adapters, examples, tests, scripts, R e site. A concepção criou somente documentos, prompts e evidências pertinentes, sem pastas vazias para aparentar implementação.
 

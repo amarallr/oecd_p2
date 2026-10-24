@@ -67,6 +67,8 @@
         <article data-module-panel="interfaces"><span class="badge">Planejado no motor</span><p class="module-kicker">07 / ACESSO</p><h3>Interfaces</h3><p>Permitir uso como biblioteca e CLI; API e aplicação operacional entram em fases posteriores.</p><dl><div><dt>Recebe</dt><dd>Comandos, arquivos e contexto de execução.</dd></div><div><dt>Produz</dt><dd>Diagnósticos, resultados e relatórios por contratos abertos.</dd></div><div><dt>Depende de</dt><dd>Núcleo independente da tela e formatos estáveis.</dd></div></dl><p class="module-limit">Esta página explicativa está implementada e é separada da interface operacional futura.</p></article>
       </div>
     </div><p class="architecture-caption">Fluxo previsto: dados → regras e contexto → cálculo por perfil → coordenação quando suportada → memória verificável. A tela é uma camada consumidora.</p>
+    <div class="gir-flows" aria-label="Dois fluxos planejados para a GIR"><article><strong>Preparar</strong><span>Fontes → normalização → motor → GIR produzida</span></article><article><strong>Conferir</strong><span>GIR recebida → preservar e validar → cruzar → comparar se houver insumos</span></article></div>
+    <p class="architecture-caption">A entrada e a exportação da GIR ainda não estão implementadas. <a href="https://github.com/amarallr/oecd_p2/blob/main/docs/P12-gir-entrada-conferencia.md">Especificação, limites e etapas de implementação →</a></p>
   </div></section>
 
   <section class="section container" id="etapas" aria-labelledby="steps-title"><div class="section-heading"><div><p class="eyebrow">03 / FLUXO GUIADO</p><h2 id="steps-title">Do dado à explicação.</h2></div><p>Cada etapa recebe informação, executa uma decisão e produz evidência. Explore a sequência proposta.</p></div>

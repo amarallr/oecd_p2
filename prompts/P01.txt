@@ -19,6 +19,7 @@ Todos os participantes e revisores do projeto.
 
 R — RESPOSTA
 Aplique as instruções abaixo em cada etapa:
+Ao tratar GIR, carregue também P12 e docs/P12-gir-entrada-conferencia.md: a declaração é entrada, saída e fonte de conferência; preserve os limites de cada fluxo e os estados reais de implementação.
 1. Use fontes primárias: OCDE/Inclusive Framework, legisladores, autoridades nacionais e IFRS Foundation. Fontes secundárias servem para descoberta, não para substituir o fundamento.
 2. Registre fonte, emissor, URL, edição, artigo/parágrafo, publicação, acesso, vigência e jurisdição. Calcule checksum apenas se os bytes forem efetivamente obtidos.
 3. Não invente dispositivo, trecho, qualificação nacional, resultado esperado nem status de vigência. Marque “não verificado” quando faltar evidência.

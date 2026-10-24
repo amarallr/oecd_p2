@@ -1,0 +1,261 @@
+{
+  "schema_version": "0.1.0-design",
+  "artifact_status": "contract_example_not_executable",
+  "classification": "synthetic",
+  "official_gir_format": false,
+  "official_xsd_validated": false,
+  "scenario_time_note": "recorded_at representa somente um instante fictício do cenário; não é ingestão executada",
+  "submissions": [
+    {
+      "submission_id": "SUB-SYN-01",
+      "source_document_ids": [
+        "DOC-DECL"
+      ],
+      "context_state": "present",
+      "group_id": "SYNTHETIC-GROUP-01",
+      "jurisdiction": "FICT-A",
+      "period_id": "SYNTHETIC-PERIOD-01",
+      "processing_profile_state": "not_implemented",
+      "source_identifiers": [],
+      "institutional_receipt_state": "not_applicable",
+      "schema_version": "0.1.0-design",
+      "classification": "synthetic",
+      "recorded_at": "2026-10-23T00:00:00Z",
+      "record_version": 1
+    }
+  ],
+  "source_documents": [
+    {
+      "document_id": "DOC-DECL",
+      "local_uri": "examples/gir-review-synthetic.source.json",
+      "sha256": "dd7c4a6b7d8301131a3b3ff52208de6a7c70f648386aeff2493277713db84349",
+      "byte_length": 256,
+      "origin": "synthetic_internal_declaration_fixture",
+      "format": "internal_json_not_official_gir",
+      "namespace": null,
+      "official_schema_version": null,
+      "schema_version": "0.1.0-design",
+      "classification": "synthetic",
+      "recorded_at": "2026-10-23T00:00:00Z",
+      "record_version": 1
+    },
+    {
+      "document_id": "DOC-BASE",
+      "local_uri": "examples/ordinary-synthetic.design.json",
+      "sha256": "e04e0517ebc8ca3956348cba1acc3bd975e693bfdbf44d78eb98eb9a89686550",
+      "byte_length": 689,
+      "origin": "separate_synthetic_base_fixture",
+      "format": "internal_json_not_official_gir",
+      "namespace": null,
+      "official_schema_version": null,
+      "schema_version": "0.1.0-design",
+      "classification": "synthetic",
+      "recorded_at": "2026-10-23T00:00:00Z",
+      "record_version": 1
+    }
+  ],
+  "declared_facts": [
+    {
+      "declared_fact_id": "DF-01",
+      "submission_id": "SUB-SYN-01",
+      "document_id": "DOC-DECL",
+      "concept_id": "jurisdictional_top_up_before_allocation",
+      "value_state": "present",
+      "original_lexeme": "5",
+      "decimal_value": "5",
+      "currency": "XUM",
+      "unit": "monetary",
+      "scale": "1",
+      "sign_convention": "positive_amount",
+      "locator": {
+        "kind": "json_pointer",
+        "path": "/declared/jurisdictional_top_up_before_allocation",
+        "namespace_bindings": {},
+        "occurrence": 1
+      },
+      "context": {
+        "group_id": "SYNTHETIC-GROUP-01",
+        "jurisdiction": "FICT-A",
+        "entity_state": "not_applicable",
+        "period_id": "SYNTHETIC-PERIOD-01"
+      },
+      "material": true,
+      "schema_version": "0.1.0-design",
+      "classification": "synthetic",
+      "recorded_at": "2026-10-23T00:00:00Z",
+      "record_version": 1
+    }
+  ],
+  "field_mappings": [
+    {
+      "mapping_id": "MAP-INTERNAL-01",
+      "profile_id": "internal_contract_fixture_only",
+      "version": "0.1.0-design",
+      "selector": "/declared/jurisdictional_top_up_before_allocation",
+      "target_concept": "jurisdictional_top_up_before_allocation",
+      "transformation": "identity_preserve_lexeme",
+      "accepted_value_states": [
+        "present",
+        "missing",
+        "unknown",
+        "not_applicable"
+      ],
+      "official_xpath": null,
+      "schema_version": "0.1.0-design",
+      "classification": "synthetic",
+      "recorded_at": "2026-10-23T00:00:00Z",
+      "record_version": 1
+    }
+  ],
+  "normalized_facts": [
+    {
+      "normalized_fact_id": "NF-01",
+      "declared_fact_id": "DF-01",
+      "mapping_id": "MAP-INTERNAL-01",
+      "mapping_version": "0.1.0-design",
+      "value_state": "present",
+      "decimal_value": "5",
+      "original_lexeme": "5",
+      "currency": "XUM",
+      "unit": "monetary",
+      "scale": "1",
+      "schema_version": "0.1.0-design",
+      "classification": "synthetic",
+      "recorded_at": "2026-10-23T00:00:00Z",
+      "record_version": 1
+    }
+  ],
+  "validation_results": [
+    {
+      "validation_id": "VAL-01",
+      "submission_id": "SUB-SYN-01",
+      "document_id": "DOC-DECL",
+      "layer": "structure",
+      "rule_id": "official_xsd_validation",
+      "rule_version": null,
+      "status": "not_executed",
+      "severity": "blocking_if_processing_requested",
+      "evidence_ids": [],
+      "reason": "Fixture interna JSON; importador e XSD oficiais não implementados.",
+      "schema_version": "0.1.0-design",
+      "classification": "synthetic",
+      "recorded_at": "2026-10-23T00:00:00Z",
+      "record_version": 1
+    }
+  ],
+  "reconciliation_results": [
+    {
+      "reconciliation_id": "REC-01",
+      "submission_id": "SUB-SYN-01",
+      "source_document_ids": [
+        "DOC-DECL",
+        "DOC-BASE"
+      ],
+      "join_keys": [
+        "jurisdiction",
+        "period_id",
+        "currency"
+      ],
+      "bridge_version": "0.1.0-design",
+      "execution_status": "not_executed",
+      "result_status": null,
+      "evidence_ids": [],
+      "reason": "Conciliação de fontes sintéticas apenas especificada.",
+      "schema_version": "0.1.0-design",
+      "classification": "synthetic",
+      "recorded_at": "2026-10-23T00:00:00Z",
+      "record_version": 1
+    }
+  ],
+  "recalculation_runs": [
+    {
+      "recalculation_run_id": "RR-01",
+      "profile": "ordinary_synthetic_v1",
+      "mode": "independent_sources",
+      "independence_scope": "separate_synthetic_fixture_not_real_accounting_evidence",
+      "input_snapshot": {
+        "document_id": "DOC-BASE",
+        "field_paths": [
+          "/income",
+          "/adjusted_covered_taxes",
+          "/substance_exclusion"
+        ],
+        "snapshot_hash": null
+      },
+      "rule_version": "design-only-no-engine",
+      "packs": [],
+      "execution_status": "not_executed",
+      "result_status": null,
+      "output": null,
+      "canonical_result_hash": null,
+      "schema_version": "0.1.0-design",
+      "classification": "synthetic",
+      "recorded_at": "2026-10-23T00:00:00Z",
+      "record_version": 1
+    }
+  ],
+  "comparison_results": [
+    {
+      "comparison_id": "CMP-01",
+      "submission_id": "SUB-SYN-01",
+      "declared_fact_ids": [
+        "DF-01"
+      ],
+      "recalculation_run_id": "RR-01",
+      "reconciliation_id": "REC-01",
+      "rule_id": "declared_vs_recalculated_v1-design",
+      "execution_status": "not_executed",
+      "result_status": null,
+      "declared_value": "5",
+      "recalculated_value": null,
+      "signed_difference": null,
+      "absolute_difference": null,
+      "relative_absolute_difference": null,
+      "currency": "XUM",
+      "scale": "1",
+      "input_completeness": "not_assessed",
+      "independence": "not_established_by_execution",
+      "evidence_ids": [],
+      "tolerance_policy": {
+        "policy_id": "synthetic_exact",
+        "version": "0.1.0-design",
+        "absolute_limit": "0",
+        "justification": "Exemplo manual com valores inteiros na mesma unidade."
+      },
+      "schema_version": "0.1.0-design",
+      "classification": "synthetic",
+      "recorded_at": "2026-10-23T00:00:00Z",
+      "record_version": 1
+    }
+  ],
+  "submission_relations": [
+    {
+      "relation_id": "REL-PENDING-01",
+      "source_submission_id": "SUB-SYN-01",
+      "target_submission_id": null,
+      "relation_type": "correction_candidate_not_processed",
+      "profile_id": "internal_contract_fixture_only",
+      "source_reference": {
+        "type": "synthetic_reference",
+        "value": "UNKNOWN-SYNTHETIC-TARGET"
+      },
+      "affected_scope": "not_resolved",
+      "status": "pending_reference",
+      "reason": "Exemplo de referência não resolvida; não altera a declaração aplicável.",
+      "schema_version": "0.1.0-design",
+      "classification": "synthetic",
+      "recorded_at": "2026-10-23T00:00:00Z",
+      "record_version": 1
+    }
+  ],
+  "manual_expected_not_engine_output": {
+    "assumptions": "Perfil ordinário sintético, bases prontas 100/10/20, sem QDMTT, safe harbours ou ajustes adicionais; conciliação hipotética de jurisdição, período e moeda.",
+    "declared": "5",
+    "recalculated_hypothesis": "4",
+    "signed_difference": "-1",
+    "absolute_difference": "1",
+    "relative_absolute_difference": "0.20",
+    "expected_comparison_status_if_executed_and_eligible": "divergent",
+    "legal_conclusion": null
+  }
+}

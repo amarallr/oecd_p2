@@ -17,11 +17,22 @@ flowchart LR
   S[Snapshots de contexto] --> D
   CLI[CLI local] --> D
   D --> M[Memória canônica e relatórios]
-  M --> G[Adaptador GIR futuro]
+  M --> G[Exportação da GIR produzida]
+  GI[GIR recebida em arquivo autorizado] --> O[Original imutável e hash]
+  O --> V[Perfil, leitura segura e validações]
+  V --> FD[Fatos declarados]
+  FD --> FN[Normalização com proveniência]
+  FN --> X[Conciliação e suficiência]
+  C --> X
+  X --> RC[Recálculo quando suportado]
+  R --> RC
+  FD --> COMP[Comparação e evidências]
+  RC --> COMP
+  COMP --> M
   DOC[Conteúdo público revisado] --> WEB[Página estática didática]
 ```
 
-O equivalente textual é: adaptadores alimentam contratos; biblioteca recebe contratos, regras e snapshots; CLI invoca a biblioteca; memória alimenta relatórios e futuro adaptador GIR. A página usa conteúdo público e exemplo didático próprio, explicitamente limitado; não é requisito para executar a biblioteca.
+Em texto: dados empresariais alimentam cálculo e exportação da GIR produzida. Outra jornada preserva a GIR recebida, valida por perfil e separa declarado e normalizado. Fontes externas conciliadas podem alimentar recálculo; a comparação conserva a referência declarada. Recepção institucional e transmissão são externas à ingestão local. A página explicativa é independente do motor.
 
 | Módulo | Responsabilidade e fronteira |
 |---|---|
@@ -29,7 +40,8 @@ O equivalente textual é: adaptadores alimentam contratos; biblioteca recebe con
 | core/engine | Grafo determinístico e despacho por perfil |
 | rules | Metadados, interpretações revisadas e aplicabilidade |
 | jurisdictions | Manifestos e extensões nacionais ou fictícias |
-| adapters | CSV/JSON, contabilidade, relatórios e futuro GIR |
+| adapters | CSV/JSON internos, contabilidade, relatórios e futuros gir/ingest e gir/export separados |
+| review | Contratos de validação, conciliação, suficiência e comparação, sem exigir motor completo |
 | audit | Serialização canônica, hashes e memória |
 | CLI | Validação de argumentos, códigos de saída e arquivos |
 | storage | Arquivos imutáveis locais em F1; banco futuro mediante ADR |
@@ -75,6 +87,8 @@ Meta de engenharia proposta, ainda não medida: validar/canonizar/calcular 10 mi
 ## GIR e página
 
 Adaptador GIR separa conteúdo, XSD, intercâmbio e recepção interna. Seleção considera calendário do S6, destinatário e correções, não só exercício. Validar XML não comprova correção semântica nem aceitação pelo fisco.
+
+O [ADR-005](adr/ADR-005-gir-bidirecional.md) e a [P12](P12-gir-entrada-conferencia.md) detalham os dois sentidos. Contratos propostos: `ingest_gir(file, profile) -> submission + diagnostics`, `reconcile(submission, sources) -> coverage`, `compare(declared, run, policy) -> comparison`. Não existem como software nesta fase. Original, declarado, normalizado e recalculado não são sobrescritos. Hash, perfil, mapeamento e snapshots sustentam idempotência e correções rastreáveis. Leitor XML sem DTD/XXE/XInclude, schemas locais e limites precedem mapeamento material.
 
 Página: `site/index.html`, `site/assets/css/styles.css`, `site/assets/js/app.js`, dados locais opcionais. HTML/CSS/JS sem framework e sem backend; caminhos relativos. Preview futuro pelo terminal RStudio: `python -m http.server 8000 --directory site --bind 127.0.0.1`, após confirmar Python, e abrir `http://127.0.0.1:8000`. Não usar file:// como validação. GitHub Pages por workflow com artefato de site; confirmar configuração, deployment e URL real antes de publicar link no README.
 

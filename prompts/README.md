@@ -18,3 +18,5 @@ Aplicar P01 e as diretrizes atualizadas em todas as etapas. Ordem: P00, P02 a P0
 - [P11 — PÁGINA WEB INTERATIVA PARA EXPLICAÇÃO DO PROJETO](P11.txt)
 
 A concepção não executa automaticamente os prompts futuros [F0](execucao-F0.md), [F0-web](execucao-F0-web.md) e [F1](execucao-F1.md). Eles delimitam os próximos incrementos.
+
+Extensão posterior ao caderno original: [P12 — GIR como entrada, saída e fonte de conferência](P12.txt), com [especificação](../docs/P12-gir-entrada-conferencia.md) e próximo prompt [GIR-1](execucao-GIR1.md). Aplicar P12 a dados, arquitetura, validação, roadmap e comunicação pública. GIR-0 é concepção; a execução de GIR-1 depende de solicitação própria e não exige motor completo.

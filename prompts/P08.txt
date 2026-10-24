@@ -40,4 +40,5 @@ R — RESPOSTA
 18. Planeje verificações de mapeamento ERP, reconciliação SPED/CbC/GIR, proveniência e segregação de dados quando as integrações forem implementadas. Para inteligência fiscal, avalie indicadores com revisão humana e evidências independentes; mantenha IA fora da apuração normativa.
 
 Entregáveis: matriz de testes, catálogo de referência, procedimento de revisão e checklist de liberação.
+Extensão obrigatória: aplique a matriz de aceite P12/GIR-0 a GIR-6, separando estrutura, mapeamento, consistência, cálculo e integração. Teste idempotência, versão rejeitada, XML hostil, material ausente/sem mapa, incompatibilidade de contexto, correções e não circularidade. Not executed nunca é passed; fixture oficial só é compatível após validar contra XSD pertinente.
 Aceite: todo recurso declarado suportado possui evidência; toda limitação material permanece visível.

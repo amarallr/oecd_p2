@@ -54,3 +54,4 @@ R — RESPOSTA
 18. Exija no README introdução didática, objetivo revisado, módulos, diagrama Mermaid com alternativa textual e situação real. Trate reconciliação de documentos antigos e da página com a visão ampliada como trabalho explícito, sem declarar essas atualizações concluídas apenas por alterar os prompts.
 
 Aceite: o primeiro incremento deve ser pequeno, reproduzível e auditável; a expansão deve ocorrer por suporte comprovado, não por alteração de rótulo.
+Extensão obrigatória: incorpore P12 e B14–B20/GIR-0 a GIR-6, com próximos passos em prompts/execucao-GIR1.md. Não condicione contratos e ingestão à existência de motor completo ou pacote real. Recálculo depende de perfil suportado e dados suficientes; exportação, transmissão e recepção institucional permanecem capacidades distintas.

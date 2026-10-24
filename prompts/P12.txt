@@ -1,0 +1,36 @@
+====================================================================
+P12 — GIR COMO ENTRADA, SAÍDA E FONTE DE CONFERÊNCIA
+====================================================================
+
+C — CONTEXTO
+Receba P01, P04/P05/P07/P08/P10/P11, docs/P12-gir-entrada-conferencia.md, ADR-005, sources/gir.md, suporte e decisões atualizados. O framework oecd_p2 é aberto, reutilizável internacionalmente e desenvolvido no RStudio. GIR recebida é fonte declaratória; GIR produzida é saída. Nenhum importador ou motor completo é presumido.
+
+O — OBJETIVO
+Manter contratos e implementação incremental para duas jornadas: preparação/exportação da declaração; ingestão local/conferência da declaração recebida. Não exigir motor completo para preservar, validar ou mapear um arquivo. Recálculo só com perfil suportado e insumos suficientes.
+
+S — ESTILO
+Contratos com chaves, cardinalidades, campos, estados, temporalidade, classificação e proveniência. Tabelas de cobertura e aceite; Mermaid com os dois fluxos e alternativa textual.
+
+T — TOM
+Preciso e verificável; divergência é evidência de conferência, não prova de infração. Não confundir requisito, hipótese, implementação e validação executada.
+
+A — AUDIÊNCIA
+Preparadores de GIR, especialistas, desenvolvedores, auditores e administrações tributárias. Requisitos brasileiros ficam em adaptadores, fora do núcleo comum.
+
+R — RESPOSTA
+1. Inspecione AGENTS.md, estado Git e artefatos atuais; preserve alterações. Consulte fontes OCDE e registre título, URL, publicação, versão, consulta e finalidade. Não selecione automaticamente o schema mais recente.
+2. Separe recepção institucional, ingestão local e exportação; conteúdo, envelope de intercâmbio e exigência doméstica. Nenhum importador implica conexão institucional ou declaração aceita.
+3. Preserve bytes, origem, tamanho, SHA-256 real e data de ingestão. Identifique formato/namespace/versão/mensagem por leitura limitada segura; selecione perfil explícito, bloqueando incompatibilidade material.
+4. Separe leitura segura, estrutura XSD, semântica, consistência, mapeamento e cobertura. XML sem DTD/XXE/XInclude, resolução externa ou rede; limites de recursos e schemas locais fixados. JSON/CSV internos não são GIR oficial.
+5. Aplique os nove contratos P12 e suas FKs/temporalidade. Preserve lexema, decimal textual, moeda, unidade, escala e sinal; ausência/desconhecido/não aplicável não viram zero. Campo material sem mapa gera cobertura incompleta e bloqueio afetado.
+6. Mantenha declarado, normalizado e recalculado imutáveis. Distinga aritmética declarada, recálculo com GIR e fontes independentes. Registre linhagem e evite circularidade.
+7. Especifique cada conferência com ID, insumos, fontes, regra/versão, agregação, aplicabilidade, esperado, limitações e evidências. Não executado não é aprovado; diferencie consistente no escopo, divergente, não comparável, insuficiente, regra não suportada e não aplicável.
+8. Planeje cruzamentos ERP, contabilidade, consolidação, tributos/diferidos, sociedade e CbC, além de bases domésticas pertinentes. Documente chaves, cardinalidade, conceitos, períodos, moedas, ajustes, cobertura e acesso. Sem match não equivale a diferença tributária.
+9. Preserve correções e relações por referências da especificação aplicável, não por upload mais recente. Trate parcialidade, referência pendente, conflito e visão temporal; nova execução não apaga snapshots antigos.
+10. Compare declarado/recalculado sem sobrescrever: diferença com sinal, absoluta e relativa quando válida, contexto, completude, causas candidatas, fontes e tolerância justificada/versionada, preservando a diferença exata.
+11. Restrinja dados reais ao ambiente autorizado, sem publicação em site/log/repositório ou envio automático a IA. Segregação por organização precede operação multiusuário.
+12. Siga GIR-0 a GIR-6 e os testes de P12. Publique versões, mensagens, campos e regras realmente suportados. Fixture só é compatível com XSD oficial depois de validação executada.
+13. Reconcilie README, documentos, prompts, fontes, cobertura, página e apresentação com os dois sentidos da GIR. Preserve o simulador didático e a distinção entre capacidade planejada e entregue.
+14. Finalize com arquivos, decisões, fontes/lacunas, testes realmente executados, limitações e próxima etapa concreta; commit e sincronização conforme P01.
+
+Aceite desta concepção: contratos e plano revisáveis, estados explícitos e comunicação coerente. Implementação de GIR-1 é solicitada separadamente por prompts/execucao-GIR1.md.

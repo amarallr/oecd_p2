@@ -17,6 +17,8 @@ Versão da concepção: 0.1.0, em 2026-10-23. “Validada pelo proponente” aba
 
 ## Lacunas materiais
 
+**D11 — GIR bidirecional:** requisito autorizado nesta rodada e incorporado em [P12](P12-gir-entrada-conferencia.md) e [ADR-005](adr/ADR-005-gir-bidirecional.md). Preparação/exportação e ingestão/conferência são fluxos distintos; recepção institucional externa; declarado, normalizado e recalculado não se sobrescrevem. Contratos e plano entregues; importador e motor pendentes.
+
 | ID | Questão e evidência | Impacto e próximo passo | Competência |
 |---|---|---|---|
 | L01 | Commentary 2026 tem descrições de cobertura até janeiro e maio | Conferir incorporação por tema; não escolher resumo como regra universal | Curadoria/revisão tributária |
@@ -27,5 +29,6 @@ Versão da concepção: 0.1.0, em 2026-10-23. “Validada pelo proponente” aba
 | L06 | Resolvida a consulta remota após criação pelo proponente | Público, acesso de escrita e main confirmados; continuidade documentada em github.md | Mantenedor |
 | L07 | Licenças, titulares, revisores e canal reservado não confirmados | Formalizar governança e direitos na liberação | Mantenedores/jurídico |
 | L08 | Exemplos oficiais e corpus histórico completos ainda não revisados | Catalogar referências e direitos, derivar esperados independentes | Curadoria/validação |
+| L09 | GIR-L01–L05: XSDs/dependências sem hashes locais, seletores e mensagens não homologados, recepção doméstica indefinida e parser/limites sem protótipo | Gates de GIR-1 em diante; não bloqueiam contratos GIR-0; detalhe em P12 e sources/gir.md | Declarações, segurança e engenharia |
 
 Riscos principais: falso suporte internacional; perda de rastreabilidade por atualização; mistura de moedas/categorias; vazamento por exemplo/log; dependência de mantenedor único. Controles estão em P01/P04/P07/P08/P09. A pergunta prioritária futura é qual país e exercício justificam um piloto **após** levantamento. Ela não bloqueia os contratos e os casos sintéticos atuais.

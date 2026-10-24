@@ -13,7 +13,11 @@ Atualização: 2026-10-23. Descrever um recurso não o torna implementado. Estad
 | Safe harbours/eleições/casos especiais | Qualquer país real | Não suportado | Bloqueio previsto F1 |
 | Pacotes FICT-A/FICT-B | SYNTHETIC-PERIOD-01 | Não suportado como software | Manifestos ilustrativos P06 |
 | Pacote nacional real | Não selecionado | Não suportado | Planejado F3 |
-| GIR, API e aplicação operacional | Não definido | Não suportado | Planejado F4 |
+| GIR como entrada, saída e fonte de conferência | Contratos P12 / GIR-0 | Especificado, sem processamento de declarações | Documento, exemplo JSON interno e critérios de aceite; não é schema GIR oficial |
+| Ingestão GIR, XSD, mapeamento e consistência | Nenhum perfil XML habilitado | Não suportado | Planejado GIR-1 a GIR-3, independente do motor completo |
+| Comparação, correções e cruzamentos GIR | Nenhum perfil operacional habilitado | Não suportado | Planejado GIR-4 a GIR-6; recálculo depende de perfil suportado e dados suficientes |
+| Exportação GIR, transmissão e recepção institucional | Sem jurisdição/canal selecionado | Não suportado | Exportação futura; importar/exportar não significa entregar/receber institucionalmente |
+| API e aplicação operacional | Não definido | Não suportado | Planejado F4 |
 | Preparação RStudio/Git | Projeto | Suportado para desenvolvimento | F0 implementado; abertura gráfica pelo usuário não presumida |
 | Página explicativa e simulador | Público | Experimental, somente didático | F0-web implementado localmente, sujeito às evidências de navegador/deployment |
 | Acesso ao repositório GitHub | amarallr/oecd_p2 | Suportado para armazenamento de artefatos | Repositório público e main confirmados; não implica motor, CI ou deployment |

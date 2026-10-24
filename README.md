@@ -28,7 +28,7 @@ As regras coordenam quem pode cobrar esse complemento:
 
 A aplicação depende da legislação de cada jurisdição, do período, das exclusões, das eleições e dos *safe harbours* — mecanismos de simplificação sujeitos a condições. Consulte o [resumo das regras GloBE da OCDE](https://www.oecd.org/content/dam/oecd/en/topics/policy-sub-issues/global-minimum-tax/pillar-two-model-rules-in-a-nutshell.pdf) e o [catálogo de fontes e versões do projeto](sources/catalogo.md). O Pilar 2 também compreende a STTR (*Subject to Tax Rule*), tratada separadamente do motor GloBE neste projeto.
 
-A **GIR — GloBE Information Return** reúne informações do grupo, cálculos e dados por jurisdição para a administração tributária. Sua preparação exige conciliar contabilidade, tributos, estrutura societária e regras aplicáveis. O intercâmbio tem um [schema XML publicado pela OCDE](https://www.oecd.org/en/publications/globe-information-return-pillar-two-xml-schema-october-2026_1552c9aa-en.html); a geração de um arquivo válido é uma etapa distinta da correção do cálculo e do cumprimento das exigências locais.
+A **GIR — GloBE Information Return** reúne informações do grupo, cálculos e dados por jurisdição para a administração tributária. A plataforma deve contemplar dois fluxos: preparar dados e resultados para uma GIR futura; e receber uma GIR disponibilizada localmente para validar, normalizar, cruzar com fontes independentes e comparar quando houver dados suficientes. A importação não comprova a correção do cálculo nem a aceitação institucional. O intercâmbio tem um [schema XML publicado pela OCDE](https://www.oecd.org/en/publications/globe-information-return-pillar-two-xml-schema-october-2026_1552c9aa-en.html); versão e perfil precisam corresponder ao documento e ao fluxo aplicável.
 
 ## Objetivo do projeto
 
@@ -43,7 +43,7 @@ A proposta responde a um problema concreto: a aplicação do Pilar 2 exige combi
 | Integração com ERPs | Desenvolver adaptadores para exportações e interfaces de sistemas como SAP, Oracle, Microsoft e TOTVS, capturando balancetes, planos de contas, tributos correntes e diferidos, operações entre empresas do grupo e dados de consolidação. |
 | Normalização e conciliação | Converter diferentes estruturas de origem em contratos comuns, compatíveis com os cálculos GloBE, mantendo a rastreabilidade até os registros contábeis e documentais. |
 | Motor GloBE | Apurar lucro GloBE, tributos cobertos ajustados, ETR e imposto complementar; incorporar progressivamente QDMTT, IIR, UTPR, exclusões e *safe harbours*, com regras versionadas e memória de cálculo. |
-| Preparação da GIR | Consolidar informações, validar consistência e gerar arquivos conforme o conteúdo e o schema exigidos. JSON pode servir aos contratos internos; outros formatos dependerão de requisitos específicos. |
+| GIR: preparação e conferência | Preparar uma declaração futura a partir dos dados e resultados suportados; em fluxo separado, ingerir arquivo autorizado localmente, preservar original e proveniência, validar, mapear e comparar quando possível. Schema, recepção institucional e exigências domésticas são escopos distintos. |
 | Integração com SPED e documentos fiscais | Planejar cruzamentos com ECD, ECF, NF-e, EFD-Contribuições e EFD-ICMS/IPI, conforme disponibilidade, autorização e pertinência de cada fonte, para conciliar informações domésticas e internacionais. |
 | Processamento de CbC | Integrar o *Country-by-Country Reporting* (Declaração País-a-País) para analisar receitas, lucros, tributos, empregados, ativos e entidades por jurisdição, apoiando a avaliação de riscos e os cruzamentos com ERP, SPED e GIR. |
 | Inteligência fiscal | Aplicar ciência de dados, aprendizado de máquina e análise de grafos ao mapeamento societário e à identificação de padrões atípicos. A leitura assistida de notas explicativas e divulgações financeiras poderá complementar a análise, com evidências para revisão humana. |
@@ -62,21 +62,30 @@ flowchart TD
     SPED[SPED e documentos fiscais eletrônicos]
     CBC[Declaração País-a-País - CbC]
     DOC[Notas explicativas e divulgações financeiras]
+    GIRIN[GIR recebida localmente]
   end
   ERP --> DADOS[Adaptadores, normalização e conciliação]
   SPED --> DADOS
   CBC --> DADOS
   DADOS --> BASE[Dados canônicos com origem e versões]
+  GIRIN --> PRESERVA[Preservação do original, hash e contexto]
+  PRESERVA --> INGESTAO[Perfil suportado, leitura segura e validações]
+  INGESTAO --> DECL[Valores declarados preservados]
+  DECL --> NORM[Fatos normalizados com proveniência]
+  NORM --> CRUZ[Conciliação com fontes independentes]
   REGRAS[Fontes normativas, regras e pacotes nacionais] --> MOTOR[Motor GloBE determinístico]
   BASE --> MOTOR
+  CRUZ --> MOTOR
+  NORM -. somente quando elegível e sem circularidade .-> COMP[Comparação: declarado × recálculo]
+  MOTOR --> COMP
   MOTOR --> MEM[Memória de cálculo e evidências]
   MOTOR --> GIR[Adaptador GIR e validações declaratórias]
+  GIR --> SAIDA[GIR preparada para fluxo de entrega aplicável]
   BASE --> RISCO[Análise de riscos, grafos e IA assistiva]
   DOC --> RISCO
   MEM --> RISCO
   RISCO --> PAINEL[Painéis para auditoria e revisão humana]
   MEM --> PAINEL
-  GIR --> SAIDA[Arquivos para os fluxos de entrega aplicáveis]
   subgraph Atual[Entregas atuais]
     CONCEPCAO[Documentação e exemplos de contratos]
     SITE[Página explicativa e demonstrador sintético]
@@ -86,11 +95,11 @@ flowchart TD
   CONCEPCAO -. fundamenta .-> SITE
 ```
 
-Em texto: ERP, SPED e CbC alimentariam uma camada comum de preparação e conciliação. O motor aplicaria regras versionadas a esses dados e produziria resultados rastreáveis, que serviriam à preparação da GIR e à revisão fiscal. A análise de riscos também utilizaria documentos financeiros e apoiaria os painéis de auditoria. A IA teria função assistiva; a apuração do imposto permaneceria determinística. A página atual explica essa proposta e demonstra um caso sintético.
+Em texto: há dois percursos GIR. **Preparação:** fontes contábeis, fiscais e societárias alimentam dados canônicos, regras e o motor; resultados suportados podem compor uma GIR preparada para o fluxo de entrega pertinente. **Conferência:** uma GIR disponibilizada ao operador é preservada com hash e contexto, passa por perfil, validação e mapeamento; fatos elegíveis podem ser conciliados com fontes independentes e comparados a recálculo quando os insumos permitirem. Declarado, normalizado e recalculado permanecem separados: reproduzir agregados da própria declaração não é conferência independente. A documentação detalhada está em [P12 — entrada e conferência da GIR](docs/P12-gir-entrada-conferencia.md), com [fontes e versões examinadas](sources/gir.md) e [próximo incremento proposto](prompts/execucao-GIR1.md). Esses contratos estão especificados; importador, validação XML e motor fiscal ainda não estão implementados.
 
 ### Caminho de implementação
 
-O projeto começa pela especificação dos dados e por um motor determinístico local, com casos sintéticos e escopo delimitado. Conectores empresariais, integração com sistemas fiscais, geração da GIR e recursos de inteligência serão desenvolvidos por etapas. As escolhas iniciais estão descritas na [arquitetura](docs/P07-arquitetura.md) e no [roadmap](docs/P10-roadmap.md).
+O projeto começa pela especificação dos dados e por um motor determinístico local, com casos sintéticos e escopo delimitado. A ingestão da GIR tem trilha incremental própria, independente de um motor completo; conectores empresariais, integração com sistemas fiscais, preparação/exportação da GIR e recursos de inteligência avançam conforme seus critérios de cobertura. As escolhas iniciais estão descritas na [arquitetura](docs/P07-arquitetura.md), no [roadmap](docs/P10-roadmap.md) e na especificação [P12](docs/P12-gir-entrada-conferencia.md).
 
 Em fases posteriores, requisitos de escala poderão justificar processamento distribuído e armazenamento analítico. Kafka, Spark, DuckDB, ClickHouse, Neo4j, FastAPI e ferramentas de IA em Python são possibilidades a avaliar conforme o problema de cada módulo. A proposta mantém o compromisso com código aberto, contratos interoperáveis, execução soberana e auditabilidade.
 
@@ -112,6 +121,7 @@ Em fases posteriores, requisitos de escala poderão justificar processamento dis
 | P09 | [Governança](docs/P09-governanca.md) | P00 a P08 |
 | P11 | [Especificação da página](docs/P11-pagina.md) | P00 a P09 |
 | P10 | [Roadmap e próximos prompts](docs/P10-roadmap.md) | P00 a P09 e P11 |
+| P12 | [Entrada e conferência da GIR](docs/P12-gir-entrada-conferencia.md) | P04, P07, P08 e P10 |
 
 Consulte também [decisões e lacunas](docs/decisoes.md), [fontes verificadas](sources/catalogo.md), [cobertura](docs/suporte.md), [ambiente observado](docs/ambiente.md), [ADRs](docs/adr/README.md), [prompts de trabalho e fonte original](prompts/README.md) e [evidências da entrega](docs/entrega-concepcao.md).
 
@@ -133,7 +143,7 @@ A [apresentação publicada](https://amarallr.github.io/oecd_p2/apresentacao.htm
 
 Execute `node scripts/servir-site.cjs` e abra `http://127.0.0.1:8000/oecd_p2/`. No Windows sem Node no PATH, use `powershell -File scripts/servir-site.ps1`. A página reúne conceitos, arquitetura, fluxo guiado, demonstrador 100/10/20 → 4, memória, roadmap e fontes. Veja [execução e publicação](docs/publicacao.md), [evidências de validação da página](docs/validacao-web.md) e [validação da apresentação](docs/validacao-apresentacao.md).
 
-Verificações: `node scripts/verificar-projeto.cjs --web` e `node tests/site.test.cjs`. As actions de CI verificam os contratos e executam Chromium com capturas; seus resultados precisam ser consultados em cada run. Esses testes não validam obrigações tributárias reais.
+Verificações: `node scripts/verificar-projeto.cjs --web`, `node tests/site.test.cjs` e `node tests/gir-design.test.cjs`. As actions de CI verificam os contratos e executam Chromium com capturas; seus resultados precisam ser consultados em cada run. Esses testes não validam obrigações tributárias reais.
 
 ## Participação e licença
 

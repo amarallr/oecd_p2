@@ -35,4 +35,5 @@ R — RESPOSTA
 15. Modele evidências para análise de riscos, grafos societários e leitura assistida de divulgações financeiras, separando extração por IA de valores reconciliados aceitos para cálculo determinístico e revisão humana.
 
 Entregáveis: modelo conceitual/lógico, dicionário, contratos exemplificativos e matriz de qualidade.
+Extensão obrigatória: aplique P12 e docs/P12-gir-entrada-conferencia.md aos nove contratos GIR, proveniência por campo, estados de ausência, decimal textual, correções e cruzamentos externos. Separe declarado, normalizado e recalculado; não derive independência de agregados copiados da GIR.
 Aceite: deve ser possível explicar a composição de cada agregado e localizar divergências sem consultar código de interface.

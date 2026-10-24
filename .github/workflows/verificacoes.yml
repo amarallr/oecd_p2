@@ -18,6 +18,8 @@ jobs:
         run: node scripts/verificar-projeto.cjs --web
       - name: Testar contrato didático e limites
         run: node tests/site.test.cjs
+      - name: Verificar integridade dos contratos GIR planejados
+        run: node tests/gir-design.test.cjs
       - name: Verificar sintaxe JavaScript
         run: |
           node --check site/assets/js/app.js

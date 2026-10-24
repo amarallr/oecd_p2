@@ -4,6 +4,8 @@ A página deverá explicar o framework, suas camadas, sua auditabilidade e o est
 
 ## Conteúdo e wireframe
 
+Extensão [P12](P12-gir-entrada-conferencia.md): página e apresentação devem mostrar GIR como entrada declaratória, saída produzida e fonte de conferência. Os diagramas distinguem preparação/exportação de ingestão/validação/conciliação/recálculo possível/comparação. Indicar que todos esses módulos operacionais são planejados; ingestão local não significa recepção institucional. Não criar upload de GIR real no site público. Declaração estruturalmente válida pode continuar incompleta ou não comparável.
+
 | Seção e âncora | Conteúdo | Forma e aceite |
 |---|---|---|
 | Início, #inicio | oecd_p2, propósito, estágio e atualização | Título claro; status concepção visível; link ao repositório somente com situação correta |

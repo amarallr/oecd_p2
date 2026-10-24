@@ -47,6 +47,12 @@ Cada ponte exporta fato original → transformação → ajuste identificado →
 
 Diferidos têm movimentos por safra e categoria: saldo inicial + constituições - reversões + outros movimentos explicados = saldo final. Manter histórico necessário para perdas, recapture e retificações. Não presumir coincidência entre exercício local e da UPE; o adaptador registra o mapeamento e suas reconciliações.
 
+## GIR declarada e conferência
+
+A [P12](P12-gir-entrada-conferencia.md) amplia o modelo com `Submission`, `SourceDocument`, `DeclaredFact`, `FieldMapping`, `ValidationResult`, `ReconciliationResult`, `RecalculationRun`, `ComparisonResult` e `SubmissionRelation`. Chaves, cardinalidades, campos, estados, temporalidade e proveniência constam nesse contrato; IDs internos não são identificadores oficiais.
+
+Declarado, normalizado e recalculado são camadas imutáveis separadas. Aritmética dos próprios agregados não é recálculo independente; este exige bases externas conciliadas. Ausência ou campo material sem mapa não vira zero. Preservar moedas, unidades, escalas e ocorrências. O [exemplo JSON](../examples/gir-review.design.json) é contrato interno sintético, sem importação XML, validação XSD ou motor executado. Adaptadores nacionais ficam fora do núcleo; lucro contábil, tributável, GloBE e CbC não são equivalentes.
+
 ## IAS 12 e qualidade
 
 S7/S14 confirmam uma exceção temporária ligada a diferidos dos próprios impostos Pillar Two e requisitos de divulgação. O PDF consolidado solicitado redirecionou para acesso por assinatura; a verificação por parágrafo permanece em L02. Como decisão de projeto, manter separados os diferidos de outras origens potencialmente necessários aos ajustes GloBE: a exceção contábil não é um comando para apagar esse histórico.

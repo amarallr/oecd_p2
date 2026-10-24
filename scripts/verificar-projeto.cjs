@@ -14,6 +14,7 @@ for (const line of ['RestoreWorkspace: No', 'SaveWorkspace: No', 'AlwaysSaveHist
 const config = JSON.parse(fs.readFileSync(path.join(root, 'config.example.json'), 'utf8'));
 if (config.preview.host !== '127.0.0.1' || config.real_taxpayer_data_allowed !== false) errors.push('Configuração de exemplo incompatível');
 for (let i = 0; i < 12; i++) if (!fs.existsSync(path.join(root, 'prompts', `P${String(i).padStart(2, '0')}.txt`))) errors.push(`Prompt P${i} ausente`);
+for (const file of ['docs/P12-gir-entrada-conferencia.md', 'prompts/P12.txt', 'prompts/execucao-GIR1.md', 'sources/gir.md', 'examples/gir-review.design.json', 'examples/gir-review-synthetic.source.json', 'tests/gir-design.test.cjs']) if (!fs.existsSync(path.join(root, file))) errors.push(`Artefato da especificação GIR ausente: ${file}`);
 if (process.argv.includes('--web')) {
   for (const file of ['site/index.html', 'site/apresentacao.html', 'site/assets/css/styles.css', 'site/assets/css/apresentacao.css', 'site/assets/js/app.js', 'site/assets/js/demo.js', 'site/assets/js/apresentacao.js', 'site/assets/data/project.json']) {
     if (!fs.existsSync(path.join(root, file))) errors.push(`Arquivo web ausente: ${file}`);
@@ -30,6 +31,8 @@ if (process.argv.includes('--web')) {
   for (const css of ['styles.css', 'apresentacao.css']) {
     if (/https?:\/\//.test(fs.readFileSync(path.join(root, 'site/assets/css', css), 'utf8'))) errors.push(`CSS com dependência externa: ${css}`);
   }
+  const publicData = JSON.parse(fs.readFileSync(path.join(root, 'site/assets/data/project.json'), 'utf8'));
+  if (publicData.capabilities.gir_ingestion !== 'planned' || publicData.capabilities.gir_review !== 'planned' || publicData.capabilities.gir_export !== 'planned' || publicData.capabilities.institutional_gir_receipt !== 'unsupported') errors.push('Status público das capacidades GIR incompatível');
 }
 const report = { phase: process.argv.includes('--web') ? 'F0-web' : 'F0', node: process.versions.node, errors, engine_implemented: false, dependencies: [] };
 console.log(JSON.stringify(report, null, 2));
