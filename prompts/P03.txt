@@ -31,3 +31,4 @@ R — RESPOSTA
 
 Ficha mínima: rule_id, nome, fonte/dispositivo, hipótese, período, entradas, saída, fórmula/decisão, eleição, exceções, dependências, erros, testes e status.
 Aceite: cada resultado pretendido deve apontar para regras identificáveis; casos especiais não podem desaparecer em um fluxo genérico.
+Para didática do domínio, considerar os nove tópicos ilustrados pelo Handbook S1: sequência central GloBE; escopo do grupo e teste de receita em 2/4 anos; alocação de FANIL por entidade/jurisdição; classes de ajustes; composição de tributos cobertos; ETR e complemento sobre lucro excedente após SBIE; ordem QDMTT/IIR/UTPR; e exemplo numérico de QDMTT. Não converter resumos visuais em regra completa.

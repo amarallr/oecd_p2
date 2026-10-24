@@ -30,3 +30,4 @@ R — RESPOSTA
 
 Entregáveis: catálogo de fontes, matriz fonte/tema/período, política de versionamento e backlog de lacunas.
 Aceite: nenhuma regra candidata a suporte normativo pode depender de fonte não identificada ou vigência presumida.
+Incluir S1 — OECD Minimum Tax Implementation Handbook (2023), PDF pp. 11–21 e 25, como fonte didática. Manter o limite declarado pela própria publicação: não modifica as Model Rules, Commentary ou Agreed Administrative Guidance. Registrar conceitos usados em diagrams, indicar edição/página e validar regras vigentes em fontes normativas separadas.

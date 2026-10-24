@@ -8,6 +8,8 @@ Para conhecer o projeto de forma visual e didática, a apresentação interativa
 
 **[Abrir a apresentação do projeto →](https://amarallr.github.io/oecd_p2/apresentacao.html)**
 
+**[Ver as nove figuras bilíngues do Handbook da OCDE →](https://amarallr.github.io/oecd_p2/figuras-pilar-dois.html)** · [documentação e limites da fonte](sources/handbook-pilar-dois.md)
+
 `oecd_p2` é uma infraestrutura aberta em desenvolvimento para modelar, calcular, explicar e revisar tributação mínima global. O corte normativo inicial é **23/10/2026**. O projeto RStudio e a página explicativa estão implementados; o motor e os pacotes nacionais ainda não foram implementados. Não há suporte a obrigações tributárias reais nem endosso institucional.
 
 ## O que é o Pilar 2 da OCDE?

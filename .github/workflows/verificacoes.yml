@@ -20,11 +20,14 @@ jobs:
         run: node tests/site.test.cjs
       - name: Verificar integridade dos contratos GIR planejados
         run: node tests/gir-design.test.cjs
+      - name: Verificar figuras adaptadas do Handbook da OCDE
+        run: node tests/handbook-figures.test.cjs
       - name: Verificar sintaxe JavaScript
         run: |
           node --check site/assets/js/app.js
           node --check site/assets/js/demo.js
           node --check site/assets/js/apresentacao.js
+          node --check site/assets/js/figuras.js
   browser:
     runs-on: ubuntu-latest
     timeout-minutes: 8

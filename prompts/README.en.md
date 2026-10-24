@@ -2,7 +2,7 @@
 
 **Language / Idioma:** [English (US)](README.en.md) · [Português (Brasil)](README.md)
 
-This index is translated into English (US); the linked prompt instructions are currently written in Portuguese. P01 is the common instruction set and applies throughout. The list below is numerically ordered; use the roadmap for execution dependencies. P08 should receive the P11 page specification when reviewing the website.
+This index is translated into English (US); the linked prompt instructions are currently written in Portuguese. P01 is the common instruction set and applies throughout. The list below is numerically ordered; use the roadmap for execution dependencies. P08 should receive the P11 page specification when reviewing the website. Apply the [OECD Handbook-based guidelines](diretrizes-handbook.md) to educational content.
 
 1. [P00 — Main project conception and coordination](P00.txt)
 2. [P01 — Common mandatory instructions](P01.txt)

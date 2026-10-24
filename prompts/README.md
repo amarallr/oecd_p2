@@ -4,7 +4,7 @@ Idioma / Language: [Português (Brasil)](README.md) · [English (US) index](READ
 
 Fonte histórica: caderno CO-STAR v0.3 fornecido em 23/10/2026, preservado integralmente em [caderno-COSTAR-v0_3.txt](caderno-COSTAR-v0_3.txt). Os prompts individuais incorporam as [diretrizes atualizadas da plataforma](diretrizes-plataforma.md): objetivo nacional, módulos futuros, explicação didática e diagrama no README, distinção entre visão e implementação e convenção `doit`.
 
-Os prompts abaixo estão em ordem numérica. P01 e as diretrizes atualizadas aplicam-se a todas as etapas. Para execução, respeite as dependências do roadmap; P08 deve receber a especificação P11 ao revisar a página. Carregue resultados anteriores e [decisões](../docs/decisoes.md). Veja também [English (US) project documentation](../README.en.md).
+Os prompts abaixo estão em ordem numérica. P01 e as diretrizes atualizadas aplicam-se a todas as etapas. Para execução, respeite as dependências do roadmap; P08 deve receber a especificação P11 ao revisar a página. Carregue resultados anteriores, [decisões](../docs/decisoes.md) e as [diretrizes baseadas no Handbook da OCDE](diretrizes-handbook.md). Veja também [English (US) project documentation](../README.en.md).
 
 - [P00 — MAIN: CONCEPÇÃO E COORDENAÇÃO](P00.txt)
 - [P01 — LIB: INSTRUÇÕES COMUNS OBRIGATÓRIAS](P01.txt)

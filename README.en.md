@@ -6,6 +6,8 @@ OECD Minimum Tax Implementation (Pillar Two).
 
 The [project presentation](https://amarallr.github.io/oecd_p2/apresentacao.html) provides a visual overview of the platform, its architecture and development stages.
 
+**[Browse nine bilingual figures from the OECD Handbook →](https://amarallr.github.io/oecd_p2/figuras-pilar-dois.html)** · [documentation and source limits](sources/handbook-pilar-dois.md)
+
 `oecd_p2` is an open-source project in development to model, calculate, explain and review global minimum taxation. Its initial policy cutoff is **October 23, 2026**. The RStudio project and explanatory website are implemented; the tax engine, national packages and real-world filing support are not. The project is not institutionally endorsed.
 
 ## Project goal

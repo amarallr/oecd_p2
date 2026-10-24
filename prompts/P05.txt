@@ -40,3 +40,4 @@ Exemplo sintético obrigatório, não suficiente para comprovar conformidade:
 
 Entregáveis: contratos do motor, pseudocódigo, memória exemplificada e matriz de erros.
 Aceite: um revisor deve conseguir refazer o exemplo sem executar o futuro software.
+Incorporar como cenários didáticos rastreáveis a S1: receita do grupo ≥ EUR 750 milhões em dois dos quatro exercícios anteriores; agregação de renda e tributos por jurisdição; ETR; diferença até a alíquota mínima aplicada ao lucro excedente depois do SBIE; ordem de cobrança contextual. Reproduzir Figura 2.1 somente como exemplo declarado (renda 100, ETR 10%, SBIE 25, QDMTT 3.75 ou tributo não qualificado 5); rotular premissas e arredondamento, sem inferir obrigação real ou substituir regras atuais.
